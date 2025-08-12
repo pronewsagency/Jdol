@@ -22,13 +22,17 @@ const teamLogos = {
 };
 
 function getTeamLogoUrl(teamName) {
+    console.log("Team name received:", teamName); // يساعد في الفحص
     const formattedTeamName = teamName.toLowerCase().trim();
-
+    console.log("Formatted team name:", formattedTeamName); // يساعد في الفحص
+    
     for (const teamKey in teamLogos) {
         if (teamLogos[teamKey].keywords.includes(formattedTeamName)) {
+            console.log("Match found for:", formattedTeamName, "URL:", teamLogos[teamKey].url); // يساعد في الفحص
             return teamLogos[teamKey].url;
         }
     }
+    console.log("No match found for:", formattedTeamName); // يساعد في الفحص
     return null;
 }
 
