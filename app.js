@@ -4,7 +4,7 @@ const teamLogos = {
         keywords: ["real madrid", "ريال مدريد", "ريال", "مدريد"]
     },
     "barcelona": {
-        url: "https://upload.wikimedia.org/wikipedia/ar/b/ba/FC_Barcelona_logo.svg",
+        url: "https://upload.wikimedia.org/wikipedia/sco/4/47/FC_Barcelona_%28crest%29.svg",
         keywords: ["barcelona", "برشلونة", "برشا", "برشلونه"]
     },
     "liverpool": {
