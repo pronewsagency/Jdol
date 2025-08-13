@@ -1,10 +1,10 @@
 const teamLogos = {
     "real_madrid": {
         url: "https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg",
-        keywords: ["real madrid", "ريال مدريد", "ريال", "مدريد"]
+        keywords: ["real madrid", "ريال مدريد", "ريال", "مدريد", "ر.مدريد"]
     },
     "barcelona": {
-        url: "https://upload.wikimedia.org/wikipedia/sco/4/47/FC_Barcelona_%28crest%29.svg",
+        url: "https://upload.wikimedia.org/wikipedia/ar/b/ba/FC_Barcelona_logo.svg",
         keywords: ["barcelona", "برشلونة", "برشا", "برشلونه"]
     },
     "liverpool": {
@@ -22,29 +22,12 @@ const teamLogos = {
 };
 
 function getTeamLogoUrl(teamName) {
-    console.log("Team name received:", teamName); // يساعد في الفحص
     const formattedTeamName = teamName.toLowerCase().trim();
-    console.log("Formatted team name:", formattedTeamName); // يساعد في الفحص
     
     for (const teamKey in teamLogos) {
         if (teamLogos[teamKey].keywords.includes(formattedTeamName)) {
-            console.log("Match found for:", formattedTeamName, "URL:", teamLogos[teamKey].url); // يساعد في الفحص
             return teamLogos[teamKey].url;
         }
     }
-    console.log("No match found for:", formattedTeamName); // يساعد في الفحص
     return null;
-}
-
-function displayTeamLogo(teamName, imageElementId) {
-    const logoUrl = getTeamLogoUrl(teamName);
-    const imageElement = document.getElementById(imageElementId);
-
-    if (imageElement && logoUrl) {
-        imageElement.src = logoUrl;
-        imageElement.alt = `شعار فريق ${teamName}`;
-    } else if (imageElement) {
-        imageElement.src = "";
-        imageElement.alt = `شعار ${teamName} غير متوفر`;
-    }
 }
