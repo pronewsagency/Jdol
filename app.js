@@ -6,6 +6,10 @@ const teamLogos = {
     'paris_saint_germain': { url: 'https://upload.wikimedia.org/wikipedia/en/a/a7/Paris_Saint-Germain_F.C..svg', keywords: ['paris saint-germain', 'باريس سان جيرمان', 'باريس', 'p.s.g', 'psg'] },
     'tirol': { url: 'https://upload.wikimedia.org/wikipedia/fr/5/5b/WSG_Swarovski_Tirol_%28logo%29.svg', keywords: ['تيرول'] },
     'Manchester city': { url: 'https://upload.wikimedia.org/wikipedia/sco/e/eb/Manchester_City_FC_badge.svg', keywords: ['م.سيتي'] },
+    'Chelsea': { url: 'https://upload.wikimedia.org/wikipedia/sco/c/cc/Chelsea_FC.svg', keywords: ['تشيلسي'] },
+    'Arsenal': { url: 'https://upload.wikimedia.org/wikipedia/sco/5/53/Arsenal_FC.svg', keywords: ['آرسنال'] },
+    'Newcastle': { url: 'https://upload.wikimedia.org/wikipedia/sco/5/56/Newcastle_United_Logo.svg', keywords: ['نيوكاسل'] },
+    'Alnasr': { url: 'https://upload.wikimedia.org/wikipedia/ar/a/ac/Al_Nassr_FC_Logo.svg', keywords: ['النصر'] },
 };
 
 function getTeamLogoUrl(teamName) {
