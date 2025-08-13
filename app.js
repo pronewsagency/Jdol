@@ -10,7 +10,7 @@ const teamLogos = {
     'Arsenal': { url: 'https://upload.wikimedia.org/wikipedia/sco/5/53/Arsenal_FC.svg', keywords: ['آرسنال'] },
     'Newcastle': { url: 'https://upload.wikimedia.org/wikipedia/sco/5/56/Newcastle_United_Logo.svg', keywords: ['نيوكاسل'] },
     'Alnasr': { url: 'https://upload.wikimedia.org/wikipedia/ar/a/ac/Al_Nassr_FC_Logo.svg', keywords: ['النصر'] },
-    'Tottenham': { url: 'https://sco.m.wikipedia.org/wiki/File:Tottenham_Hotspur.svg', keywords: ['توتنهام'] },
+    'Tottenham': { url: 'https://upload.wikimedia.org/wikipedia/sco/b/b4/Tottenham_Hotspur.svg', keywords: ['توتنهام'] },
 };
 
 function getTeamLogoUrl(teamName) {
