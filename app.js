@@ -5,7 +5,7 @@ const teamLogos = {
     'manchester_united': { url: 'https://upload.wikimedia.org/wikipedia/en/7/7a/Manchester_United_FC_crest.svg', keywords: ['manchester united', 'مانشستر يونايتد', 'مانشستر', 'مان يونايتد'] },
     'paris_saint_germain': { url: 'https://upload.wikimedia.org/wikipedia/en/a/a7/Paris_Saint-Germain_F.C..svg', keywords: ['paris saint-germain', 'باريس سان جيرمان', 'باريس', 'p.s.g', 'psg'] },
     'tirol': { url: 'https://upload.wikimedia.org/wikipedia/fr/5/5b/WSG_Swarovski_Tirol_%28logo%29.svg', keywords: ['تيرول'] },
-    'Manchester city': { url: 'https://upload.wikimedia.org/wikipedia/sco/e/eb/Manchester_City_FC_badge.svg', keywords: ['مان ستي'] },
+    'Manchester city': { url: 'https://upload.wikimedia.org/wikipedia/sco/e/eb/Manchester_City_FC_badge.svg', keywords: ['م.سيتي'] },
 };
 
 function getTeamLogoUrl(teamName) {
