@@ -14,5 +14,9 @@ const matchLinks = {
   egypt_algeria: {
     url: 'go:d',
     keywords: ['مصر', 'الجزائر', 'egypt', 'algeria']
+  },
+  psg_tottenham: {
+    url: 'go:e',
+    keywords: ['باريس سان جيرمان', 'توتنهام', 'psg', 'tottenham']
   }
 };
