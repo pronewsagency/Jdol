@@ -20,12 +20,12 @@
       "Chelsea FC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/c/cc/Chelsea_FC.svg/1200px-Chelsea_FC.svg.png", "keywords": ["تشيلسي", "Chelsea"] },
       "Arsenal FC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/5/53/Arsenal_FC.svg/1200px-Arsenal_FC.svg.png", "keywords": ["أرسنال", "Arsenal"] },
       "Newcastle United FC": { "url": "https://upload.wikimedia.org/wikipedia/sco/5/56/Newcastle_United_Logo.svg", "keywords": ["نيوكاسل", "Newcastle"] },
-      "Tottenham Hotspur FC": { "url": "https://upload.wikimedia.org/wikipedia/sco/b/b4/Tottenham_Hotspur.svg", "keywords": ["تتنهام", "Totenham", ".هوتسبير"] },
+      "Tottenham Hotspur FC": { "url": "https://upload.wikimedia.org/wikipedia/sco/b/b4/Tottenham_Hotspur.svg", "keywords": ["تتنهام", "Tottenham", ".هوتسبير"] },
       "Juventus FC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/d/d2/Juventus_FC_logo.svg/1200px-Juventus_FC_logo.svg.png", "keywords": ["يوفنتوس", "Juventus"] },
       "AC Milan": { "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/AC_Milan_logo.svg/1200px-AC_Milan_logo.svg.png", "keywords": ["ميلان", "Milan", "اي سي ميلان"] },
       "FC Internazionale Milano": { "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/FC_Internazionale_Milano_2021.svg/1200px-FC_Internazionale_Milano_2021.svg.png", "keywords": ["إنتر ميلان", "Inter Milan", "الإنتر"] },
       "Bayern Munich": { "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/FC_Bayern_M%C3%BCnchen_logo_%282002%E2%80%932017%29.svg/1200px-FC_Bayern_M%C3%BCnchen_logo_%282002%E2%80%932017%29.svg.png", "keywords": ["بايرن ميونخ", "Bayern Munich"] },
       "Borussia Dortmund": { "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Borussia_Dortmund_logo.svg/1200px-Borussia_Dortmund_logo.svg.png", "keywords": ["بروسيا دورتموند", "Dortmund"] },
-      "Paris Saint-Germain F.C.": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/4/47/Paris_Saint-Germain_F.C._logo.svg/1200px-Paris_Saint-Germain_F.C._logo.svg.png", "keywords": ["باريس سان جيرمان", "PSG", "باريس", "ب.جيرمان"] },
+      "Paris Saint-Germain F.C.": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/4/47/Paris_Saint-Germain_F.C._logo.svg/1200px-Paris_Saint-Germain_F.C._logo.svg.png", "keywords": ["باريس سان جيرمان", "PSG", "باريس", "Paris Saint-Germain"] },
       "WSG Tirol": { "url": "https://upload.wikimedia.org/wikipedia/fr/5/5b/WSG_Swarovski_Tirol_%28logo%29.svg", "keywords": ["تيرول"] }
     };
