@@ -451,6 +451,7 @@
 </div>
 
 <script>
+    // Team logos and keywords for mapping
     const teamLogos = {
         'real_madrid': { url: 'https://jdwel.com/images/real-madrid.svg', keywords: ['ريال', 'مدريد'] },
         'barcelona': { url: 'https://jdwel.com/images/barcelona.svg', keywords: ['برشلونة'] },
@@ -493,6 +494,7 @@
         'neymar': { url: 'https://jdwel.com/images/neymar.png', keywords: ['نيمار'] },
     };
 
+    // Live match links (example data)
     const matchLinks = {
         'el-ahly-zamalek': {
             keywords: ['الاهلي', 'الزمالك'],
@@ -517,28 +519,18 @@
     };
 
     function createTeamLogo(imgUrl, teamName, isExactMatch) {
-        if (!isExactMatch || !imgUrl) {
+        if (!isExactMatch || imgUrl.includes('placeholder.com')) {
             const div = document.createElement('div');
             div.className = 'protv-logo';
             div.textContent = 'PRO TV';
             return div;
+        } else {
+            const img = document.createElement('img');
+            img.src = imgUrl;
+            img.alt = 'شعار ' + teamName;
+            img.className = 'team-logo';
+            return img;
         }
-
-        const img = document.createElement('img');
-        img.src = imgUrl;
-        img.alt = 'شعار ' + teamName;
-        img.className = 'team-logo';
-
-        img.onerror = () => {
-            const div = document.createElement('div');
-            div.className = 'protv-logo';
-            div.textContent = 'PRO TV';
-            if (img.parentElement) {
-                img.parentElement.replaceChild(div, img);
-            }
-        };
-
-        return img;
     }
 
     function abbreviateTeamName(teamName) {
