@@ -26,6 +26,6 @@
       "FC Internazionale Milano": { "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/FC_Internazionale_Milano_2021.svg/1200px-FC_Internazionale_Milano_2021.svg.png", "keywords": ["إنتر ميلان", "Inter Milan", "الإنتر"] },
       "Bayern Munich": { "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/FC_Bayern_M%C3%BCnchen_logo_%282002%E2%80%932017%29.svg/1200px-FC_Bayern_M%C3%BCnchen_logo_%282002%E2%80%932017%29.svg.png", "keywords": ["بايرن ميونخ", "Bayern Munich"] },
       "Borussia Dortmund": { "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Borussia_Dortmund_logo.svg/1200px-Borussia_Dortmund_logo.svg.png", "keywords": ["بروسيا دورتموند", "Dortmund"] },
-      "Paris Saint-Germain F.C.": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/4/47/Paris_Saint-Germain_F.C._logo.svg/1200px-Paris_Saint-Germain_F.C._logo.svg.png", "keywords": ["باريس سان جيرمان", "PSG", "باريس", "Paris Saint-Germain"] },
+      "Paris Saint-Germain F.C.": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/4/47/Paris_Saint-Germain_F.C._logo.svg/1200px-Paris_Saint-Germain_F.C._logo.svg.png", "keywords": ["باريس سان جيرمان", "PSG", "ب.جيرمان", "Paris Saint Germain"] },
       "WSG Tirol": { "url": "https://upload.wikimedia.org/wikipedia/fr/5/5b/WSG_Swarovski_Tirol_%28logo%29.svg", "keywords": ["تيرول"] }
     };
