@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>جدول المباريات</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap">
+<style>
+    body {
+        font-family: 'Cairo', sans-serif;
+        background: black;
+        color: white;
+        padding: 20px;
+        direction: rtl;
+    }
+
+    .match-row {
+        background: black;
+        border: 1px solid white;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        overflow: hidden;
+    }
+
+    .teams-time {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .team {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        flex: 1;
+    }
+
+    .team img, .team .protv-logo {
+        width: 60px;
+        height: 60px;
+        object-fit: contain;
+        margin-bottom: 5px;
+    }
+
+    .protv-logo {
+        border: 2px solid white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 700;
+        font-size: 12px;
+    }
+
+    .team-name {
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    .match-time {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+    }
+
+    .countdown-circle {
+        position: relative;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+    }
+
+    .countdown-circle svg {
+        transform: rotate(-90deg);
+        width: 100%;
+        height: 100%;
+    }
+
+    .countdown-circle circle {
+        fill: none;
+        stroke-width: 5;
+        r: 28;
+        cx: 30;
+        cy: 30;
+    }
+
+    .countdown-circle .bg {
+        stroke: white;
+        opacity: 0.3;
+    }
+
+    .countdown-circle .progress {
+        stroke: red;
+        stroke-linecap: round;
+        stroke-dasharray: 175.84;
+        stroke-dashoffset: 175.84;
+        transition: stroke-dashoffset 0.5s linear;
+    }
+
+    .countdown-circle .time-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-weight: bold;
+        font-size: 14px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        line-height: 1.2;
+    }
+
+    .countdown-circle .penalties {
+        font-size: 10px;
+        opacity: 0.7;
+    }
+
+    .match-score-finished {
+        background-color: red;
+        border: 1px solid white;
+        border-radius: 5px;
+        padding: 10px 15px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-width: 60px;
+        height: 60px;
+        box-sizing: border-box;
+    }
+
+    .match-score-finished .main-score {
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+    }
+
+    .match-score-finished .penalties-score {
+        font-size: 12px;
+        color: white;
+        margin-top: 2px;
+    }
+
+    .channel-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 15px;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .watch-btn-container {
+        position: relative;
+        width: 100%;
+        margin: 0 auto;
+        max-width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .watch-btn {
+        background: linear-gradient(to right, #FF0000, #CC0000);
+        border: none;
+        color: white;
+        border-radius: 6px;
+        padding: 10px 15px;
+        font-weight: 700;
+        cursor: pointer;
+        text-decoration: none;
+        width: 100%;
+        text-align: center;
+        font-family: 'Cairo', sans-serif;
+        display: block;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+
+    .finished-btn {
+        background: red;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 6px;
+        font-weight: 700;
+        cursor: default;
+        text-align: center;
+        width: 100%;
+    }
+
+    .not-started-btn {
+        background-color: #333;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 6px;
+        font-weight: 700;
+        cursor: default;
+        text-align: center;
+        width: 100%;
+    }
+
+    .edit-icon {
+        display: none;
+    }
+
+    .loading-spinner {
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        border-top: 4px solid #fff;
+        width: 30px;
+        height: 30px;
+        animation: spin 1s linear infinite;
+        margin: 20px auto;
+        display: none;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 100;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.8);
+        padding-top: 60px;
+    }
+
+    .modal-content {
+        background-color: #1a1a1a;
+        margin: 5% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 90%;
+        max-width: 400px;
+        border-radius: 10px;
+    }
+
+    .modal-title {
+        text-align: right;
+    }
+
+    .close-btn {
+        color: white;
+        float: left;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close-btn:hover,
+    .close-btn:focus {
+        color: #ff0000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .server-list {
+        list-style-type: none;
+        padding: 0;
+        margin-top: 20px;
+    }
+
+    .server-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #2a2a2a;
+        padding: 10px;
+        border-radius: 6px;
+        margin-bottom: 10px;
+    }
+
+    .server-item span {
+        flex: 1;
+        text-align: right;
+    }
+
+    .live-server-btn {
+        background: #FF0000;
+        border: none;
+        color: white;
+        border-radius: 6px;
+        padding: 10px 15px;
+        font-weight: 700;
+        cursor: pointer;
+        text-decoration: none;
+        width: 100%;
+        text-align: center;
+        font-family: 'Cairo', sans-serif;
+        display: block;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+
+    .watch-btn:focus,
+    .live-server-btn:focus,
+    .load-btn:focus {
+        outline: none;
+    }
+
+    .button-container-wrapper {
+        max-width: 700px;
+        margin: auto;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: center;
+        gap: 0;
+        margin: 20px 0;
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: #333;
+        width: 100%;
+    }
+
+    .load-btn {
+        font-family: 'Cairo', sans-serif;
+        background-color: transparent;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        flex-grow: 1;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+    .load-btn:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .load-btn:first-child {
+        border-radius: 5px 0 0 5px;
+    }
+
+    .load-btn:last-child {
+        border-radius: 0 5px 5px 0;
+    }
+
+    .search-refresh-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .search-box {
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+        padding: 10px;
+        border-radius: 20px;
+        background-color: black;
+        border: 1px solid white;
+    }
+
+    .search-box i {
+        color: white;
+        font-size: 16px;
+        margin-left: 10px;
+    }
+
+    .search-input-field {
+        flex-grow: 1;
+        border: none;
+        background: transparent;
+        color: white;
+        font-family: 'Cairo', sans-serif;
+        font-size: 16px;
+        text-align: right;
+        min-width: 0;
+    }
+
+    .search-input-field:focus {
+        outline: none;
+    }
+
+    .refresh-btn {
+        padding: 10px 15px;
+        border-radius: 5px;
+        border: none;
+        background-color: #333;
+        color: white;
+        font-family: 'Cairo', sans-serif;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .refresh-btn:hover {
+        background-color: #555;
+    }
+</style>
+</head>
+<body>
+
+<div class="search-refresh-container">
+    <button id="refresh-btn" class="refresh-btn"><i class="fas fa-sync-alt"></i></button>
+    <div class="search-box">
+        <input type="text" id="search-input" class="search-input-field" placeholder="ابحث عن مباراة...">
+        <i class="fas fa-search"></i>
+    </div>
+</div>
+
+<div class="button-container-wrapper" style="text-align: center;">
+    <div class="button-container">
+        <button id="loadYesterdayBtn" class="load-btn">الأمس</button>
+        <button id="loadTodayBtn" class="load-btn">اليوم</button>
+        <button id="loadTomorrowBtn" class="load-btn">الغد</button>
+    </div>
+</div>
+
+<div id="loading" class="loading-spinner"></div>
+<div id="matches-container" style="max-width:700px; margin:auto;"></div>
+
+<div id="liveServersModal" class="modal">
+    <div class="modal-content">
+        <span id="liveServersModalCloseBtn" class="close-btn">×</span>
+        <h2 class="modal-title">سيرفرات البث المباشر</h2>
+        <ul id="liveServerList" class="server-list">
+        </ul>
+    </div>
+</div>
+
+<script src="https://pronewsagency.github.io/Jdol/app.js"></script>
+
+<script>
+    // لم تعد بحاجة إلى تعريف teamLogos هنا، لأنها موجودة في app.js
+    
+    const matchLinks = {
+      "link1": { "url": "https://example.com/stream1", "keywords": ["النصر", "الهلال"] },
+      "link2": { "url": "https://example.com/stream2", "keywords": ["برشلونة", "Real Madrid"] },
+      "link3": { "url": "https://example.com/stream3", "keywords": ["ليفربول", "مانشستر سيتي"] }
+    };
+
+    function createTeamLogo(imgUrl, teamName, isExactMatch) {
+        if (!isExactMatch || imgUrl.includes('placeholder.com')) {
+            const div = document.createElement('div');
+            div.className = 'protv-logo';
+            div.textContent = 'PRO TV';
+            return div;
+        } else {
+            const img = document.createElement('img');
+            img.src = imgUrl;
+            img.alt = 'شعار ' + teamName;
+            img.className = 'team-logo';
+            return img;
+        }
+    }
+
+    function abbreviateTeamName(teamName) {
+        const parts = teamName.split(' ');
+        if (parts.length > 1) {
+            return parts && parts.length > 0 ? parts.slice(0, 1).join('').charAt(0) + '.' + parts.slice(-1).join('') : teamName;
+        }
+        return teamName;
+    }
+
+    const matchesContainer = document.getElementById('matches-container');
+    const loadingSpinner = document.getElementById('loading');
+    const liveServersModal = document.getElementById('liveServersModal');
+    const liveServersModalCloseBtn = document.getElementById('liveServersModalCloseBtn');
+    const liveServerList = document.getElementById('liveServerList');
+    const searchInput = document.getElementById('search-input');
+    const refreshBtn = document.getElementById('refresh-btn');
+    let currentMatchDayType = 'today';
+    let allMatches = [];
+
+    function renderLiveServers(homeTeam, awayTeam) {
+        liveServerList.innerHTML = '';
+        let foundLinkData = null;
+        for (const key in matchLinks) {
+            const linkData = matchLinks[key];
+            if (linkData && linkData.keywords && linkData.keywords.some(kw => homeTeam.includes(kw) || awayTeam.includes(kw))) {
+                foundLinkData = linkData;
+                break;
+            }
+        }
+        if (!foundLinkData) {
+            liveServerList.innerHTML = '<p style="text-align: center;">لا يوجد سيرفرات متاحة لهذه المباراة حاليًا.</p>';
+            return;
+        }
+
+        const servers = [
+            { name: 'سيرفر 1', url: foundLinkData.url + '&server=1' },
+            { name: 'سيرفر 2', url: foundLinkData.url + '&server=2' }
+        ];
+
+        servers.forEach(server => {
+            const li = document.createElement('li');
+            li.className = 'server-item';
+            const liveBtn = document.createElement('a');
+            liveBtn.href = server.url;
+            liveBtn.target = '_blank';
+            liveBtn.className = 'live-server-btn';
+            liveBtn.textContent = server.name;
+            li.appendChild(liveBtn);
+            liveServerList.appendChild(li);
+        });
+    }
+
+    function loadMatches(url, matchDayType) {
+        const proxyUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent(url);
+        matchesContainer.innerHTML = '';
+        loadingSpinner.style.display = 'block';
+        currentMatchDayType = matchDayType;
+
+        fetch(proxyUrl)
+            .then(response => response.ok ? response.json() : Promise.reject('فشل تحميل البيانات'))
+            .then(data => {
+                const html = data.contents;
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const matches = doc.querySelectorAll('li.single_match');
+                loadingSpinner.style.display = 'none';
+
+                allMatches = [];
+                matches.forEach(match => allMatches.push(match));
+
+                renderMatches(allMatches);
+
+            })
+            .catch(err => {
+                console.error(err);
+                loadingSpinner.style.display = 'none';
+                setTimeout(() => {
+                    loadMatches(url, matchDayType);
+                }, 5000);
+            });
+    }
+
+    function renderMatches(matches) {
+        matchesContainer.innerHTML = '';
+        if (matches.length === 0) {
+            matchesContainer.innerHTML = '<p style="text-align:center;">لم يتم العثور على مباريات</p>';
+            return;
+        }
+
+        matches.forEach(match => {
+            const homeTeam = match.querySelector('.team.hometeam .the_team')?.innerText.trim() || 'فريق';
+            const awayTeam = match.querySelector('.team.awayteam .the_team')?.innerText.trim() || 'فريق';
+
+            let matchScoreText = match.querySelector('.score')?.innerText.trim() ||
+                                 match.querySelector('.match_score')?.innerText.trim() ||
+                                 null;
+
+            let mainScore = matchScoreText;
+            let penaltiesScore = null;
+
+            if (matchScoreText && matchScoreText.includes('(')) {
+                const scoreParts = matchScoreText.split('(');
+                mainScore = scoreParts[0].trim();
+                penaltiesScore = scoreParts[1].replace(')', '').trim();
+            }
+
+            let homeLogo = 'https://via.placeholder.com/60';
+            let awayLogo = 'https://via.placeholder.com/60';
+            let isHomeLogoExactMatch = false;
+            let isAwayLogoExactMatch = false;
+
+            for (const key in teamLogos) {
+                if (teamLogos[key].keywords.some(kw => homeTeam.includes(kw))) {
+                    homeLogo = teamLogos[key].url;
+                    isHomeLogoExactMatch = true;
+                }
+                if (teamLogos[key].keywords.some(kw => awayTeam.includes(kw))) {
+                    awayLogo = teamLogos[key].url;
+                    isAwayLogoExactMatch = true;
+                }
+            }
+
+            const matchTimeElement = match.querySelector('.match_time .the_otime');
+            const matchTime = matchTimeElement?.innerText.trim() || '-';
+            const matchTimestamp = matchTimeElement?.getAttribute('data-timestamp');
+            const timeOnly = matchTime.match(/\d{1,2}:\d{2}/) ? matchTime.match(/\d{1,2}:\d{2}/)[0] : matchTime;
+
+            const matchRow = document.createElement('div');
+            matchRow.className = 'match-row';
+            matchRow.innerHTML = `
+                <div class="teams-time">
+                  <div class="team" id="home-team-container"></div>
+                  <div class="match-time">
+                    <div class="countdown-circle">
+                      <svg>
+                        <circle class="bg"></circle>
+                        <circle class="progress"></circle>
+                      </svg>
+                      <div class="time-text" data-time="${timeOnly}"
+                                           data-match-timestamp="${matchTimestamp || ''}"
+                                           data-match-day="${currentMatchDayType}"
+                                           data-score="${mainScore || ''}"
+                                           data-penalties="${penaltiesScore || ''}">
+                        ${timeOnly}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="team" id="away-team-container"></div>
+                </div>
+                <div class="channel-container" id="channel-container"></div>
+            `;
+            matchesContainer.appendChild(matchRow);
+            const homeContainer = matchRow.querySelector('#home-team-container');
+            homeContainer.appendChild(createTeamLogo(homeLogo, homeTeam, isHomeLogoExactMatch));
+            const homeNameDiv = document.createElement('div');
+            homeNameDiv.className = 'team-name';
+            homeNameDiv.textContent = abbreviateTeamName(homeTeam);
+            homeContainer.appendChild(homeNameDiv);
+            const awayContainer = matchRow.querySelector('#away-team-container');
+            awayContainer.appendChild(createTeamLogo(awayLogo, awayTeam, isAwayLogoExactMatch));
+            const awayNameDiv = document.createElement('div');
+            awayNameDiv.className = 'team-name';
+            awayNameDiv.textContent = abbreviateTeamName(awayTeam);
+            awayContainer.appendChild(awayNameDiv);
+
+            const channelContainer = matchRow.querySelector('#channel-container');
+            const watchBtnContainer = document.createElement('div');
+            watchBtnContainer.className = 'watch-btn-container';
+
+            const watchBtn = document.createElement('a');
+            watchBtn.href = '#';
+            watchBtn.className = 'watch-btn';
+            watchBtn.textContent = 'شاهد المباراة';
+
+            const finishedBtn = document.createElement('div');
+            finishedBtn.className = 'finished-btn';
+            finishedBtn.textContent = 'انتهت';
+
+            const notStartedBtn = document.createElement('div');
+            notStartedBtn.className = 'not-started-btn';
+            notStartedBtn.textContent = 'لم تبدأ بعد';
+
+            const now = new Date();
+            const matchDate = matchTimestamp ? new Date(parseInt(matchTimestamp) * 1000) : null;
+            const totalMatchDuration = 90;
+            const breakDuration = 15;
+
+            let timeDifferenceInMinutes = Infinity;
+            if (matchDate) {
+                timeDifferenceInMinutes = (matchDate - now) / (1000 * 60);
+            }
+
+            const isFinished = currentMatchDayType === 'yesterday' || (matchDate && (now - matchDate) / 1000 > (totalMatchDuration + breakDuration + 5) * 60);
+            const isSoon = !isFinished && timeDifferenceInMinutes <= 30 && timeDifferenceInMinutes > 0;
+            const isNotStartedYet = !isFinished && timeDifferenceInMinutes > 30;
+
+            if (isFinished) {
+                watchBtnContainer.appendChild(finishedBtn);
+            } else if (isSoon) {
+                 watchBtn.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    renderLiveServers(homeTeam, awayTeam);
+                    liveServersModal.style.display = 'block';
+                });
+                watchBtnContainer.appendChild(watchBtn);
+            } else if (isNotStartedYet) {
+                 watchBtnContainer.appendChild(notStartedBtn);
+            } else {
+                 watchBtn.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    renderLiveServers(homeTeam, awayTeam);
+                    liveServersModal.style.display = 'block';
+                });
+                watchBtnContainer.appendChild(watchBtn);
+            }
+
+            channelContainer.appendChild(watchBtnContainer);
+        });
+        updateMatchTimers();
+    }
+
+    function searchMatches() {
+        const query = searchInput.value.toLowerCase().trim();
+        const filteredMatches = allMatches.filter(match => {
+            const homeTeam = match.querySelector('.team.hometeam .the_team')?.innerText.trim().toLowerCase() || '';
+            const awayTeam = match.querySelector('.team.awayteam .the_team')?.innerText.trim().toLowerCase() || '';
+            return homeTeam.includes(query) || awayTeam.includes(query);
+        });
+        renderMatches(filteredMatches);
+    }
+
+    refreshBtn.addEventListener('click', () => {
+        const buttonId = `load${currentMatchDayType.charAt(0).toUpperCase() + currentMatchDayType.slice(1)}Btn`;
+        const button = document.getElementById(buttonId);
+        if (button) {
+            button.click();
+        } else {
+            loadMatches('https://jdwel.com/today/', 'today');
+        }
+    });
+
+    searchInput.addEventListener('input', searchMatches);
+
+    document.getElementById('loadYesterdayBtn').addEventListener('click', () => {
+        loadMatches('https://jdwel.com/yesterday/', 'yesterday');
+    });
+
+    document.getElementById('loadTodayBtn').addEventListener('click', () => {
+        loadMatches('https://jdwel.com/today/', 'today');
+    });
+
+    document.getElementById('loadTomorrowBtn').addEventListener('click', () => {
+        loadMatches('https://jdwel.com/tomorrow/', 'tomorrow');
+    });
+
+    liveServersModalCloseBtn.addEventListener('click', () => {
+        liveServersModal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target === liveServersModal) {
+            liveServersModal.style.display = 'none';
+        }
+    });
+
+    function updateMatchTimers(){
+        const radius = 28;
+        const circumference = 2 * Math.PI * radius;
+        const firstHalfEnd = 45;
+        const breakDuration = 15;
+        const totalMatchDuration = 90;
+
+        document.querySelectorAll('.countdown-circle').forEach(c => {
+            const progress = c.querySelector('.progress');
+            if (progress) {
+                progress.style.strokeDasharray = circumference;
+                progress.style.strokeDashoffset = circumference;
+            }
+        });
+
+        setInterval(()=>{
+            const now = new Date();
+
+            document.querySelectorAll('.countdown-circle').forEach(c => {
+                const timeText = c.querySelector('.time-text');
+                const parentMatchTimeDiv = c.parentElement;
+
+                if (!timeText) return;
+
+                const matchDayType = timeText.getAttribute('data-match-day');
+                const matchTimestamp = timeText.getAttribute('data-match-timestamp');
+                const matchScore = timeText.getAttribute('data-score');
+                const penaltiesScore = timeText.getAttribute('data-penalties');
+
+                const matchDate = matchTimestamp ? new Date(parseInt(matchTimestamp) * 1000) : null;
+
+                const isFinished = matchDayType === 'yesterday' || (matchDate && (now - matchDate) / 1000 > (totalMatchDuration + breakDuration + 5) * 60);
+
+                if (isFinished) {
+                    const finishedScoreDiv = document.createElement('div');
+                    finishedScoreDiv.className = 'match-score-finished';
+
+                    const mainScoreSpan = document.createElement('span');
+                    mainScoreSpan.className = 'main-score';
+                    mainScoreSpan.textContent = matchScore || 'انتهت';
+                    finishedScoreDiv.appendChild(mainScoreSpan);
+
+                    if (penaltiesScore) {
+                        const penaltiesSpan = document.createElement('span');
+                        penaltiesSpan.className = 'penalties-score';
+                        penaltiesSpan.textContent = `(${penaltiesScore})`;
+                        finishedScoreDiv.appendChild(penaltiesSpan);
+                    }
+
+                    parentMatchTimeDiv.replaceChild(finishedScoreDiv, c);
+                    return;
+                }
+
+                timeText.innerHTML = '';
+
+                if (matchDayType === 'tomorrow' || !matchTimestamp || (now - matchDate) < 0) {
+                    timeText.textContent = timeText.getAttribute('data-time');
+                    const progress = c.querySelector('.progress');
+                    if(progress) progress.style.strokeDashoffset = circumference;
+                    return;
+                }
+
+                let diffInSeconds = (now - matchDate) / 1000;
+                let minutesElapsed;
+                const progress = c.querySelector('.progress');
+
+                if (diffInSeconds <= firstHalfEnd * 60) {
+                    minutesElapsed = Math.floor(diffInSeconds / 60);
+                    timeText.textContent = minutesElapsed;
+                    const percent = minutesElapsed / totalMatchDuration;
+                    if(progress) progress.style.strokeDashoffset = circumference * (1 - percent);
+                } else if (diffInSeconds <= (firstHalfEnd + breakDuration) * 60) {
+                    timeText.textContent = 'استراحة';
+                    const percent = firstHalfEnd / totalMatchDuration;
+                    if(progress) progress.style.strokeDashoffset = circumference * (1 - percent);
+                } else {
+                    const secondHalfTime = diffInSeconds - (firstHalfEnd + breakDuration) * 60;
+                    minutesElapsed = Math.floor(secondHalfTime / 60) + firstHalfEnd;
+                    timeText.textContent = minutesElapsed;
+                    const percent = minutesElapsed / totalMatchDuration;
+                    if(progress) progress.style.strokeDashoffset = circumference * (1 - percent);
+                }
+            });
+        }, 1000);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        loadMatches('https://jdwel.com/today/', 'today');
+    });
+</script>
+</body>
+</html>
