@@ -533,7 +533,9 @@
             const div = document.createElement('div');
             div.className = 'protv-logo';
             div.textContent = 'PRO TV';
-            img.parentElement.replaceChild(div, img);
+            if (img.parentElement) {
+                img.parentElement.replaceChild(div, img);
+            }
         };
 
         return img;
