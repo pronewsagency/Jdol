@@ -252,7 +252,7 @@
         padding: 20px;
         border: 1px solid #888;
         width: 90%;
-        max-width: 400px;
+        max-width: 400px; /* تم تقليل الحجم هنا */
         border-radius: 10px;
     }
 
@@ -296,7 +296,7 @@
     }
 
     .live-server-btn {
-        background: #FF0000;
+        background: #FF0000; /* تم تغيير اللون هنا */
         border: none;
         color: white;
         border-radius: 6px;
@@ -357,6 +357,7 @@
         border-radius: 0 5px 5px 0;
     }
 
+    /* تنسيقات حقل البحث وزر التحديث */
     .search-refresh-container {
         display: flex;
         justify-content: center;
@@ -446,9 +447,26 @@
     </div>
 </div>
 
-<script src="app.js"></script>
-
 <script>
+    const teamLogos = {
+      "Al-Nassr FC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/5/5a/Al-Nassr_FC_logo.svg/1200px-Al-Nassr_FC_logo.svg.png", "keywords": ["النصر"] },
+      "Al-Hilal SFC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/c/c1/Al-Hilal_SFC_logo.svg/1200px-Al-Hilal_SFC_logo.svg.png", "keywords": ["الهلال"] },
+      "Al-Ahli Saudi FC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/d/d4/Al_Ahli_Saudi_FC_logo.svg/1200px-Al_Ahli_Saudi_FC_logo.svg.png", "keywords": ["الأهلي"] },
+      "Al-Ittihad Club": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/8/89/Ittihad_FC_logo.svg/1200px-Ittihad_FC_logo.svg.png", "keywords": ["الاتحاد"] },
+      "Real Madrid CF": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png", "keywords": ["ريال مدريد", "Real Madrid"] },
+      "FC Barcelona": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/1200px-FC_Barcelona_%28crest%29.svg.png", "keywords": ["برشلونة", "Barcelona"] },
+      "Liverpool FC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/0/0c/Liverpool_FC.svg/1200px-Liverpool_FC.svg.png", "keywords": ["ليفربول", "Liverpool"] },
+      "Manchester City FC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/e/e1/Manchester_City_F.C._logo.svg/1200px-Manchester_City_F.C._logo.svg.png", "keywords": ["مانشستر سيتي", "Man City"] },
+      "Al-Ahly SC (Egypt)": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/5/5b/Al_Ahly_SC_logo.svg/1200px-Al_Ahly_SC_logo.svg.png", "keywords": ["الأهلي المصري"] },
+      "Zamalek SC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/d/d1/Zamalek_SC.svg/1200px-Zamalek_SC.svg.png", "keywords": ["الزمالك"] }
+    };
+
+    const matchLinks = {
+      "link1": { "url": "https://example.com/stream1", "keywords": ["النصر", "الهلال"] },
+      "link2": { "url": "https://example.com/stream2", "keywords": ["برشلونة", "Real Madrid"] },
+      "link3": { "url": "https://example.com/stream3", "keywords": ["ليفربول", "مانشستر سيتي"] }
+    };
+
     function createTeamLogo(imgUrl, teamName, isExactMatch) {
         if (!isExactMatch || imgUrl.includes('placeholder.com')) {
             const div = document.createElement('div');
