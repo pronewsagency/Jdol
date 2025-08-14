@@ -13,6 +13,10 @@
         color: white;
         padding: 20px;
         direction: rtl;
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
     }
 
     .match-row {
@@ -446,22 +450,93 @@
     </div>
 </div>
 
-<script src="app.js"></script>
-
 <script>
+    const teamLogos = {
+        'real_madrid': { url: 'https://jdwel.com/images/real-madrid.svg', keywords: ['ريال', 'مدريد'] },
+        'barcelona': { url: 'https://jdwel.com/images/barcelona.svg', keywords: ['برشلونة'] },
+        'man_city': { url: 'https://jdwel.com/images/man-city.svg', keywords: ['مانشستر', 'سيتي', 'مان سيتي'] },
+        'liverpool': { url: 'https://jdwel.com/images/liverpool.svg', keywords: ['ليفربول'] },
+        'psg': { url: 'https://jdwel.com/images/psg.svg', keywords: ['باريس', 'سان جيرمان', 'بي إس جي'] },
+        'al_nassr': { url: 'https://jdwel.com/images/al-nassr.svg', keywords: ['النصر', 'نصر'] },
+        'al_hilal': { url: 'https://jdwel.com/images/al-hilal.svg', keywords: ['الهلال', 'هلال'] },
+        'al_ahly_saudi': { url: 'https://jdwel.com/images/al-ahly-saudi.svg', keywords: ['الأهلي'] },
+        'al_ittihad': { url: 'https://jdwel.com/images/al-ittihad.svg', keywords: ['الاتحاد'] },
+        'al_shabab': { url: 'https://jdwel.com/images/al-shabab.svg', keywords: ['الشباب'] },
+        'al_ahly_egypt': { url: 'https://jdwel.com/images/al-ahly-egypt.svg', keywords: ['الاهلي', 'الاهلى'] },
+        'zamalek': { url: 'https://jdwel.com/images/zamalek.svg', keywords: ['الزمالك'] },
+        'arsenal': { url: 'https://jdwel.com/images/arsenal.svg', keywords: ['أرسنال'] },
+        'bayern_munich': { url: 'https://jdwel.com/images/bayern-munich.svg', keywords: ['بايرن', 'ميونخ'] },
+        'juventus': { url: 'https://jdwel.com/images/juventus.svg', keywords: ['يوفنتوس'] },
+        'inter_milan': { url: 'https://jdwel.com/images/inter-milan.svg', keywords: ['إنتر', 'ميلان'] },
+        'ac_milan': { url: 'https://jdwel.com/images/ac-milan.svg', keywords: ['ميلان'] },
+        'borussia_dortmund': { url: 'https://jdwel.com/images/borussia-dortmund.svg', keywords: ['بوروسيا', 'دورتموند'] },
+        'chelsea': { url: 'https://jdwel.com/images/chelsea.svg', keywords: ['تشيلسي'] },
+        'tottenham': { url: 'https://jdwel.com/images/tottenham.svg', keywords: ['توتنهام'] },
+        'man_united': { url: 'https://jdwel.com/images/man-united.svg', keywords: ['مانشستر', 'يونايتد', 'مان يو'] },
+        'atletico_madrid': { url: 'https://jdwel.com/images/atletico-madrid.svg', keywords: ['أتلتيكو', 'مدريد'] },
+        'napoli': { url: 'https://jdwel.com/images/napoli.svg', keywords: ['نابولي'] },
+        'monaco': { url: 'https://jdwel.com/images/monaco.svg', keywords: ['موناكو'] },
+        'lazio': { url: 'https://jdwel.com/images/lazio.svg', keywords: ['لاتسيو'] },
+        'leipzig': { url: 'https://jdwel.com/images/leipzig.svg', keywords: ['لايبزيج'] },
+        'sevilla': { url: 'https://jdwel.com/images/sevilla.svg', keywords: ['إشبيلية'] },
+        'roma': { url: 'https://jdwel.com/images/roma.svg', keywords: ['روما'] },
+        'leicester_city': { url: 'https://jdwel.com/images/leicester-city.svg', keywords: ['ليستر', 'سيتي'] },
+        'porto': { url: 'https://jdwel.com/images/porto.svg', keywords: ['بورتو'] },
+        'benfica': { url: 'https://jdwel.com/images/benfica.svg', keywords: ['بنفيكا'] },
+        'ajax': { url: 'https://jdwel.com/images/ajax.svg', keywords: ['أياكس'] },
+        'feyenoord': { url: 'https://jdwel.com/images/feyenoord.svg', keywords: ['فينورد'] },
+        'celtic': { url: 'https://jdwel.com/images/celtic.svg', keywords: ['سيلتيك'] },
+        'glasgow_rangers': { url: 'https://jdwel.com/images/glasgow-rangers.svg', keywords: ['رينجرز'] },
+        'salah': { url: 'https://jdwel.com/images/salah.png', keywords: ['محمد', 'صلاح'] },
+        'ronaldo': { url: 'https://jdwel.com/images/ronaldo.png', keywords: ['كريستيانو', 'رونالدو'] },
+        'messi': { url: 'https://jdwel.com/images/messi.png', keywords: ['ليونيل', 'ميسي'] },
+        'neymar': { url: 'https://jdwel.com/images/neymar.png', keywords: ['نيمار'] },
+    };
+
+    const matchLinks = {
+        'el-ahly-zamalek': {
+            keywords: ['الاهلي', 'الزمالك'],
+            url: 'https://kooraplus.com/live/el-ahly-vs-zamalek'
+        },
+        'real-madrid-barcelona': {
+            keywords: ['ريال مدريد', 'برشلونة'],
+            url: 'https://kooraplus.com/live/real-madrid-vs-barcelona'
+        },
+        'al-hilal-al-nassr': {
+            keywords: ['الهلال', 'النصر'],
+            url: 'https://kooraplus.com/live/al-hilal-vs-al-nassr'
+        },
+        'man-city-liverpool': {
+            keywords: ['مانشستر سيتي', 'ليفربول'],
+            url: 'https://kooraplus.com/live/man-city-vs-liverpool'
+        },
+        'arsenal-tottenham': {
+            keywords: ['أرسنال', 'توتنهام'],
+            url: 'https://kooraplus.com/live/arsenal-vs-tottenham'
+        },
+    };
+
     function createTeamLogo(imgUrl, teamName, isExactMatch) {
-        if (!isExactMatch || imgUrl.includes('placeholder.com')) {
+        if (!isExactMatch || !imgUrl) {
             const div = document.createElement('div');
             div.className = 'protv-logo';
             div.textContent = 'PRO TV';
             return div;
-        } else {
-            const img = document.createElement('img');
-            img.src = imgUrl;
-            img.alt = 'شعار ' + teamName;
-            img.className = 'team-logo';
-            return img;
         }
+
+        const img = document.createElement('img');
+        img.src = imgUrl;
+        img.alt = 'شعار ' + teamName;
+        img.className = 'team-logo';
+
+        img.onerror = () => {
+            const div = document.createElement('div');
+            div.className = 'protv-logo';
+            div.textContent = 'PRO TV';
+            img.parentElement.replaceChild(div, img);
+        };
+
+        return img;
     }
 
     function abbreviateTeamName(teamName) {
@@ -533,7 +608,7 @@
                 allMatches = [];
                 matches.forEach(match => allMatches.push(match));
 
-                renderMatches(allMatches);
+                sortAndRenderMatches(allMatches);
 
             })
             .catch(err => {
@@ -543,6 +618,31 @@
                     loadMatches(url, matchDayType);
                 }, 5000);
             });
+    }
+
+    function sortAndRenderMatches(matches) {
+        const importantClubs = ['ريال', 'برشلونة', 'مانشستر سيتي', 'ليفربول', 'باريس', 'الهلال', 'النصر'];
+
+        matches.sort((a, b) => {
+            const homeA = a.querySelector('.team.hometeam .the_team')?.innerText.trim() || '';
+            const awayA = a.querySelector('.team.awayteam .the_team')?.innerText.trim() || '';
+            const homeB = b.querySelector('.team.hometeam .the_team')?.innerText.trim() || '';
+            const awayB = b.querySelector('.team.awayteam .the_team')?.innerText.trim() || '';
+
+            const isImportantA = importantClubs.some(club => homeA.includes(club) || awayA.includes(club));
+            const isImportantB = importantClubs.some(club => homeB.includes(club) || awayB.includes(club));
+            const isMegaMatchA = importantClubs.some(club => homeA.includes(club)) && importantClubs.some(club => awayA.includes(club));
+            const isMegaMatchB = importantClubs.some(club => homeB.includes(club)) && importantClubs.some(club => awayB.includes(club));
+
+            if (isMegaMatchA && !isMegaMatchB) return -1;
+            if (!isMegaMatchA && isMegaMatchB) return 1;
+            if (isImportantA && !isImportantB) return -1;
+            if (!isImportantA && isImportantB) return 1;
+
+            return 0;
+        });
+
+        renderMatches(matches);
     }
 
     function renderMatches(matches) {
