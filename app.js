@@ -25,5 +25,6 @@ const teamLogos = {
   "Borussia Dortmund": { "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Borussia_Dortmund_logo.svg/1200px-Borussia_Dortmund_logo.svg.png", "keywords": ["بروسيا دورتموند", "Dortmund"] },
   "Paris Saint-Germain F.C.": { "url": "https://upload.wikimedia.org/wikipedia/ar/a/a7/Paris_Saint-Germain_F.C..svg", "keywords": ["باريس سان جيرمان", "PSG", "ب.جيرمان", "Paris Saint Germain"] },
   "WSG Tirol": { "url": "https://upload.wikimedia.org/wikipedia/fr/5/5b/WSG_Swarovski_Tirol_%28logo%29.svg", "keywords": ["تيرول"] },
-  "KuPS": { "url": "https://upload.wikimedia.org/wikipedia/en/b/bd/KuPS_logo.svg", "keywords": ["ك.بالوسيورا","كووبيون بالوسيورا"] }
+  "KuPS": { "url": "https://upload.wikimedia.org/wikipedia/en/b/bd/KuPS_logo.svg", "keywords": ["ك.بالوسيورا", "كووبيون بالوسيورا"] },
+  "فياريال": { "url": "https://upload.wikimedia.org/wikipedia/ar/7/70/Villarreal_CF_logo.svg", "keywords": ["فياريال"] }
 };
