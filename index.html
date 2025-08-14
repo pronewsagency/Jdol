@@ -13,10 +13,6 @@
         color: white;
         padding: 20px;
         direction: rtl;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
     }
 
     .match-row {
@@ -450,18 +446,9 @@
     </div>
 </div>
 
-<script src="https://pronewsagency.github.io/Jdol/matchlinks.js"></script>
+<script src="app.js"></script>
 
 <script>
-    // هذا الكود يمنع ظهور القائمة السياقية (Context Menu) عند الضغط المطول
-    document.addEventListener('contextmenu', event => event.preventDefault());
-
-    // يمكنك إضافة كائن teamLogos هنا أو في ملف خارجي آخر
-    const teamLogos = {
-        //مثال توضيحي
-        // 'برشلونة': { url: 'https://cdn.iconscout.com/icon/free/png-512/fc-barcelona-410086.png', keywords: ['برشلونة', 'barcelona'] },
-    };
-    
     function createTeamLogo(imgUrl, teamName, isExactMatch) {
         if (!isExactMatch || imgUrl.includes('placeholder.com')) {
             const div = document.createElement('div');
@@ -498,7 +485,6 @@
     function renderLiveServers(homeTeam, awayTeam) {
         liveServerList.innerHTML = '';
         let foundLinkData = null;
-        // هنا يتم استخدام كائن matchLinks الذي تم تحميله من الرابط الخارجي
         for (const key in matchLinks) {
             const linkData = matchLinks[key];
             if (linkData && linkData.keywords && linkData.keywords.some(kw => homeTeam.includes(kw) || awayTeam.includes(kw))) {
