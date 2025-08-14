@@ -13,6 +13,10 @@
         color: white;
         padding: 20px;
         direction: rtl;
+        -webkit-user-select: none; /* لمنع التحديد في متصفحات الويب التي تستخدم WebKit */
+        -moz-user-select: none;    /* لمنع التحديد في متصفحات الويب التي تستخدم Mozilla */
+        -ms-user-select: none;     /* لمنع التحديد في متصفحات الويب التي تستخدم Microsoft */
+        user-select: none;         /* لمنع التحديد في المتصفحات الحديثة */
     }
 
     .match-row {
@@ -449,6 +453,9 @@
 <script src="app.js"></script>
 
 <script>
+    // هذا الكود يمنع ظهور القائمة السياقية (Context Menu) عند الضغط المطول
+    document.addEventListener('contextmenu', event => event.preventDefault());
+
     function createTeamLogo(imgUrl, teamName, isExactMatch) {
         if (!isExactMatch || imgUrl.includes('placeholder.com')) {
             const div = document.createElement('div');
@@ -820,6 +827,3 @@
 </script>
 </body>
 </html>
-
-
-أضف خاصية WebKit لمنع ظهور أي تفاعلات عند الضغط مطولا على النص
