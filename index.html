@@ -636,23 +636,23 @@
             matchRow.className = 'match-row';
             matchRow.innerHTML = `
                 <div class="teams-time">
-                  <div class="team" id="home-team-container"></div>
-                  <div class="match-time">
-                    <div class="countdown-circle">
-                      <svg>
-                        <circle class="bg"></circle>
-                        <circle class="progress"></circle>
-                      </svg>
-                      <div class="time-text" data-time="${timeOnly}"
-                                           data-match-timestamp="${matchTimestamp || ''}"
-                                           data-match-day="${currentMatchDayType}"
-                                           data-score="${mainScore || ''}"
-                                           data-penalties="${penaltiesScore || ''}">
-                        ${timeOnly}
-                      </div>
+                    <div class="team" id="home-team-container"></div>
+                    <div class="match-time">
+                        <div class="countdown-circle">
+                            <svg>
+                                <circle class="bg"></circle>
+                                <circle class="progress"></circle>
+                            </svg>
+                            <div class="time-text" data-time="${timeOnly}"
+                                               data-match-timestamp="${matchTimestamp || ''}"
+                                               data-match-day="${currentMatchDayType}"
+                                               data-score="${mainScore || ''}"
+                                               data-penalties="${penaltiesScore || ''}">
+                                ${timeOnly}
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  <div class="team" id="away-team-container"></div>
+                    <div class="team" id="away-team-container"></div>
                 </div>
                 <div class="channel-container" id="channel-container"></div>
             `;
