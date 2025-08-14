@@ -446,17 +446,9 @@
     </div>
 </div>
 
-<script src="https://pronewsagency.github.io/Jdol/app.js"></script>
+<script src="app.js"></script>
 
 <script>
-    // لم تعد بحاجة إلى تعريف teamLogos هنا، لأنها موجودة في app.js
-    
-    const matchLinks = {
-      "link1": { "url": "https://example.com/stream1", "keywords": ["النصر", "الهلال"] },
-      "link2": { "url": "https://example.com/stream2", "keywords": ["برشلونة", "Real Madrid"] },
-      "link3": { "url": "https://example.com/stream3", "keywords": ["ليفربول", "مانشستر سيتي"] }
-    };
-
     function createTeamLogo(imgUrl, teamName, isExactMatch) {
         if (!isExactMatch || imgUrl.includes('placeholder.com')) {
             const div = document.createElement('div');
