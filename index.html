@@ -357,6 +357,10 @@
         border-radius: 0 5px 5px 0;
     }
 
+    .load-btn.active {
+        background-color: #FF0000;
+    }
+
     .search-refresh-container {
         display: flex;
         justify-content: center;
@@ -418,6 +422,8 @@
 </head>
 <body>
 
+<script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script>
+
 <div class="search-refresh-container">
     <button id="refresh-btn" class="refresh-btn"><i class="fas fa-sync-alt"></i></button>
     <div class="search-box">
@@ -446,9 +452,27 @@
     </div>
 </div>
 
-<script src="app.js"></script>
-
 <script>
+    const teamLogos = {
+      "Al-Nassr FC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/5/5a/Al-Nassr_FC_logo.svg/1200px-Al-Nassr_FC_logo.svg.png", "keywords": ["النصر"] },
+      "Al-Hilal SFC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/c/c1/Al-Hilal_SFC_logo.svg/1200px-Al-Hilal_SFC_logo.svg.png", "keywords": ["الهلال"] },
+      "Al-Ahli Saudi FC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/d/d4/Al_Ahli_Saudi_FC_logo.svg/1200px-Al_Ahli_Saudi_FC_logo.svg.png", "keywords": ["الأهلي"] },
+      "Al-Ittihad Club": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/8/89/Ittihad_FC_logo.svg/1200px-Ittihad_FC_logo.svg.png", "keywords": ["الاتحاد"] },
+      "Real Madrid CF": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png", "keywords": ["ريال مدريد", "Real Madrid"] },
+      "FC Barcelona": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/1200px-FC_Barcelona_%28crest%29.svg.png", "keywords": ["برشلونة", "Barcelona"] },
+      "Liverpool FC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/0/0c/Liverpool_FC.svg/1200px-Liverpool_FC.svg.png", "keywords": ["ليفربول", "Liverpool"] },
+      "Manchester City FC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/e/e1/Manchester_City_F.C._logo.svg/1200px-Manchester_City_F.C._logo.svg.png", "keywords": ["مانشستر سيتي", "Man City"] },
+      "Al-Ahly SC (Egypt)": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/5/5b/Al_Ahly_SC_logo.svg/1200px-Al_Ahly_SC_logo.svg.png", "keywords": ["الأهلي المصري"] },
+      "Zamalek SC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/d/d1/Zamalek_SC.svg/1200px-Zamalek_SC.svg.png", "keywords": ["الزمالك"] }
+    };
+
+    const matchLinks = {
+        "link1": { "url": "go:A", "keywords": ["النصر"] },
+        "link2": { "url": "go:B", "keywords": ["برشلونة", "ريال مدريد"] },
+        "link3": { "url": "go:C", "keywords": ["ليفربول", "مانشستر سيتي"] },
+        "link4": { "url": "go:D", "keywords": ["الأهلي"] }
+    };
+
     function createTeamLogo(imgUrl, teamName, isExactMatch) {
         if (!isExactMatch || imgUrl.includes('placeholder.com')) {
             const div = document.createElement('div');
@@ -485,24 +509,30 @@
     function renderLiveServers(homeTeam, awayTeam) {
         liveServerList.innerHTML = '';
         let foundLinkData = null;
+        const allKeywords = [homeTeam, awayTeam];
+        
         for (const key in matchLinks) {
             const linkData = matchLinks[key];
-            if (linkData && linkData.keywords && linkData.keywords.some(kw => homeTeam.includes(kw) || awayTeam.includes(kw))) {
+            const isMatch = linkData.keywords.some(keyword => {
+                return allKeywords.some(teamName => teamName.includes(keyword) || keyword.includes(teamName));
+            });
+            if (isMatch) {
                 foundLinkData = linkData;
                 break;
             }
         }
+
         if (!foundLinkData) {
             liveServerList.innerHTML = '<p style="text-align: center;">لا يوجد سيرفرات متاحة لهذه المباراة حاليًا.</p>';
             return;
         }
-
+        
         const servers = [
-            { name: 'سيرفر 1', url: foundLinkData.url + '&server=1' },
-            { name: 'سيرفر 2', url: foundLinkData.url + '&server=2' }
+            { name: 'سيرفر 1', url: foundLinkData.url },
+            { name: 'سيرفر 2', url: foundLinkData.url },
         ];
 
-        servers.forEach(server => {
+        servers.forEach((server, index) => {
             const li = document.createElement('li');
             li.className = 'server-item';
             const liveBtn = document.createElement('a');
@@ -520,6 +550,9 @@
         matchesContainer.innerHTML = '';
         loadingSpinner.style.display = 'block';
         currentMatchDayType = matchDayType;
+
+        document.querySelectorAll('.load-btn').forEach(btn => btn.classList.remove('active'));
+        document.getElementById(`load${matchDayType.charAt(0).toUpperCase() + matchDayType.slice(1)}Btn`).classList.add('active');
 
         fetch(proxyUrl)
             .then(response => response.ok ? response.json() : Promise.reject('فشل تحميل البيانات'))
@@ -587,8 +620,23 @@
 
             const matchTimeElement = match.querySelector('.match_time .the_otime');
             const matchTime = matchTimeElement?.innerText.trim() || '-';
-            const matchTimestamp = matchTimeElement?.getAttribute('data-timestamp');
             const timeOnly = matchTime.match(/\d{1,2}:\d{2}/) ? matchTime.match(/\d{1,2}:\d{2}/)[0] : matchTime;
+
+            let matchDateObject = null;
+            if (timeOnly !== '-') {
+                const now = luxon.DateTime.local();
+                const [hours, minutes] = timeOnly.split(':').map(Number);
+                
+                if (currentMatchDayType === 'today') {
+                    matchDateObject = luxon.DateTime.local().set({ hour: hours, minute: minutes, second: 0, millisecond: 0 });
+                } else if (currentMatchDayType === 'yesterday') {
+                    matchDateObject = luxon.DateTime.local().minus({ days: 1 }).set({ hour: hours, minute: minutes, second: 0, millisecond: 0 });
+                } else if (currentMatchDayType === 'tomorrow') {
+                    matchDateObject = luxon.DateTime.local().plus({ days: 1 }).set({ hour: hours, minute: minutes, second: 0, millisecond: 0 });
+                }
+            }
+
+            const matchTimestamp = matchDateObject ? matchDateObject.toMillis() / 1000 : '';
 
             const matchRow = document.createElement('div');
             matchRow.className = 'match-row';
@@ -645,23 +693,23 @@
             notStartedBtn.className = 'not-started-btn';
             notStartedBtn.textContent = 'لم تبدأ بعد';
 
-            const now = new Date();
-            const matchDate = matchTimestamp ? new Date(parseInt(matchTimestamp) * 1000) : null;
+            const now = luxon.DateTime.local();
+            const matchDate = matchDateObject;
             const totalMatchDuration = 90;
             const breakDuration = 15;
 
             let timeDifferenceInMinutes = Infinity;
             if (matchDate) {
-                timeDifferenceInMinutes = (matchDate - now) / (1000 * 60);
+                timeDifferenceInMinutes = now.diff(matchDate, 'minutes').minutes;
             }
 
-            const isFinished = currentMatchDayType === 'yesterday' || (matchDate && (now - matchDate) / 1000 > (totalMatchDuration + breakDuration + 5) * 60);
-            const isSoon = !isFinished && timeDifferenceInMinutes <= 30 && timeDifferenceInMinutes > 0;
-            const isNotStartedYet = !isFinished && timeDifferenceInMinutes > 30;
+            const isFinished = currentMatchDayType === 'yesterday' || (matchDate && timeDifferenceInMinutes > totalMatchDuration + breakDuration + 5);
+            const isLive = !isFinished && timeDifferenceInMinutes >= -15 && timeDifferenceInMinutes <= totalMatchDuration + breakDuration + 5;
+            const isNotStartedYet = !isFinished && !isLive;
 
             if (isFinished) {
                 watchBtnContainer.appendChild(finishedBtn);
-            } else if (isSoon) {
+            } else if (isLive) {
                  watchBtn.addEventListener('click', (event) => {
                     event.preventDefault();
                     renderLiveServers(homeTeam, awayTeam);
@@ -744,7 +792,7 @@
         });
 
         setInterval(()=>{
-            const now = new Date();
+            const now = luxon.DateTime.local();
 
             document.querySelectorAll('.countdown-circle').forEach(c => {
                 const timeText = c.querySelector('.time-text');
@@ -757,14 +805,58 @@
                 const matchScore = timeText.getAttribute('data-score');
                 const penaltiesScore = timeText.getAttribute('data-penalties');
 
-                const matchDate = matchTimestamp ? new Date(parseInt(matchTimestamp) * 1000) : null;
+                const matchDate = matchTimestamp ? luxon.DateTime.fromMillis(parseInt(matchTimestamp) * 1000) : null;
 
-                const isFinished = matchDayType === 'yesterday' || (matchDate && (now - matchDate) / 1000 > (totalMatchDuration + breakDuration + 5) * 60);
+                if (!matchDate || matchDayType !== 'today') {
+                    if (matchDayType === 'yesterday' && matchScore) {
+                        const finishedScoreDiv = document.createElement('div');
+                        finishedScoreDiv.className = 'match-score-finished';
+                        const mainScoreSpan = document.createElement('span');
+                        mainScoreSpan.className = 'main-score';
+                        mainScoreSpan.textContent = matchScore;
+                        finishedScoreDiv.appendChild(mainScoreSpan);
+                        if (penaltiesScore) {
+                            const penaltiesSpan = document.createElement('span');
+                            penaltiesSpan.className = 'penalties-score';
+                            penaltiesSpan.textContent = `(${penaltiesScore})`;
+                            finishedScoreDiv.appendChild(penaltiesSpan);
+                        }
+                        parentMatchTimeDiv.replaceChild(finishedScoreDiv, c);
+                    } else {
+                        timeText.textContent = timeText.getAttribute('data-time');
+                        if (c) c.style.display = 'block';
+                    }
+                    return;
+                }
 
-                if (isFinished) {
+                const timeDifferenceInSeconds = now.diff(matchDate, 'seconds').seconds;
+                let minutesElapsed;
+                const progress = c.querySelector('.progress');
+                
+                if (timeDifferenceInSeconds < 0) {
+                    timeText.textContent = timeText.getAttribute('data-time');
+                    if (progress) progress.style.strokeDashoffset = circumference;
+                    return;
+                }
+                
+                if (timeDifferenceInSeconds <= firstHalfEnd * 60) {
+                    minutesElapsed = Math.floor(timeDifferenceInSeconds / 60);
+                    timeText.textContent = minutesElapsed;
+                    const percent = minutesElapsed / totalMatchDuration;
+                    if(progress) progress.style.strokeDashoffset = circumference * (1 - percent);
+                } else if (timeDifferenceInSeconds <= (firstHalfEnd + breakDuration) * 60) {
+                    timeText.textContent = 'استراحة';
+                    const percent = firstHalfEnd / totalMatchDuration;
+                    if(progress) progress.style.strokeDashoffset = circumference * (1 - percent);
+                } else if (timeDifferenceInSeconds <= (totalMatchDuration + breakDuration) * 60) {
+                    const secondHalfTime = timeDifferenceInSeconds - (firstHalfEnd + breakDuration) * 60;
+                    minutesElapsed = Math.floor(secondHalfTime / 60) + firstHalfEnd;
+                    timeText.textContent = minutesElapsed;
+                    const percent = minutesElapsed / totalMatchDuration;
+                    if(progress) progress.style.strokeDashoffset = circumference * (1 - percent);
+                } else {
                     const finishedScoreDiv = document.createElement('div');
                     finishedScoreDiv.className = 'match-score-finished';
-
                     const mainScoreSpan = document.createElement('span');
                     mainScoreSpan.className = 'main-score';
                     mainScoreSpan.textContent = matchScore || 'انتهت';
@@ -776,39 +868,7 @@
                         penaltiesSpan.textContent = `(${penaltiesScore})`;
                         finishedScoreDiv.appendChild(penaltiesSpan);
                     }
-
                     parentMatchTimeDiv.replaceChild(finishedScoreDiv, c);
-                    return;
-                }
-
-                timeText.innerHTML = '';
-
-                if (matchDayType === 'tomorrow' || !matchTimestamp || (now - matchDate) < 0) {
-                    timeText.textContent = timeText.getAttribute('data-time');
-                    const progress = c.querySelector('.progress');
-                    if(progress) progress.style.strokeDashoffset = circumference;
-                    return;
-                }
-
-                let diffInSeconds = (now - matchDate) / 1000;
-                let minutesElapsed;
-                const progress = c.querySelector('.progress');
-
-                if (diffInSeconds <= firstHalfEnd * 60) {
-                    minutesElapsed = Math.floor(diffInSeconds / 60);
-                    timeText.textContent = minutesElapsed;
-                    const percent = minutesElapsed / totalMatchDuration;
-                    if(progress) progress.style.strokeDashoffset = circumference * (1 - percent);
-                } else if (diffInSeconds <= (firstHalfEnd + breakDuration) * 60) {
-                    timeText.textContent = 'استراحة';
-                    const percent = firstHalfEnd / totalMatchDuration;
-                    if(progress) progress.style.strokeDashoffset = circumference * (1 - percent);
-                } else {
-                    const secondHalfTime = diffInSeconds - (firstHalfEnd + breakDuration) * 60;
-                    minutesElapsed = Math.floor(secondHalfTime / 60) + firstHalfEnd;
-                    timeText.textContent = minutesElapsed;
-                    const percent = minutesElapsed / totalMatchDuration;
-                    if(progress) progress.style.strokeDashoffset = circumference * (1 - percent);
                 }
             });
         }, 1000);
@@ -816,6 +876,7 @@
 
     document.addEventListener('DOMContentLoaded', () => {
         loadMatches('https://jdwel.com/today/', 'today');
+        document.getElementById('loadTodayBtn').classList.add('active');
     });
 </script>
 </body>
