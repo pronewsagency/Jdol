@@ -699,10 +699,10 @@
         "serverType": "external"
     },
     {
-        "name": "alkass",
-        "url": "go:kas1",
+        "name": "سيرفر كورة لايف",
+        "url": "go:D",
         "keywords": [
-            "الوكرة"
+            "الأهلي"
         ],
         "serverType": "internal"
     }
@@ -1095,7 +1095,6 @@
         const breakDuration = 15;
         const totalMatchDuration = 90;
         const countdownStartMinutes = 30;
-        const lang = 'en';
 
         document.querySelectorAll('.countdown-circle').forEach(c => {
             const progress = c.querySelector('.progress');
@@ -1131,7 +1130,7 @@
                 if (now.toMillis() / 1000 > matchEndTimestamp) {
                     c.style.display = 'none';
                 } else if (timeUntilMatchInSeconds > 0 && timeUntilMatchInSeconds <= countdownStartMinutes * 60) {
-                    const remainingDuration = luxon.Duration.fromObject({ seconds: timeUntilMatchInSeconds });
+                    const remainingDuration = luxon.Duration.fromObject({ seconds: timeUntilMatchInSeconds }).rescale();
                     const formattedTime = remainingDuration.toFormat('h:mm:ss');
                     
                     timeText.innerHTML = formattedTime;
