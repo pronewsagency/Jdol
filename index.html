@@ -13,6 +13,7 @@
         color: white;
         padding: 20px;
         direction: rtl;
+        padding-bottom: 80px; /* لضمان عدم تغطية القائمة السفلية للمحتوى */
     }
 
     .match-row {
@@ -28,6 +29,8 @@
         margin-left: auto;
         margin-right: auto;
         overflow: hidden;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
     }
 
     .teams-time {
@@ -64,7 +67,7 @@
     }
 
     .team-name {
-        font-size: 16px;
+        font-size: 8px;
         font-weight: 700;
     }
 
@@ -116,7 +119,7 @@
         transform: translate(-50%, -50%);
         color: white;
         font-weight: bold;
-        font-size: 14px;
+        font-size: 7px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -128,6 +131,14 @@
         opacity: 0.7;
     }
 
+    .countdown-circle .timer-small-text {
+        font-size: 12px;
+        font-weight: normal;
+        display: block;
+        line-height: 1;
+        margin-top: 2px;
+    }
+    
     .match-score-finished {
         background-color: red;
         border: 1px solid white;
@@ -144,13 +155,13 @@
     }
 
     .match-score-finished .main-score {
-        font-size: 18px;
+        font-size: 9px;
         font-weight: bold;
         color: white;
     }
 
     .match-score-finished .penalties-score {
-        font-size: 12px;
+        font-size: 6px;
         color: white;
         margin-top: 2px;
     }
@@ -250,19 +261,23 @@
         background-color: #1a1a1a;
         margin: 5% auto;
         padding: 20px;
+        padding-top: 40px; 
         border: 1px solid #888;
         width: 90%;
-        max-width: 400px;
+        max-width: 300px;
         border-radius: 10px;
+        position: relative;
     }
 
     .modal-title {
-        text-align: right;
+        display: none;
     }
 
     .close-btn {
         color: white;
-        float: left;
+        position: absolute;
+        top: 10px;
+        left: 10px;
         font-size: 28px;
         font-weight: bold;
     }
@@ -296,6 +311,21 @@
     }
 
     .live-server-btn {
+        background: #FF0000;
+        border: none;
+        color: white;
+        border-radius: 6px;
+        padding: 10px 15px;
+        font-weight: 700;
+        cursor: pointer;
+        text-decoration: none;
+        width: 100%;
+        text-align: center;
+        font-family: 'Cairo', sans-serif;
+        display: block;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+    .external-player-btn {
         background: #FF0000;
         border: none;
         color: white;
@@ -418,6 +448,113 @@
     .refresh-btn:hover {
         background-color: #555;
     }
+    
+    .error-message {
+        text-align: center;
+        color: white;
+        font-size: 18px;
+        margin-top: 20px;
+    }
+    
+    .retry-btn {
+        background-color: #555;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 10px;
+        display: block;
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+        font-family: 'Cairo', sans-serif;
+    }
+    
+    .external-player-modal-content {
+        background-color: #1a1a1a;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 90%;
+        max-width: 300px;
+        border-radius: 10px;
+        text-align: center;
+        position: relative;
+    }
+
+    .external-player-modal-content .close-btn {
+        top: 10px;
+        right: 10px;
+        left: unset;
+    }
+
+    .external-player-modal-content p {
+        margin-bottom: 20px;
+        font-size: 16px;
+    }
+
+    .modal-buttons-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .download-player-btn {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 6px;
+        font-weight: 700;
+        text-decoration: none;
+        flex-grow: 1;
+        text-align: center;
+    }
+    
+    .watch-external-btn {
+        background-color: red;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 6px;
+        font-weight: 700;
+        text-decoration: none;
+        flex-grow: 1;
+        text-align: center;
+    }
+
+    #bottom-navbar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        background-color: black;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        border-top: 1px solid white;
+        z-index: 200;
+    }
+
+    .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: white;
+        font-size: 10px;
+        font-weight: 700;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+
+    .nav-item i {
+        font-size: 20px;
+        margin-bottom: 4px;
+    }
 </style>
 </head>
 <body>
@@ -443,35 +580,188 @@
 <div id="loading" class="loading-spinner"></div>
 <div id="matches-container" style="max-width:700px; margin:auto;"></div>
 
+<div id="bottom-navbar">
+    <a href="go:jdol" class="nav-item">
+        <i class="fas fa-futbol"></i>
+        <span>جدول المباريات</span>
+    </a>
+    <a href="go:VOD" class="nav-item">
+        <i class="fas fa-film"></i>
+        <span>VOD</span>
+    </a>
+    <a href="go:HOME" class="nav-item">
+        <i class="fas fa-tv"></i>
+        <span>تلفاز</span>
+    </a>
+    <a href="go:youtube" class="nav-item">
+        <i class="fab fa-youtube"></i>
+        <span>يوتيوب</span>
+    </a>
+    <a href="go:telegram" class="nav-item">
+        <i class="fab fa-telegram"></i>
+        <span>تلغرام</span>
+    </a>
+</div>
+
 <div id="liveServersModal" class="modal">
     <div class="modal-content">
         <span id="liveServersModalCloseBtn" class="close-btn">×</span>
-        <h2 class="modal-title">سيرفرات البث المباشر</h2>
+        <h2 class="modal-title"></h2>
         <ul id="liveServerList" class="server-list">
         </ul>
     </div>
 </div>
 
+<div id="externalPlayerModal" class="modal">
+    <div class="external-player-modal-content">
+        <span id="externalPlayerModalCloseBtn" class="close-btn">×</span>
+        <p>هذا السيرفر يحتاج لمشغل خارجي</p>
+        <div class="modal-buttons-container">
+            <a id="downloadPlayerBtn" class="download-player-btn" href="go:player">تحميل المشغل</a>
+            <a id="watchExternalBtn" class="watch-external-btn" href="#">شاهد</a>
+        </div>
+    </div>
+</div>
+
 <script>
     const teamLogos = {
-      "Al-Nassr FC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/5/5a/Al-Nassr_FC_logo.svg/1200px-Al-Nassr_FC_logo.svg.png", "keywords": ["النصر"] },
-      "Al-Hilal SFC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/c/c1/Al-Hilal_SFC_logo.svg/1200px-Al-Hilal_SFC_logo.svg.png", "keywords": ["الهلال"] },
-      "Al-Ahli Saudi FC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/d/d4/Al_Ahli_Saudi_FC_logo.svg/1200px-Al_Ahli_Saudi_FC_logo.svg.png", "keywords": ["الأهلي"] },
-      "Al-Ittihad Club": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/8/89/Ittihad_FC_logo.svg/1200px-Ittihad_FC_logo.svg.png", "keywords": ["الاتحاد"] },
-      "Real Madrid CF": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png", "keywords": ["ريال مدريد", "Real Madrid"] },
-      "FC Barcelona": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/1200px-FC_Barcelona_%28crest%29.svg.png", "keywords": ["برشلونة", "Barcelona"] },
-      "Liverpool FC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/0/0c/Liverpool_FC.svg/1200px-Liverpool_FC.svg.png", "keywords": ["ليفربول", "Liverpool"] },
-      "Manchester City FC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/e/e1/Manchester_City_F.C._logo.svg/1200px-Manchester_City_F.C._logo.svg.png", "keywords": ["مانشستر سيتي", "Man City"] },
-      "Al-Ahly SC (Egypt)": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/5/5b/Al_Ahly_SC_logo.svg/1200px-Al_Ahly_SC_logo.svg.png", "keywords": ["الأهلي المصري"] },
-      "Zamalek SC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/d/d1/Zamalek_SC.svg/1200px-Zamalek_SC.svg.png", "keywords": ["الزمالك"] }
-    };
+  "Al-Nassr FC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/5/5a/Al-Nassr_FC_logo.svg/1200px-Al-Nassr_FC_logo.svg.png", "keywords": ["النصر"] },
+  "Al-Hilal SFC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/c/c1/Al-Hilal_SFC_logo.svg/1200px-Al-Hilal_SFC_logo.svg.png", "keywords": ["الهلال"] },
+  "Al-Ahli Saudi FC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/d/d4/Al_Ahli_Saudi_FC_logo.svg/1200px-Al_Ahli_Saudi_FC_logo.svg.png", "keywords": ["الأهلي"] },
+  "Al-Ittihad Club": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/8/89/Ittihad_FC_logo.svg/1200px-Ittihad_FC_logo.svg.png", "keywords": ["الاتحاد"] },
+  "Real Madrid CF": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png", "keywords": ["ريال مدريد", "Real Madrid"] },
+  "FC Barcelona": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/1200px-FC_Barcelona_%28crest%29.svg.png", "keywords": ["برشلونة", "Barcelona"] },
+  "Liverpool FC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/0/0c/Liverpool_FC.svg/1200px-Liverpool_FC.svg.png", "keywords": ["ليفربول", "Liverpool"] },
+  "Manchester City FC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/e/e1/Manchester_City_F.C._logo.svg/1200px-Manchester_City_F.C._logo.svg.png", "keywords": ["مانشستر سيتي", "Man City"] },
+  "Al-Ahly SC (Egypt)": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/5/5b/Al_Ahly_SC_logo.svg/1200px-Al_Ahly_SC_logo.svg.png", "keywords": ["الأهلي المصري"] },
+  "Zamalek SC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/d/d1/Zamalek_SC.svg/1200px-Zamalek_SC.svg.png", "keywords": ["الزمالك"] },
+  "بورنموث": { "url": "https://upload.wikimedia.org/wikipedia/ar/e/e5/AFC_Bournemouth_%282013%29.svg", "keywords": ["بورنموث"] },
+  "جيرونا": { "url": "https://upload.wikimedia.org/wikipedia/ar/b/b7/Girona_FC_%282022%29.svg", "keywords": ["جيرونا"] },
+  "ريال مدريد": { "url": "https://upload.wikimedia.org/wikipedia/sco/5/56/Real_Madrid_CF.svg", "keywords": ["ريال مدريد"] },
+  "برشلونة": { "url": "https://upload.wikimedia.org/wikipedia/sco/4/47/FC_Barcelona_%28crest%29.svg", "keywords": ["برشلونة"] },
+  "أتليتكو مدريد": { "url": "https://upload.wikimedia.org/wikipedia/ar/f/f4/Atletico_Madrid_2017_logo.svg", "keywords": ["أتليتكو مدريد"] },
+  "فالنسيا": { "url": "https://upload.wikimedia.org/wikipedia/ar/d/d3/Valencia_CF.svg", "keywords": ["فالنسيا"] },
+  "فياريال": { "url": "https://upload.wikimedia.org/wikipedia/ar/7/70/Villarreal_CF_logo.svg", "keywords": ["فياريال"] },
+  "تيرول": { "url": "https://upload.wikimedia.org/wikipedia/fr/5/5b/WSG_Swarovski_Tirol_%28logo%29.svg", "keywords": ["تيرول"] }
+};
 
-    const matchLinks = {
-        "link1": { "url": "go:A", "keywords": ["النصر"] },
-        "link2": { "url": "go:B", "keywords": ["برشلونة", "ريال مدريد"] },
-        "link3": { "url": "go:C", "keywords": ["ليفربول", "مانشستر سيتي"] },
-        "link4": { "url": "go:D", "keywords": ["الأهلي"] }
-    };
+    const matchLinks = [
+        { "name": "سيرفر الأسطورة", "url": "go:A", "keywords": ["النصر"], "serverType": "internal" },
+        { "name": "سيرفر YALLA Shoot", "url": "go:B", "keywords": ["برشلونة", "ريال مدريد"], "serverType": "internal" },
+        { "name": "مشغل خارجي", "url": "go:C", "keywords": ["ليفربول", "مانشستر سيتي"], "serverType": "external" },
+        { "name": "سيرفر كورة لايف", "url": "go:D", "keywords": ["الأهلي"], "serverType": "internal" }
+    ];
+
+    const matchesContainer = document.getElementById('matches-container');
+    const loadingSpinner = document.getElementById('loading');
+    const liveServersModal = document.getElementById('liveServersModal');
+    const liveServersModalCloseBtn = document.getElementById('liveServersModalCloseBtn');
+    const liveServerList = document.getElementById('liveServerList');
+    const searchInput = document.getElementById('search-input');
+    const refreshBtn = document.getElementById('refresh-btn');
+    let currentMatchDayType = 'today';
+    let allMatches = [];
+
+    const externalPlayerModal = document.getElementById('externalPlayerModal');
+    const externalPlayerModalCloseBtn = document.getElementById('externalPlayerModalCloseBtn');
+    const watchExternalBtn = document.getElementById('watchExternalBtn');
+
+    function renderLiveServers(homeTeam, awayTeam) {
+        liveServerList.innerHTML = '';
+        const matchingServerLinks = matchLinks.filter(linkData => {
+            const allKeywords = [homeTeam, awayTeam];
+            return linkData.keywords.some(keyword => {
+                return allKeywords.some(teamName => teamName.includes(keyword) || keyword.includes(teamName));
+            });
+        });
+
+        if (matchingServerLinks.length === 0) {
+            liveServerList.innerHTML = '<p style="text-align: center;">لا يوجد سيرفرات متاحة لهذه المباراة حاليًا.</p>';
+            return;
+        }
+
+        matchingServerLinks.forEach((linkData) => {
+            const li = document.createElement('li');
+            li.className = 'server-item';
+            
+            const liveBtn = document.createElement('a');
+            liveBtn.className = 'live-server-btn';
+            liveBtn.textContent = linkData.name;
+
+            if (linkData.serverType === "external") {
+                liveBtn.onclick = (e) => {
+                    e.preventDefault();
+                    watchExternalBtn.href = linkData.url;
+                    liveServersModal.style.display = 'none';
+                    externalPlayerModal.style.display = 'block';
+                };
+            } else {
+                liveBtn.href = linkData.url;
+                liveBtn.target = '_blank';
+            }
+            
+            li.appendChild(liveBtn);
+            liveServerList.appendChild(li);
+        });
+    }
+
+    function loadMatches(url, matchDayType) {
+        const proxyUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent(url);
+        matchesContainer.innerHTML = '';
+        loadingSpinner.style.display = 'block';
+        currentMatchDayType = matchDayType;
+
+        document.querySelectorAll('.load-btn').forEach(btn => btn.classList.remove('active'));
+        document.getElementById(`load${matchDayType.charAt(0).toUpperCase() + matchDayType.slice(1)}Btn`).classList.add('active');
+
+        fetch(proxyUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const html = data.contents;
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const matches = doc.querySelectorAll('li.single_match');
+                loadingSpinner.style.display = 'none';
+                
+                if (matches.length === 0) {
+                     showErrorScreen();
+                     return;
+                }
+
+                allMatches = [];
+                matches.forEach(match => allMatches.push(match));
+
+                renderMatches(allMatches);
+            })
+            .catch(err => {
+                console.error(err);
+                loadingSpinner.style.display = 'none';
+                showErrorScreen();
+            });
+    }
+
+    function showErrorScreen() {
+        matchesContainer.innerHTML = `
+            <div class="error-message">
+                <p>الإنترنت ضعيف</p>
+                <button class="retry-btn" id="retry-btn">أعد المحاولة</button>
+            </div>
+        `;
+        document.getElementById('retry-btn').addEventListener('click', () => {
+            const buttonId = `load${currentMatchDayType.charAt(0).toUpperCase() + currentMatchDayType.slice(1)}Btn`;
+            const button = document.getElementById(buttonId);
+            if (button) {
+                button.click();
+            } else {
+                loadMatches('https://jdwel.com/today/', 'today');
+            }
+        });
+    }
 
     function createTeamLogo(imgUrl, teamName, isExactMatch) {
         if (!isExactMatch || imgUrl.includes('placeholder.com')) {
@@ -496,88 +786,6 @@
         return teamName;
     }
 
-    const matchesContainer = document.getElementById('matches-container');
-    const loadingSpinner = document.getElementById('loading');
-    const liveServersModal = document.getElementById('liveServersModal');
-    const liveServersModalCloseBtn = document.getElementById('liveServersModalCloseBtn');
-    const liveServerList = document.getElementById('liveServerList');
-    const searchInput = document.getElementById('search-input');
-    const refreshBtn = document.getElementById('refresh-btn');
-    let currentMatchDayType = 'today';
-    let allMatches = [];
-
-    function renderLiveServers(homeTeam, awayTeam) {
-        liveServerList.innerHTML = '';
-        let foundLinkData = null;
-        const allKeywords = [homeTeam, awayTeam];
-        
-        for (const key in matchLinks) {
-            const linkData = matchLinks[key];
-            const isMatch = linkData.keywords.some(keyword => {
-                return allKeywords.some(teamName => teamName.includes(keyword) || keyword.includes(teamName));
-            });
-            if (isMatch) {
-                foundLinkData = linkData;
-                break;
-            }
-        }
-
-        if (!foundLinkData) {
-            liveServerList.innerHTML = '<p style="text-align: center;">لا يوجد سيرفرات متاحة لهذه المباراة حاليًا.</p>';
-            return;
-        }
-        
-        const servers = [
-            { name: 'سيرفر 1', url: foundLinkData.url },
-            { name: 'سيرفر 2', url: foundLinkData.url },
-        ];
-
-        servers.forEach((server, index) => {
-            const li = document.createElement('li');
-            li.className = 'server-item';
-            const liveBtn = document.createElement('a');
-            liveBtn.href = server.url;
-            liveBtn.target = '_blank';
-            liveBtn.className = 'live-server-btn';
-            liveBtn.textContent = server.name;
-            li.appendChild(liveBtn);
-            liveServerList.appendChild(li);
-        });
-    }
-
-    function loadMatches(url, matchDayType) {
-        const proxyUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent(url);
-        matchesContainer.innerHTML = '';
-        loadingSpinner.style.display = 'block';
-        currentMatchDayType = matchDayType;
-
-        document.querySelectorAll('.load-btn').forEach(btn => btn.classList.remove('active'));
-        document.getElementById(`load${matchDayType.charAt(0).toUpperCase() + matchDayType.slice(1)}Btn`).classList.add('active');
-
-        fetch(proxyUrl)
-            .then(response => response.ok ? response.json() : Promise.reject('فشل تحميل البيانات'))
-            .then(data => {
-                const html = data.contents;
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-                const matches = doc.querySelectorAll('li.single_match');
-                loadingSpinner.style.display = 'none';
-
-                allMatches = [];
-                matches.forEach(match => allMatches.push(match));
-
-                renderMatches(allMatches);
-
-            })
-            .catch(err => {
-                console.error(err);
-                loadingSpinner.style.display = 'none';
-                setTimeout(() => {
-                    loadMatches(url, matchDayType);
-                }, 5000);
-            });
-    }
-
     function renderMatches(matches) {
         matchesContainer.innerHTML = '';
         if (matches.length === 0) {
@@ -585,151 +793,189 @@
             return;
         }
 
+        const importantMatches = [];
+        const otherMatches = [];
+
         matches.forEach(match => {
             const homeTeam = match.querySelector('.team.hometeam .the_team')?.innerText.trim() || 'فريق';
             const awayTeam = match.querySelector('.team.awayteam .the_team')?.innerText.trim() || 'فريق';
-
-            let matchScoreText = match.querySelector('.score')?.innerText.trim() ||
-                                 match.querySelector('.match_score')?.innerText.trim() ||
-                                 null;
-
-            let mainScore = matchScoreText;
-            let penaltiesScore = null;
-
-            if (matchScoreText && matchScoreText.includes('(')) {
-                const scoreParts = matchScoreText.split('(');
-                mainScore = scoreParts[0].trim();
-                penaltiesScore = scoreParts[1].replace(')', '').trim();
-            }
-
-            let homeLogo = 'https://via.placeholder.com/60';
-            let awayLogo = 'https://via.placeholder.com/60';
-            let isHomeLogoExactMatch = false;
-            let isAwayLogoExactMatch = false;
-
-            for (const key in teamLogos) {
-                if (teamLogos[key].keywords.some(kw => homeTeam.includes(kw))) {
-                    homeLogo = teamLogos[key].url;
-                    isHomeLogoExactMatch = true;
-                }
-                if (teamLogos[key].keywords.some(kw => awayTeam.includes(kw))) {
-                    awayLogo = teamLogos[key].url;
-                    isAwayLogoExactMatch = true;
-                }
-            }
-
-            const matchTimeElement = match.querySelector('.match_time .the_otime');
-            const matchTime = matchTimeElement?.innerText.trim() || '-';
-            const timeOnly = matchTime.match(/\d{1,2}:\d{2}/) ? matchTime.match(/\d{1,2}:\d{2}/)[0] : matchTime;
-
-            let matchDateObject = null;
-            if (timeOnly !== '-') {
-                const now = luxon.DateTime.local();
-                const [hours, minutes] = timeOnly.split(':').map(Number);
-                
-                if (currentMatchDayType === 'today') {
-                    matchDateObject = luxon.DateTime.local().set({ hour: hours, minute: minutes, second: 0, millisecond: 0 });
-                } else if (currentMatchDayType === 'yesterday') {
-                    matchDateObject = luxon.DateTime.local().minus({ days: 1 }).set({ hour: hours, minute: minutes, second: 0, millisecond: 0 });
-                } else if (currentMatchDayType === 'tomorrow') {
-                    matchDateObject = luxon.DateTime.local().plus({ days: 1 }).set({ hour: hours, minute: minutes, second: 0, millisecond: 0 });
-                }
-            }
-
-            const matchTimestamp = matchDateObject ? matchDateObject.toMillis() / 1000 : '';
-
-            const matchRow = document.createElement('div');
-            matchRow.className = 'match-row';
-            matchRow.innerHTML = `
-                <div class="teams-time">
-                  <div class="team" id="home-team-container"></div>
-                  <div class="match-time">
-                    <div class="countdown-circle">
-                      <svg>
-                        <circle class="bg"></circle>
-                        <circle class="progress"></circle>
-                      </svg>
-                      <div class="time-text" data-time="${timeOnly}"
-                                           data-match-timestamp="${matchTimestamp || ''}"
-                                           data-match-day="${currentMatchDayType}"
-                                           data-score="${mainScore || ''}"
-                                           data-penalties="${penaltiesScore || ''}">
-                        ${timeOnly}
-                      </div>
-                    </div>
-                  </div>
-                  <div class="team" id="away-team-container"></div>
-                </div>
-                <div class="channel-container" id="channel-container"></div>
-            `;
-            matchesContainer.appendChild(matchRow);
-            const homeContainer = matchRow.querySelector('#home-team-container');
-            homeContainer.appendChild(createTeamLogo(homeLogo, homeTeam, isHomeLogoExactMatch));
-            const homeNameDiv = document.createElement('div');
-            homeNameDiv.className = 'team-name';
-            homeNameDiv.textContent = abbreviateTeamName(homeTeam);
-            homeContainer.appendChild(homeNameDiv);
-            const awayContainer = matchRow.querySelector('#away-team-container');
-            awayContainer.appendChild(createTeamLogo(awayLogo, awayTeam, isAwayLogoExactMatch));
-            const awayNameDiv = document.createElement('div');
-            awayNameDiv.className = 'team-name';
-            awayNameDiv.textContent = abbreviateTeamName(awayTeam);
-            awayContainer.appendChild(awayNameDiv);
-
-            const channelContainer = matchRow.querySelector('#channel-container');
-            const watchBtnContainer = document.createElement('div');
-            watchBtnContainer.className = 'watch-btn-container';
-
-            const watchBtn = document.createElement('a');
-            watchBtn.href = '#';
-            watchBtn.className = 'watch-btn';
-            watchBtn.textContent = 'شاهد المباراة';
-
-            const finishedBtn = document.createElement('div');
-            finishedBtn.className = 'finished-btn';
-            finishedBtn.textContent = 'انتهت';
-
-            const notStartedBtn = document.createElement('div');
-            notStartedBtn.className = 'not-started-btn';
-            notStartedBtn.textContent = 'لم تبدأ بعد';
-
-            const now = luxon.DateTime.local();
-            const matchDate = matchDateObject;
-            const totalMatchDuration = 90;
-            const breakDuration = 15;
-
-            let timeDifferenceInMinutes = Infinity;
-            if (matchDate) {
-                timeDifferenceInMinutes = now.diff(matchDate, 'minutes').minutes;
-            }
-
-            const isFinished = currentMatchDayType === 'yesterday' || (matchDate && timeDifferenceInMinutes > totalMatchDuration + breakDuration + 5);
-            const isLive = !isFinished && timeDifferenceInMinutes >= -15 && timeDifferenceInMinutes <= totalMatchDuration + breakDuration + 5;
-            const isNotStartedYet = !isFinished && !isLive;
-
-            if (isFinished) {
-                watchBtnContainer.appendChild(finishedBtn);
-            } else if (isLive) {
-                 watchBtn.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    renderLiveServers(homeTeam, awayTeam);
-                    liveServersModal.style.display = 'block';
-                });
-                watchBtnContainer.appendChild(watchBtn);
-            } else if (isNotStartedYet) {
-                 watchBtnContainer.appendChild(notStartedBtn);
+            const importantTeams = ["الهلال", "النصر", "ريال مدريد", "برشلونة", "ليفربول", "مانشستر سيتي"];
+            const isImportant = importantTeams.some(teamName => homeTeam.includes(teamName) || awayTeam.includes(teamName));
+            if (isImportant) {
+                importantMatches.push(match);
             } else {
-                 watchBtn.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    renderLiveServers(homeTeam, awayTeam);
-                    liveServersModal.style.display = 'block';
-                });
-                watchBtnContainer.appendChild(watchBtn);
+                otherMatches.push(match);
             }
-
-            channelContainer.appendChild(watchBtnContainer);
         });
-        updateMatchTimers();
+
+        const sortedMatches = importantMatches.concat(otherMatches);
+
+        function displayMatchesGradually(matchList) {
+            let index = 0;
+            function displayNextMatch() {
+                if (index < matchList.length) {
+                    const match = matchList[index];
+                    const homeTeam = match.querySelector('.team.hometeam .the_team')?.innerText.trim() || 'فريق';
+                    const awayTeam = match.querySelector('.team.awayteam .the_team')?.innerText.trim() || 'فريق';
+                    let matchScoreText = match.querySelector('.score')?.innerText.trim() ||
+                                         match.querySelector('.match_score')?.innerText.trim() ||
+                                         null;
+                    
+                    let mainScore = matchScoreText;
+                    let penaltiesScore = null;
+                    if (matchScoreText && matchScoreText.includes('(')) {
+                        const scoreParts = matchScoreText.split('(');
+                        mainScore = scoreParts[0].trim();
+                        penaltiesScore = scoreParts[1].replace(')', '').trim();
+                    }
+
+                    let homeLogo = 'https://via.placeholder.com/60';
+                    let awayLogo = 'https://via.placeholder.com/60';
+                    let isHomeLogoExactMatch = false;
+                    let isAwayLogoExactMatch = false;
+
+                    for (const key in teamLogos) {
+                        if (teamLogos[key].keywords.some(kw => homeTeam.includes(kw))) {
+                            homeLogo = teamLogos[key].url;
+                            isHomeLogoExactMatch = true;
+                        }
+                        if (teamLogos[key].keywords.some(kw => awayTeam.includes(kw))) {
+                            awayLogo = teamLogos[key].url;
+                            isAwayLogoExactMatch = true;
+                        }
+                    }
+
+                    const matchTimeElement = match.querySelector('.match_time .the_otime');
+                    const matchTime = matchTimeElement?.innerText.trim() || '-';
+                    const timeOnly = matchTime.match(/\d{1,2}:\d{2}/) ? matchTime.match(/\d{1,2}:\d{2}/)[0] : matchTime;
+
+                    let matchDateObject = null;
+                    if (timeOnly !== '-') {
+                        const now = luxon.DateTime.local();
+                        const [hours, minutes] = timeOnly.split(':').map(Number);
+                        
+                        let matchDate = now;
+                        if (currentMatchDayType === 'yesterday') {
+                            matchDate = now.minus({ days: 1 });
+                        } else if (currentMatchDayType === 'tomorrow') {
+                            matchDate = now.plus({ days: 1 });
+                        }
+                        matchDateObject = matchDate.set({ hour: hours, minute: minutes, second: 0, millisecond: 0 });
+                    }
+
+                    const matchTimestamp = matchDateObject ? matchDateObject.toMillis() / 1000 : '';
+
+                    const matchRow = document.createElement('div');
+                    matchRow.className = 'match-row';
+                    matchRow.style.opacity = '0';
+                    matchRow.style.transition = 'opacity 0.5s ease-in-out';
+                    
+                    matchRow.innerHTML = `
+                        <div class="teams-time">
+                          <div class="team" id="home-team-container-${index}"></div>
+                          <div class="match-time">
+                            <div class="countdown-circle">
+                              <svg>
+                                <circle class="bg"></circle>
+                                <circle class="progress"></circle>
+                              </svg>
+                              <div class="time-text" data-time="${timeOnly}"
+                                                   data-match-timestamp="${matchTimestamp || ''}"
+                                                   data-match-day="${currentMatchDayType}"
+                                                   data-score="${mainScore || ''}"
+                                                   data-penalties="${penaltiesScore || ''}">
+                                ${timeOnly}
+                              </div>
+                            </div>
+                          </div>
+                          <div class="team" id="away-team-container-${index}"></div>
+                        </div>
+                        <div class="channel-container" id="channel-container-${index}"></div>
+                    `;
+                    
+                    matchesContainer.appendChild(matchRow);
+                    
+                    const homeContainer = matchRow.querySelector(`#home-team-container-${index}`);
+                    homeContainer.appendChild(createTeamLogo(homeLogo, homeTeam, isHomeLogoExactMatch));
+                    const homeNameDiv = document.createElement('div');
+                    homeNameDiv.className = 'team-name';
+                    homeNameDiv.textContent = abbreviateTeamName(homeTeam);
+                    homeContainer.appendChild(homeNameDiv);
+
+                    const awayContainer = matchRow.querySelector(`#away-team-container-${index}`);
+                    awayContainer.appendChild(createTeamLogo(awayLogo, awayTeam, isAwayLogoExactMatch));
+                    const awayNameDiv = document.createElement('div');
+                    awayNameDiv.className = 'team-name';
+                    awayNameDiv.textContent = abbreviateTeamName(awayTeam);
+                    awayContainer.appendChild(awayNameDiv);
+
+                    const channelContainer = matchRow.querySelector(`#channel-container-${index}`);
+                    const watchBtnContainer = document.createElement('div');
+                    watchBtnContainer.className = 'watch-btn-container';
+
+                    const watchBtn = document.createElement('a');
+                    watchBtn.href = '#';
+                    watchBtn.className = 'watch-btn';
+                    watchBtn.textContent = 'شاهد المباراة';
+
+                    const finishedBtn = document.createElement('div');
+                    finishedBtn.className = 'finished-btn';
+                    finishedBtn.textContent = 'انتهت';
+
+                    const notStartedBtn = document.createElement('div');
+                    notStartedBtn.className = 'not-started-btn';
+                    notStartedBtn.textContent = 'لم تبدأ بعد';
+
+                    const now = luxon.DateTime.local();
+                    const matchDate = matchDateObject;
+                    const totalMatchDuration = 90;
+                    const breakDuration = 15;
+
+                    let timeDifferenceInMinutes = Infinity;
+                    if (matchDate) {
+                        timeDifferenceInMinutes = now.diff(matchDate, 'minutes').minutes;
+                    }
+                    
+                    const isFinished = (matchDate && now > matchDate.plus({ minutes: totalMatchDuration + breakDuration + 5 }));
+                    const isLive = !isFinished && matchDate && now >= matchDate.minus({ minutes: 30 }) && now <= matchDate.plus({ minutes: totalMatchDuration + breakDuration + 5 });
+                    const isNotStartedYet = !isFinished && !isLive;
+
+                    if (isFinished) {
+                        watchBtnContainer.appendChild(finishedBtn);
+                    } else if (isLive) {
+                         watchBtn.addEventListener('click', (event) => {
+                            event.preventDefault();
+                            renderLiveServers(homeTeam, awayTeam);
+                            liveServersModal.style.display = 'block';
+                        });
+                        watchBtnContainer.appendChild(watchBtn);
+                    } else if (isNotStartedYet) {
+                         watchBtnContainer.appendChild(notStartedBtn);
+                    } else {
+                         watchBtn.addEventListener('click', (event) => {
+                            event.preventDefault();
+                            renderLiveServers(homeTeam, awayTeam);
+                            liveServersModal.style.display = 'block';
+                        });
+                        watchBtnContainer.appendChild(watchBtn);
+                    }
+                    
+                    channelContainer.appendChild(watchBtnContainer);
+
+                    setTimeout(() => {
+                        matchRow.style.opacity = '1';
+                    }, 10); 
+                    
+                    index++;
+                    setTimeout(displayNextMatch, 500); 
+                } else {
+                    updateMatchTimers();
+                }
+            }
+            displayNextMatch();
+        }
+        
+        displayMatchesGradually(sortedMatches);
     }
 
     function searchMatches() {
@@ -748,8 +994,8 @@
         if (button) {
             button.click();
         } else {
-            loadMatches('https://jdwel.com/today/', 'today');
-        }
+                loadMatches('https://jdwel.com/today/', 'today');
+            }
     });
 
     searchInput.addEventListener('input', searchMatches);
@@ -769,10 +1015,17 @@
     liveServersModalCloseBtn.addEventListener('click', () => {
         liveServersModal.style.display = 'none';
     });
+    
+    externalPlayerModalCloseBtn.addEventListener('click', () => {
+        externalPlayerModal.style.display = 'none';
+    });
 
     window.addEventListener('click', (event) => {
         if (event.target === liveServersModal) {
             liveServersModal.style.display = 'none';
+        }
+        if (event.target === externalPlayerModal) {
+            externalPlayerModal.style.display = 'none';
         }
     });
 
@@ -782,6 +1035,7 @@
         const firstHalfEnd = 45;
         const breakDuration = 15;
         const totalMatchDuration = 90;
+        const countdownStartMinutes = 30;
 
         document.querySelectorAll('.countdown-circle').forEach(c => {
             const progress = c.querySelector('.progress');
@@ -807,7 +1061,7 @@
 
                 const matchDate = matchTimestamp ? luxon.DateTime.fromMillis(parseInt(matchTimestamp) * 1000) : null;
 
-                if (!matchDate || matchDayType !== 'today') {
+                if (!matchDate) {
                     if (matchDayType === 'yesterday' && matchScore) {
                         const finishedScoreDiv = document.createElement('div');
                         finishedScoreDiv.className = 'match-score-finished';
@@ -821,40 +1075,24 @@
                             penaltiesSpan.textContent = `(${penaltiesScore})`;
                             finishedScoreDiv.appendChild(penaltiesSpan);
                         }
-                        parentMatchTimeDiv.replaceChild(finishedScoreDiv, c);
+                        if (parentMatchTimeDiv.contains(c)) {
+                           parentMatchTimeDiv.replaceChild(finishedScoreDiv, c);
+                        }
                     } else {
                         timeText.textContent = timeText.getAttribute('data-time');
                         if (c) c.style.display = 'block';
                     }
                     return;
                 }
-
+                
                 const timeDifferenceInSeconds = now.diff(matchDate, 'seconds').seconds;
+                const timeUntilMatchInSeconds = matchDate.diff(now, 'seconds').seconds;
                 let minutesElapsed;
                 const progress = c.querySelector('.progress');
                 
-                if (timeDifferenceInSeconds < 0) {
-                    timeText.textContent = timeText.getAttribute('data-time');
-                    if (progress) progress.style.strokeDashoffset = circumference;
-                    return;
-                }
+                const matchEndTimestamp = matchDate.plus({ minutes: totalMatchDuration + breakDuration + 5 }).toMillis() / 1000;
                 
-                if (timeDifferenceInSeconds <= firstHalfEnd * 60) {
-                    minutesElapsed = Math.floor(timeDifferenceInSeconds / 60);
-                    timeText.textContent = minutesElapsed;
-                    const percent = minutesElapsed / totalMatchDuration;
-                    if(progress) progress.style.strokeDashoffset = circumference * (1 - percent);
-                } else if (timeDifferenceInSeconds <= (firstHalfEnd + breakDuration) * 60) {
-                    timeText.textContent = 'استراحة';
-                    const percent = firstHalfEnd / totalMatchDuration;
-                    if(progress) progress.style.strokeDashoffset = circumference * (1 - percent);
-                } else if (timeDifferenceInSeconds <= (totalMatchDuration + breakDuration) * 60) {
-                    const secondHalfTime = timeDifferenceInSeconds - (firstHalfEnd + breakDuration) * 60;
-                    minutesElapsed = Math.floor(secondHalfTime / 60) + firstHalfEnd;
-                    timeText.textContent = minutesElapsed;
-                    const percent = minutesElapsed / totalMatchDuration;
-                    if(progress) progress.style.strokeDashoffset = circumference * (1 - percent);
-                } else {
+                if (now.toMillis() / 1000 > matchEndTimestamp) {
                     const finishedScoreDiv = document.createElement('div');
                     finishedScoreDiv.className = 'match-score-finished';
                     const mainScoreSpan = document.createElement('span');
@@ -868,7 +1106,44 @@
                         penaltiesSpan.textContent = `(${penaltiesScore})`;
                         finishedScoreDiv.appendChild(penaltiesSpan);
                     }
-                    parentMatchTimeDiv.replaceChild(finishedScoreDiv, c);
+                    if (parentMatchTimeDiv.contains(c)) {
+                       parentMatchTimeDiv.replaceChild(finishedScoreDiv, c);
+                    }
+                } else if (timeUntilMatchInSeconds > 0 && timeUntilMatchInSeconds <= countdownStartMinutes * 60) {
+                    const remainingDuration = luxon.Duration.fromObject({ seconds: timeUntilMatchInSeconds });
+                    const formattedTime = remainingDuration.toFormat('h:mm:ss');
+                    
+                    timeText.innerHTML = formattedTime;
+                    timeText.style.fontSize = '12px';
+                    
+                    const percent = 1 - (timeUntilMatchInSeconds / (countdownStartMinutes * 60));
+                    if(progress) progress.style.stroke = "green";
+                    if(progress) progress.style.strokeDashoffset = circumference * (1 - percent);
+                } else if (timeDifferenceInSeconds >= 0) {
+                    if(progress) progress.style.stroke = "red";
+                    if(timeText) timeText.style.fontSize = '14px';
+
+                    if (timeDifferenceInSeconds <= firstHalfEnd * 60) {
+                        minutesElapsed = Math.floor(timeDifferenceInSeconds / 60);
+                        timeText.textContent = minutesElapsed;
+                        const percent = minutesElapsed / totalMatchDuration;
+                        if(progress) progress.style.strokeDashoffset = circumference * (1 - percent);
+                    } else if (timeDifferenceInSeconds <= (firstHalfEnd + breakDuration) * 60) {
+                        timeText.textContent = 'Break';
+                        const percent = firstHalfEnd / totalMatchDuration;
+                        if(progress) progress.style.strokeDashoffset = circumference * (1 - percent);
+                    } else if (timeDifferenceInSeconds <= (totalMatchDuration + breakDuration) * 60) {
+                        const secondHalfTime = timeDifferenceInSeconds - (firstHalfEnd + breakDuration) * 60;
+                        minutesElapsed = Math.floor(secondHalfTime / 60) + firstHalfEnd;
+                        timeText.textContent = minutesElapsed;
+                        const percent = minutesElapsed / totalMatchDuration;
+                        if(progress) progress.style.strokeDashoffset = circumference * (1 - percent);
+                    }
+                } else {
+                    timeText.textContent = timeText.getAttribute('data-time');
+                    if(progress) progress.style.stroke = "red";
+                    if(progress) progress.style.strokeDashoffset = circumference;
+                    if(timeText) timeText.style.fontSize = '14px';
                 }
             });
         }, 1000);
