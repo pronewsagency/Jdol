@@ -717,7 +717,6 @@
     const liveServerList = document.getElementById('liveServerList');
     const searchInput = document.getElementById('search-input');
     const refreshBtn = document.getElementById('refresh-btn');
-    let currentMatchDayType = 'today';
     let allMatches = [];
     let progressInterval;
 
@@ -931,7 +930,11 @@
                     }
 
                     const matchTimestamp = matchDateObject ? matchDateObject.toMillis() / 1000 : '';
-
+                    
+                    const isFinished = (matchDateObject && luxon.DateTime.local() > matchDateObject.plus({ minutes: 90 + 15 + 5 }));
+                    const isLive = !isFinished && matchDateObject && luxon.DateTime.local() >= matchDateObject.minus({ minutes: 30 }) && luxon.DateTime.local() <= matchDateObject.plus({ minutes: 90 + 15 + 5 });
+                    const isNotStartedYet = !isFinished && !isLive;
+                    
                     const matchRow = document.createElement('div');
                     matchRow.className = 'match-row';
                     matchRow.style.opacity = '0';
@@ -940,21 +943,7 @@
                     matchRow.innerHTML = `
                         <div class="teams-time">
                           <div class="team" id="home-team-container-${index}"></div>
-                          <div class="match-time">
-                            <div class="countdown-circle">
-                              <svg>
-                                <circle class="bg"></circle>
-                                <circle class="progress"></circle>
-                              </svg>
-                              <div class="time-text" data-time="${timeOnly}"
-                                                   data-match-timestamp="${matchTimestamp || ''}"
-                                                   data-match-day="${'today'}"
-                                                   data-score="${mainScore || ''}"
-                                                   data-penalties="${penaltiesScore || ''}">
-                                ${timeOnly}
-                              </div>
-                            </div>
-                          </div>
+                          <div class="match-time" id="match-time-container-${index}"></div>
                           <div class="team" id="away-team-container-${index}"></div>
                         </div>
                         <div class="channel-container" id="channel-container-${index}"></div>
@@ -976,6 +965,41 @@
                     awayNameDiv.textContent = abbreviateTeamName(awayTeam);
                     awayContainer.appendChild(awayNameDiv);
 
+                    const matchTimeContainer = matchRow.querySelector(`#match-time-container-${index}`);
+
+                    if (isFinished && mainScore) {
+                        const finishedScoreDiv = document.createElement('div');
+                        finishedScoreDiv.className = 'match-score-finished';
+                        const mainScoreSpan = document.createElement('span');
+                        mainScoreSpan.className = 'main-score';
+                        mainScoreSpan.textContent = mainScore;
+                        finishedScoreDiv.appendChild(mainScoreSpan);
+                        if (penaltiesScore) {
+                            const penaltiesSpan = document.createElement('span');
+                            penaltiesSpan.className = 'penalties-score';
+                            penaltiesSpan.textContent = `(${penaltiesScore})`;
+                            finishedScoreDiv.appendChild(penaltiesSpan);
+                        }
+                        matchTimeContainer.appendChild(finishedScoreDiv);
+                    } else {
+                        const countdownCircle = document.createElement('div');
+                        countdownCircle.className = 'countdown-circle';
+                        countdownCircle.innerHTML = `
+                            <svg>
+                                <circle class="bg"></circle>
+                                <circle class="progress"></circle>
+                            </svg>
+                            <div class="time-text" data-time="${timeOnly}"
+                                                 data-match-timestamp="${matchTimestamp || ''}"
+                                                 data-score="${mainScore || ''}"
+                                                 data-penalties="${penaltiesScore || ''}">
+                                ${timeOnly}
+                            </div>
+                        `;
+                        matchTimeContainer.appendChild(countdownCircle);
+                    }
+
+
                     const channelContainer = matchRow.querySelector(`#channel-container-${index}`);
                     const watchBtnContainer = document.createElement('div');
                     watchBtnContainer.className = 'watch-btn-container';
@@ -992,20 +1016,6 @@
                     const notStartedBtn = document.createElement('div');
                     notStartedBtn.className = 'not-started-btn';
                     notStartedBtn.textContent = 'لم تبدأ بعد';
-
-                    const now = luxon.DateTime.local();
-                    const matchDate = matchDateObject;
-                    const totalMatchDuration = 90;
-                    const breakDuration = 15;
-
-                    let timeDifferenceInMinutes = Infinity;
-                    if (matchDate) {
-                        timeDifferenceInMinutes = now.diff(matchDate, 'minutes').minutes;
-                    }
-                    
-                    const isFinished = (matchDate && now > matchDate.plus({ minutes: totalMatchDuration + breakDuration + 5 }));
-                    const isLive = !isFinished && matchDate && now >= matchDate.minus({ minutes: 30 }) && now <= matchDate.plus({ minutes: totalMatchDuration + breakDuration + 5 });
-                    const isNotStartedYet = !isFinished && !isLive;
 
                     if (isFinished) {
                         watchBtnContainer.appendChild(finishedBtn);
@@ -1085,6 +1095,7 @@
         const breakDuration = 15;
         const totalMatchDuration = 90;
         const countdownStartMinutes = 30;
+        const lang = 'en';
 
         document.querySelectorAll('.countdown-circle').forEach(c => {
             const progress = c.querySelector('.progress');
@@ -1099,38 +1110,14 @@
 
             document.querySelectorAll('.countdown-circle').forEach(c => {
                 const timeText = c.querySelector('.time-text');
-                const parentMatchTimeDiv = c.parentElement;
-
                 if (!timeText) return;
 
-                const matchDayType = timeText.getAttribute('data-match-day');
                 const matchTimestamp = timeText.getAttribute('data-match-timestamp');
-                const matchScore = timeText.getAttribute('data-score');
-                const penaltiesScore = timeText.getAttribute('data-penalties');
-
                 const matchDate = matchTimestamp ? luxon.DateTime.fromMillis(parseInt(matchTimestamp) * 1000) : null;
-
+                
                 if (!matchDate) {
-                    if (matchDayType === 'yesterday' && matchScore) {
-                        const finishedScoreDiv = document.createElement('div');
-                        finishedScoreDiv.className = 'match-score-finished';
-                        const mainScoreSpan = document.createElement('span');
-                        mainScoreSpan.className = 'main-score';
-                        mainScoreSpan.textContent = matchScore;
-                        finishedScoreDiv.appendChild(mainScoreSpan);
-                        if (penaltiesScore) {
-                            const penaltiesSpan = document.createElement('span');
-                            penaltiesSpan.className = 'penalties-score';
-                            penaltiesSpan.textContent = `(${penaltiesScore})`;
-                            finishedScoreDiv.appendChild(penaltiesSpan);
-                        }
-                        if (parentMatchTimeDiv.contains(c)) {
-                           parentMatchTimeDiv.replaceChild(finishedScoreDiv, c);
-                        }
-                    } else {
-                        timeText.textContent = timeText.getAttribute('data-time');
-                        if (c) c.style.display = 'block';
-                    }
+                    timeText.textContent = timeText.getAttribute('data-time');
+                    if (c) c.style.display = 'block';
                     return;
                 }
                 
@@ -1142,22 +1129,7 @@
                 const matchEndTimestamp = matchDate.plus({ minutes: totalMatchDuration + breakDuration + 5 }).toMillis() / 1000;
                 
                 if (now.toMillis() / 1000 > matchEndTimestamp) {
-                    const finishedScoreDiv = document.createElement('div');
-                    finishedScoreDiv.className = 'match-score-finished';
-                    const mainScoreSpan = document.createElement('span');
-                    mainScoreSpan.className = 'main-score';
-                    mainScoreSpan.textContent = matchScore || 'انتهت';
-                    finishedScoreDiv.appendChild(mainScoreSpan);
-
-                    if (penaltiesScore) {
-                        const penaltiesSpan = document.createElement('span');
-                        penaltiesSpan.className = 'penalties-score';
-                        penaltiesSpan.textContent = `(${penaltiesScore})`;
-                        finishedScoreDiv.appendChild(penaltiesSpan);
-                    }
-                    if (parentMatchTimeDiv.contains(c)) {
-                       parentMatchTimeDiv.replaceChild(finishedScoreDiv, c);
-                    }
+                    c.style.display = 'none';
                 } else if (timeUntilMatchInSeconds > 0 && timeUntilMatchInSeconds <= countdownStartMinutes * 60) {
                     const remainingDuration = luxon.Duration.fromObject({ seconds: timeUntilMatchInSeconds });
                     const formattedTime = remainingDuration.toFormat('h:mm:ss');
@@ -1174,7 +1146,7 @@
 
                     if (timeDifferenceInSeconds <= firstHalfEnd * 60) {
                         minutesElapsed = Math.floor(timeDifferenceInSeconds / 60);
-                        timeText.textContent = minutesElapsed;
+                        timeText.textContent = `${minutesElapsed}'`;
                         const percent = minutesElapsed / totalMatchDuration;
                         if(progress) progress.style.strokeDashoffset = circumference * (1 - percent);
                     } else if (timeDifferenceInSeconds <= (firstHalfEnd + breakDuration) * 60) {
@@ -1184,7 +1156,7 @@
                     } else if (timeDifferenceInSeconds <= (totalMatchDuration + breakDuration) * 60) {
                         const secondHalfTime = timeDifferenceInSeconds - (firstHalfEnd + breakDuration) * 60;
                         minutesElapsed = Math.floor(secondHalfTime / 60) + firstHalfEnd;
-                        timeText.textContent = minutesElapsed;
+                        timeText.textContent = `${minutesElapsed}'`;
                         const percent = minutesElapsed / totalMatchDuration;
                         if(progress) progress.style.strokeDashoffset = circumference * (1 - percent);
                     }
