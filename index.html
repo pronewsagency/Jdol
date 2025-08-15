@@ -13,7 +13,7 @@
         color: white;
         padding: 20px;
         direction: rtl;
-        padding-bottom: 80px; /* لضمان عدم تغطية القائمة السفلية للمحتوى */
+        padding-bottom: 80px;
     }
 
     .match-row {
@@ -518,7 +518,7 @@
         background-color: red;
         color: white;
         padding: 10px 15px;
-        border-radius: 6px;
+        border-radius: 6-px;
         font-weight: 700;
         text-decoration: none;
         flex-grow: 1;
@@ -625,25 +625,25 @@
 
 <script>
     const teamLogos = {
-  "Al-Nassr FC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/5/5a/Al-Nassr_FC_logo.svg/1200px-Al-Nassr_FC_logo.svg.png", "keywords": ["النصر"] },
-  "Al-Hilal SFC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/c/c1/Al-Hilal_SFC_logo.svg/1200px-Al-Hilal_SFC_logo.svg.png", "keywords": ["الهلال"] },
-  "Al-Ahli Saudi FC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/d/d4/Al_Ahli_Saudi_FC_logo.svg/1200px-Al_Ahli_Saudi_FC_logo.svg.png", "keywords": ["الأهلي"] },
-  "Al-Ittihad Club": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/8/89/Ittihad_FC_logo.svg/1200px-Ittihad_FC_logo.svg.png", "keywords": ["الاتحاد"] },
-  "Real Madrid CF": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png", "keywords": ["ريال مدريد", "Real Madrid"] },
-  "FC Barcelona": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/1200px-FC_Barcelona_%28crest%29.svg.png", "keywords": ["برشلونة", "Barcelona"] },
-  "Liverpool FC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/0/0c/Liverpool_FC.svg/1200px-Liverpool_FC.svg.png", "keywords": ["ليفربول", "Liverpool"] },
-  "Manchester City FC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/e/e1/Manchester_City_F.C._logo.svg/1200px-Manchester_City_F.C._logo.svg.png", "keywords": ["مانشستر سيتي", "Man City"] },
-  "Al-Ahly SC (Egypt)": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/5/5b/Al_Ahly_SC_logo.svg/1200px-Al_Ahly_SC_logo.svg.png", "keywords": ["الأهلي المصري"] },
-  "Zamalek SC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/d/d1/Zamalek_SC.svg/1200px-Zamalek_SC.svg.png", "keywords": ["الزمالك"] },
-  "بورنموث": { "url": "https://upload.wikimedia.org/wikipedia/ar/e/e5/AFC_Bournemouth_%282013%29.svg", "keywords": ["بورنموث"] },
-  "جيرونا": { "url": "https://upload.wikimedia.org/wikipedia/ar/b/b7/Girona_FC_%282022%29.svg", "keywords": ["جيرونا"] },
-  "ريال مدريد": { "url": "https://upload.wikimedia.org/wikipedia/sco/5/56/Real_Madrid_CF.svg", "keywords": ["ريال مدريد"] },
-  "برشلونة": { "url": "https://upload.wikimedia.org/wikipedia/sco/4/47/FC_Barcelona_%28crest%29.svg", "keywords": ["برشلونة"] },
-  "أتليتكو مدريد": { "url": "https://upload.wikimedia.org/wikipedia/ar/f/f4/Atletico_Madrid_2017_logo.svg", "keywords": ["أتليتكو مدريد"] },
-  "فالنسيا": { "url": "https://upload.wikimedia.org/wikipedia/ar/d/d3/Valencia_CF.svg", "keywords": ["فالنسيا"] },
-  "فياريال": { "url": "https://upload.wikimedia.org/wikipedia/ar/7/70/Villarreal_CF_logo.svg", "keywords": ["فياريال"] },
-  "تيرول": { "url": "https://upload.wikimedia.org/wikipedia/fr/5/5b/WSG_Swarovski_Tirol_%28logo%29.svg", "keywords": ["تيرول"] }
-};
+        "Al-Nassr FC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/5/5a/Al-Nassr_FC_logo.svg/1200px-Al-Nassr_FC_logo.svg.png", "keywords": ["النصر"] },
+        "Al-Hilal SFC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/c/c1/Al-Hilal_SFC_logo.svg/1200px-Al-Hilal_SFC_logo.svg.png", "keywords": ["الهلال"] },
+        "Al-Ahli Saudi FC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/d/d4/Al_Ahli_Saudi_FC_logo.svg/1200px-Al_Ahli_Saudi_FC_logo.svg.png", "keywords": ["الأهلي"] },
+        "Al-Ittihad Club": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/8/89/Ittihad_FC_logo.svg/1200px-Ittihad_FC_logo.svg.png", "keywords": ["الاتحاد"] },
+        "Real Madrid CF": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png", "keywords": ["ريال مدريد", "Real Madrid"] },
+        "FC Barcelona": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/1200px-FC_Barcelona_%28crest%29.svg.png", "keywords": ["برشلونة", "Barcelona"] },
+        "Liverpool FC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/0/0c/Liverpool_FC.svg/1200px-Liverpool_FC.svg.png", "keywords": ["ليفربول", "Liverpool"] },
+        "Manchester City FC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/e/e1/Manchester_City_F.C._logo.svg/1200px-Manchester_City_F.C._logo.svg.png", "keywords": ["مانشستر سيتي", "Man City"] },
+        "Al-Ahly SC (Egypt)": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/5/5b/Al_Ahly_SC_logo.svg/1200px-Al_Ahly_SC_logo.svg.png", "keywords": ["الأهلي المصري"] },
+        "Zamalek SC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/d/d1/Zamalek_SC.svg/1200px-Zamalek_SC.svg.png", "keywords": ["الزمالك"] },
+        "بورنموث": { "url": "https://upload.wikimedia.org/wikipedia/ar/e/e5/AFC_Bournemouth_%282013%29.svg", "keywords": ["بورنموث"] },
+        "جيرونا": { "url": "https://upload.wikimedia.org/wikipedia/ar/b/b7/Girona_FC_%282022%29.svg", "keywords": ["جيرونا"] },
+        "ريال مدريد": { "url": "https://upload.wikimedia.org/wikipedia/sco/5/56/Real_Madrid_CF.svg", "keywords": ["ريال مدريد"] },
+        "برشلونة": { "url": "https://upload.wikimedia.org/wikipedia/sco/4/47/FC_Barcelona_%28crest%29.svg", "keywords": ["برشلونة"] },
+        "أتليتكو مدريد": { "url": "https://upload.wikimedia.org/wikipedia/ar/f/f4/Atletico_Madrid_2017_logo.svg", "keywords": ["أتليتكو مدريد"] },
+        "فالنسيا": { "url": "https://upload.wikimedia.org/wikipedia/ar/d/d3/Valencia_CF.svg", "keywords": ["فالنسيا"] },
+        "فياريال": { "url": "https://upload.wikimedia.org/wikipedia/ar/7/70/Villarreal_CF_logo.svg", "keywords": ["فياريال"] },
+        "تيرول": { "url": "https://upload.wikimedia.org/wikipedia/fr/5/5b/WSG_Swarovski_Tirol_%28logo%29.svg", "keywords": ["تيرول"] }
+    };
 
     const matchLinks = [
         { "name": "سيرفر الأسطورة", "url": "go:A", "keywords": ["النصر"], "serverType": "internal" },
@@ -661,6 +661,8 @@
     const refreshBtn = document.getElementById('refresh-btn');
     let currentMatchDayType = 'today';
     let allMatches = [];
+    let matchesShownCount = 0;
+    const matchesPerPage = 10;
 
     const externalPlayerModal = document.getElementById('externalPlayerModal');
     const externalPlayerModalCloseBtn = document.getElementById('externalPlayerModalCloseBtn');
@@ -713,6 +715,7 @@
 
         document.querySelectorAll('.load-btn').forEach(btn => btn.classList.remove('active'));
         document.getElementById(`load${matchDayType.charAt(0).toUpperCase() + matchDayType.slice(1)}Btn`).classList.add('active');
+        searchInput.value = '';
 
         fetch(proxyUrl)
             .then(response => {
@@ -733,10 +736,8 @@
                      return;
                 }
 
-                allMatches = [];
-                matches.forEach(match => allMatches.push(match));
-
-                renderMatches(allMatches);
+                allMatches = Array.from(matches);
+                renderFilteredMatches(allMatches);
             })
             .catch(err => {
                 console.error(err);
@@ -786,198 +787,195 @@
         return teamName;
     }
 
-    function renderMatches(matches) {
+    function renderFilteredMatches(matchesToRender) {
         matchesContainer.innerHTML = '';
-        if (matches.length === 0) {
+        if (matchesToRender.length === 0) {
             matchesContainer.innerHTML = '<p style="text-align:center;">لم يتم العثور على مباريات</p>';
             return;
         }
+        
+        matchesShownCount = 0;
+        loadMoreMatches(matchesToRender);
+    }
+    
+    function loadMoreMatches(matchesToLoad) {
+        const end = Math.min(matchesShownCount + matchesPerPage, matchesToLoad.length);
+        const matchesInSlice = matchesToLoad.slice(matchesShownCount, end);
+        
+        const oldLoadMoreBtn = document.getElementById('load-more-btn');
+        if (oldLoadMoreBtn) {
+            oldLoadMoreBtn.remove();
+        }
 
-        const importantMatches = [];
-        const otherMatches = [];
+        matchesInSlice.forEach((match, indexInSlice) => {
+            const fullIndex = matchesShownCount + indexInSlice;
 
-        matches.forEach(match => {
             const homeTeam = match.querySelector('.team.hometeam .the_team')?.innerText.trim() || 'فريق';
             const awayTeam = match.querySelector('.team.awayteam .the_team')?.innerText.trim() || 'فريق';
-            const importantTeams = ["الهلال", "النصر", "ريال مدريد", "برشلونة", "ليفربول", "مانشستر سيتي"];
-            const isImportant = importantTeams.some(teamName => homeTeam.includes(teamName) || awayTeam.includes(teamName));
-            if (isImportant) {
-                importantMatches.push(match);
-            } else {
-                otherMatches.push(match);
-            }
-        });
-
-        const sortedMatches = importantMatches.concat(otherMatches);
-
-        function displayMatchesGradually(matchList) {
-            let index = 0;
-            function displayNextMatch() {
-                if (index < matchList.length) {
-                    const match = matchList[index];
-                    const homeTeam = match.querySelector('.team.hometeam .the_team')?.innerText.trim() || 'فريق';
-                    const awayTeam = match.querySelector('.team.awayteam .the_team')?.innerText.trim() || 'فريق';
-                    let matchScoreText = match.querySelector('.score')?.innerText.trim() ||
+            let matchScoreText = match.querySelector('.score')?.innerText.trim() ||
                                          match.querySelector('.match_score')?.innerText.trim() ||
                                          null;
-                    
-                    let mainScore = matchScoreText;
-                    let penaltiesScore = null;
-                    if (matchScoreText && matchScoreText.includes('(')) {
-                        const scoreParts = matchScoreText.split('(');
-                        mainScore = scoreParts[0].trim();
-                        penaltiesScore = scoreParts[1].replace(')', '').trim();
-                    }
+            
+            let mainScore = matchScoreText;
+            let penaltiesScore = null;
+            if (matchScoreText && matchScoreText.includes('(')) {
+                const scoreParts = matchScoreText.split('(');
+                mainScore = scoreParts[0].trim();
+                penaltiesScore = scoreParts[1].replace(')', '').trim();
+            }
 
-                    let homeLogo = 'https://via.placeholder.com/60';
-                    let awayLogo = 'https://via.placeholder.com/60';
-                    let isHomeLogoExactMatch = false;
-                    let isAwayLogoExactMatch = false;
+            let homeLogo = 'https://via.placeholder.com/60';
+            let awayLogo = 'https://via.placeholder.com/60';
+            let isHomeLogoExactMatch = false;
+            let isAwayLogoExactMatch = false;
 
-                    for (const key in teamLogos) {
-                        if (teamLogos[key].keywords.some(kw => homeTeam.includes(kw))) {
-                            homeLogo = teamLogos[key].url;
-                            isHomeLogoExactMatch = true;
-                        }
-                        if (teamLogos[key].keywords.some(kw => awayTeam.includes(kw))) {
-                            awayLogo = teamLogos[key].url;
-                            isAwayLogoExactMatch = true;
-                        }
-                    }
-
-                    const matchTimeElement = match.querySelector('.match_time .the_otime');
-                    const matchTime = matchTimeElement?.innerText.trim() || '-';
-                    const timeOnly = matchTime.match(/\d{1,2}:\d{2}/) ? matchTime.match(/\d{1,2}:\d{2}/)[0] : matchTime;
-
-                    let matchDateObject = null;
-                    if (timeOnly !== '-') {
-                        const now = luxon.DateTime.local();
-                        const [hours, minutes] = timeOnly.split(':').map(Number);
-                        
-                        let matchDate = now;
-                        if (currentMatchDayType === 'yesterday') {
-                            matchDate = now.minus({ days: 1 });
-                        } else if (currentMatchDayType === 'tomorrow') {
-                            matchDate = now.plus({ days: 1 });
-                        }
-                        matchDateObject = matchDate.set({ hour: hours, minute: minutes, second: 0, millisecond: 0 });
-                    }
-
-                    const matchTimestamp = matchDateObject ? matchDateObject.toMillis() / 1000 : '';
-
-                    const matchRow = document.createElement('div');
-                    matchRow.className = 'match-row';
-                    matchRow.style.opacity = '0';
-                    matchRow.style.transition = 'opacity 0.5s ease-in-out';
-                    
-                    matchRow.innerHTML = `
-                        <div class="teams-time">
-                          <div class="team" id="home-team-container-${index}"></div>
-                          <div class="match-time">
-                            <div class="countdown-circle">
-                              <svg>
-                                <circle class="bg"></circle>
-                                <circle class="progress"></circle>
-                              </svg>
-                              <div class="time-text" data-time="${timeOnly}"
-                                                   data-match-timestamp="${matchTimestamp || ''}"
-                                                   data-match-day="${currentMatchDayType}"
-                                                   data-score="${mainScore || ''}"
-                                                   data-penalties="${penaltiesScore || ''}">
-                                ${timeOnly}
-                              </div>
-                            </div>
-                          </div>
-                          <div class="team" id="away-team-container-${index}"></div>
-                        </div>
-                        <div class="channel-container" id="channel-container-${index}"></div>
-                    `;
-                    
-                    matchesContainer.appendChild(matchRow);
-                    
-                    const homeContainer = matchRow.querySelector(`#home-team-container-${index}`);
-                    homeContainer.appendChild(createTeamLogo(homeLogo, homeTeam, isHomeLogoExactMatch));
-                    const homeNameDiv = document.createElement('div');
-                    homeNameDiv.className = 'team-name';
-                    homeNameDiv.textContent = abbreviateTeamName(homeTeam);
-                    homeContainer.appendChild(homeNameDiv);
-
-                    const awayContainer = matchRow.querySelector(`#away-team-container-${index}`);
-                    awayContainer.appendChild(createTeamLogo(awayLogo, awayTeam, isAwayLogoExactMatch));
-                    const awayNameDiv = document.createElement('div');
-                    awayNameDiv.className = 'team-name';
-                    awayNameDiv.textContent = abbreviateTeamName(awayTeam);
-                    awayContainer.appendChild(awayNameDiv);
-
-                    const channelContainer = matchRow.querySelector(`#channel-container-${index}`);
-                    const watchBtnContainer = document.createElement('div');
-                    watchBtnContainer.className = 'watch-btn-container';
-
-                    const watchBtn = document.createElement('a');
-                    watchBtn.href = '#';
-                    watchBtn.className = 'watch-btn';
-                    watchBtn.textContent = 'شاهد المباراة';
-
-                    const finishedBtn = document.createElement('div');
-                    finishedBtn.className = 'finished-btn';
-                    finishedBtn.textContent = 'انتهت';
-
-                    const notStartedBtn = document.createElement('div');
-                    notStartedBtn.className = 'not-started-btn';
-                    notStartedBtn.textContent = 'لم تبدأ بعد';
-
-                    const now = luxon.DateTime.local();
-                    const matchDate = matchDateObject;
-                    const totalMatchDuration = 90;
-                    const breakDuration = 15;
-
-                    let timeDifferenceInMinutes = Infinity;
-                    if (matchDate) {
-                        timeDifferenceInMinutes = now.diff(matchDate, 'minutes').minutes;
-                    }
-                    
-                    const isFinished = (matchDate && now > matchDate.plus({ minutes: totalMatchDuration + breakDuration + 5 }));
-                    const isLive = !isFinished && matchDate && now >= matchDate.minus({ minutes: 30 }) && now <= matchDate.plus({ minutes: totalMatchDuration + breakDuration + 5 });
-                    const isNotStartedYet = !isFinished && !isLive;
-
-                    if (isFinished) {
-                        watchBtnContainer.appendChild(finishedBtn);
-                    } else if (isLive) {
-                         watchBtn.addEventListener('click', (event) => {
-                            event.preventDefault();
-                            renderLiveServers(homeTeam, awayTeam);
-                            liveServersModal.style.display = 'block';
-                        });
-                        watchBtnContainer.appendChild(watchBtn);
-                    } else if (isNotStartedYet) {
-                         watchBtnContainer.appendChild(notStartedBtn);
-                    } else {
-                         watchBtn.addEventListener('click', (event) => {
-                            event.preventDefault();
-                            renderLiveServers(homeTeam, awayTeam);
-                            liveServersModal.style.display = 'block';
-                        });
-                        watchBtnContainer.appendChild(watchBtn);
-                    }
-                    
-                    channelContainer.appendChild(watchBtnContainer);
-
-                    setTimeout(() => {
-                        matchRow.style.opacity = '1';
-                    }, 10); 
-                    
-                    index++;
-                    setTimeout(displayNextMatch, 500); 
-                } else {
-                    updateMatchTimers();
+            for (const key in teamLogos) {
+                if (teamLogos[key].keywords.some(kw => homeTeam.includes(kw))) {
+                    homeLogo = teamLogos[key].url;
+                    isHomeLogoExactMatch = true;
+                }
+                if (teamLogos[key].keywords.some(kw => awayTeam.includes(kw))) {
+                    awayLogo = teamLogos[key].url;
+                    isAwayLogoExactMatch = true;
                 }
             }
-            displayNextMatch();
+
+            const matchTimeElement = match.querySelector('.match_time .the_otime');
+            const matchTime = matchTimeElement?.innerText.trim() || '-';
+            const timeOnly = matchTime.match(/\d{1,2}:\d{2}/) ? matchTime.match(/\d{1,2}:\d{2}/)[0] : matchTime;
+
+            let matchDateObject = null;
+            if (timeOnly !== '-') {
+                const now = luxon.DateTime.local();
+                const [hours, minutes] = timeOnly.split(':').map(Number);
+                
+                let matchDate = now;
+                if (currentMatchDayType === 'yesterday') {
+                    matchDate = now.minus({ days: 1 });
+                } else if (currentMatchDayType === 'tomorrow') {
+                    matchDate = now.plus({ days: 1 });
+                }
+                matchDateObject = matchDate.set({ hour: hours, minute: minutes, second: 0, millisecond: 0 });
+            }
+
+            const matchTimestamp = matchDateObject ? matchDateObject.toMillis() / 1000 : '';
+
+            const matchRow = document.createElement('div');
+            matchRow.className = 'match-row';
+            matchRow.style.opacity = '0';
+            matchRow.style.transition = 'opacity 0.5s ease-in-out';
+            
+            matchRow.innerHTML = `
+                <div class="teams-time">
+                  <div class="team" id="home-team-container-${fullIndex}"></div>
+                  <div class="match-time" id="match-time-container-${fullIndex}">
+                    <div class="countdown-circle">
+                      <svg>
+                        <circle class="bg"></circle>
+                        <circle class="progress"></circle>
+                      </svg>
+                      <div class="time-text" data-time="${timeOnly}"
+                                           data-match-timestamp="${matchTimestamp || ''}"
+                                           data-match-day="${currentMatchDayType}"
+                                           data-score="${mainScore || ''}"
+                                           data-penalties="${penaltiesScore || ''}">
+                        ${timeOnly}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="team" id="away-team-container-${fullIndex}"></div>
+                </div>
+                <div class="channel-container" id="channel-container-${fullIndex}"></div>
+            `;
+            
+            matchesContainer.appendChild(matchRow);
+            
+            const homeContainer = matchRow.querySelector(`#home-team-container-${fullIndex}`);
+            homeContainer.appendChild(createTeamLogo(homeLogo, homeTeam, isHomeLogoExactMatch));
+            const homeNameDiv = document.createElement('div');
+            homeNameDiv.className = 'team-name';
+            homeNameDiv.textContent = abbreviateTeamName(homeTeam);
+            homeContainer.appendChild(homeNameDiv);
+
+            const awayContainer = matchRow.querySelector(`#away-team-container-${fullIndex}`);
+            awayContainer.appendChild(createTeamLogo(awayLogo, awayTeam, isAwayLogoExactMatch));
+            const awayNameDiv = document.createElement('div');
+            awayNameDiv.className = 'team-name';
+            awayNameDiv.textContent = abbreviateTeamName(awayTeam);
+            awayContainer.appendChild(awayNameDiv);
+
+            const channelContainer = matchRow.querySelector(`#channel-container-${fullIndex}`);
+            const watchBtnContainer = document.createElement('div');
+            watchBtnContainer.className = 'watch-btn-container';
+
+            const watchBtn = document.createElement('a');
+            watchBtn.href = '#';
+            watchBtn.className = 'watch-btn';
+            watchBtn.textContent = 'شاهد المباراة';
+
+            const finishedBtn = document.createElement('div');
+            finishedBtn.className = 'finished-btn';
+            finishedBtn.textContent = 'انتهت';
+
+            const notStartedBtn = document.createElement('div');
+            notStartedBtn.className = 'not-started-btn';
+            notStartedBtn.textContent = 'لم تبدأ بعد';
+
+            const now = luxon.DateTime.local();
+            const matchDate = matchDateObject;
+            const totalMatchDuration = 90;
+            const breakDuration = 15;
+
+            let timeDifferenceInMinutes = Infinity;
+            if (matchDate) {
+                timeDifferenceInMinutes = now.diff(matchDate, 'minutes').minutes;
+            }
+            
+            const isFinished = (matchDate && now > matchDate.plus({ minutes: totalMatchDuration + breakDuration + 5 }));
+            const isLive = !isFinished && matchDate && now >= matchDate.minus({ minutes: 30 }) && now <= matchDate.plus({ minutes: totalMatchDuration + breakDuration + 5 });
+            const isNotStartedYet = !isFinished && !isLive;
+
+            if (isFinished) {
+                watchBtnContainer.appendChild(finishedBtn);
+            } else if (isLive) {
+                 watchBtn.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    renderLiveServers(homeTeam, awayTeam);
+                    liveServersModal.style.display = 'block';
+                });
+                watchBtnContainer.appendChild(watchBtn);
+            } else if (isNotStartedYet) {
+                 watchBtnContainer.appendChild(notStartedBtn);
+            } else {
+                 watchBtn.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    renderLiveServers(homeTeam, awayTeam);
+                    liveServersModal.style.display = 'block';
+                });
+                watchBtnContainer.appendChild(watchBtn);
+            }
+            
+            channelContainer.appendChild(watchBtnContainer);
+
+            setTimeout(() => {
+                matchRow.style.opacity = '1';
+            }, 10);
+        });
+
+        matchesShownCount = end;
+
+        if (matchesShownCount < matchesToLoad.length) {
+            const loadMoreBtn = document.createElement('button');
+            loadMoreBtn.id = 'load-more-btn';
+            loadMoreBtn.className = 'load-btn';
+            loadMoreBtn.textContent = 'تحميل المزيد';
+            loadMoreBtn.onclick = () => loadMoreMatches(matchesToLoad);
+            matchesContainer.appendChild(loadMoreBtn);
         }
         
-        displayMatchesGradually(sortedMatches);
+        updateMatchTimers();
     }
-
+    
     function searchMatches() {
         const query = searchInput.value.toLowerCase().trim();
         const filteredMatches = allMatches.filter(match => {
@@ -985,7 +983,8 @@
             const awayTeam = match.querySelector('.team.awayteam .the_team')?.innerText.trim().toLowerCase() || '';
             return homeTeam.includes(query) || awayTeam.includes(query);
         });
-        renderMatches(filteredMatches);
+        
+        renderFilteredMatches(filteredMatches);
     }
 
     refreshBtn.addEventListener('click', () => {
@@ -994,8 +993,8 @@
         if (button) {
             button.click();
         } else {
-                loadMatches('https://jdwel.com/today/', 'today');
-            }
+            loadMatches('https://jdwel.com/today/', 'today');
+        }
     });
 
     searchInput.addEventListener('input', searchMatches);
@@ -1048,9 +1047,10 @@
         setInterval(()=>{
             const now = luxon.DateTime.local();
 
-            document.querySelectorAll('.countdown-circle').forEach(c => {
-                const timeText = c.querySelector('.time-text');
-                const parentMatchTimeDiv = c.parentElement;
+            document.querySelectorAll('.match-row').forEach(row => {
+                const timeText = row.querySelector('.time-text');
+                const countdownCircle = row.querySelector('.countdown-circle');
+                const matchTimeContainer = row.querySelector('.match-time');
 
                 if (!timeText) return;
 
@@ -1061,8 +1061,9 @@
 
                 const matchDate = matchTimestamp ? luxon.DateTime.fromMillis(parseInt(matchTimestamp) * 1000) : null;
 
-                if (!matchDate) {
-                    if (matchDayType === 'yesterday' && matchScore) {
+                // Handle yesterday's matches with final score
+                if (matchDayType === 'yesterday') {
+                    if (matchScore && matchTimeContainer.querySelector('.match-score-finished') === null) {
                         const finishedScoreDiv = document.createElement('div');
                         finishedScoreDiv.className = 'match-score-finished';
                         const mainScoreSpan = document.createElement('span');
@@ -1075,39 +1076,59 @@
                             penaltiesSpan.textContent = `(${penaltiesScore})`;
                             finishedScoreDiv.appendChild(penaltiesSpan);
                         }
-                        if (parentMatchTimeDiv.contains(c)) {
-                           parentMatchTimeDiv.replaceChild(finishedScoreDiv, c);
-                        }
-                    } else {
-                        timeText.textContent = timeText.getAttribute('data-time');
-                        if (c) c.style.display = 'block';
+                        if (countdownCircle) countdownCircle.remove();
+                        matchTimeContainer.appendChild(finishedScoreDiv);
                     }
+                    return;
+                }
+
+                // If matchDate is not available or it's tomorrow, just show the time
+                if (!matchDate || matchDayType === 'tomorrow') {
+                    if (matchTimeContainer.querySelector('.countdown-circle') === null) {
+                         const newCountdownCircle = document.createElement('div');
+                         newCountdownCircle.className = 'countdown-circle';
+                         newCountdownCircle.innerHTML = `
+                            <svg>
+                              <circle class="bg"></circle>
+                              <circle class="progress"></circle>
+                            </svg>
+                            <div class="time-text" data-time="${timeText.getAttribute('data-time')}"
+                                               data-match-timestamp="${matchTimestamp || ''}"
+                                               data-match-day="${currentMatchDayType}"
+                                               data-score="${matchScore || ''}"
+                                               data-penalties="${penaltiesScore || ''}">
+                              ${timeText.getAttribute('data-time')}
+                            </div>
+                         `;
+                         matchTimeContainer.appendChild(newCountdownCircle);
+                    }
+                    timeText.textContent = timeText.getAttribute('data-time');
                     return;
                 }
                 
                 const timeDifferenceInSeconds = now.diff(matchDate, 'seconds').seconds;
                 const timeUntilMatchInSeconds = matchDate.diff(now, 'seconds').seconds;
-                let minutesElapsed;
-                const progress = c.querySelector('.progress');
+                const progress = countdownCircle.querySelector('.progress');
                 
                 const matchEndTimestamp = matchDate.plus({ minutes: totalMatchDuration + breakDuration + 5 }).toMillis() / 1000;
                 
                 if (now.toMillis() / 1000 > matchEndTimestamp) {
-                    const finishedScoreDiv = document.createElement('div');
-                    finishedScoreDiv.className = 'match-score-finished';
-                    const mainScoreSpan = document.createElement('span');
-                    mainScoreSpan.className = 'main-score';
-                    mainScoreSpan.textContent = matchScore || 'انتهت';
-                    finishedScoreDiv.appendChild(mainScoreSpan);
+                    if (matchTimeContainer.querySelector('.match-score-finished') === null) {
+                        const finishedScoreDiv = document.createElement('div');
+                        finishedScoreDiv.className = 'match-score-finished';
+                        const mainScoreSpan = document.createElement('span');
+                        mainScoreSpan.className = 'main-score';
+                        mainScoreSpan.textContent = matchScore || 'انتهت';
+                        finishedScoreDiv.appendChild(mainScoreSpan);
 
-                    if (penaltiesScore) {
-                        const penaltiesSpan = document.createElement('span');
-                        penaltiesSpan.className = 'penalties-score';
-                        penaltiesSpan.textContent = `(${penaltiesScore})`;
-                        finishedScoreDiv.appendChild(penaltiesSpan);
-                    }
-                    if (parentMatchTimeDiv.contains(c)) {
-                       parentMatchTimeDiv.replaceChild(finishedScoreDiv, c);
+                        if (penaltiesScore) {
+                            const penaltiesSpan = document.createElement('span');
+                            penaltiesSpan.className = 'penalties-score';
+                            penaltiesSpan.textContent = `(${penaltiesScore})`;
+                            finishedScoreDiv.appendChild(penaltiesSpan);
+                        }
+                        if (countdownCircle) countdownCircle.remove();
+                        matchTimeContainer.appendChild(finishedScoreDiv);
                     }
                 } else if (timeUntilMatchInSeconds > 0 && timeUntilMatchInSeconds <= countdownStartMinutes * 60) {
                     const remainingDuration = luxon.Duration.fromObject({ seconds: timeUntilMatchInSeconds });
