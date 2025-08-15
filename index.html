@@ -243,6 +243,24 @@
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
     }
+    
+    #progress-bar-container {
+        width: 80%;
+        max-width: 600px;
+        height: 10px;
+        background-color: #333;
+        border-radius: 5px;
+        margin: 10px auto;
+        overflow: hidden;
+        display: none;
+    }
+
+    #progress-bar {
+        width: 0%;
+        height: 100%;
+        background-color: red;
+        transition: width 0.3s ease;
+    }
 
     .modal {
         display: none;
@@ -578,6 +596,9 @@
 </div>
 
 <div id="loading" class="loading-spinner"></div>
+<div id="progress-bar-container">
+    <div id="progress-bar"></div>
+</div>
 <div id="matches-container" style="max-width:700px; margin:auto;"></div>
 
 <div id="bottom-navbar">
@@ -697,6 +718,8 @@
 
     const matchesContainer = document.getElementById('matches-container');
     const loadingSpinner = document.getElementById('loading');
+    const progressBarContainer = document.getElementById('progress-bar-container');
+    const progressBar = document.getElementById('progress-bar');
     const liveServersModal = document.getElementById('liveServersModal');
     const liveServersModalCloseBtn = document.getElementById('liveServersModalCloseBtn');
     const liveServerList = document.getElementById('liveServerList');
@@ -704,6 +727,7 @@
     const refreshBtn = document.getElementById('refresh-btn');
     let currentMatchDayType = 'today';
     let allMatches = [];
+    let progressInterval;
 
     const externalPlayerModal = document.getElementById('externalPlayerModal');
     const externalPlayerModalCloseBtn = document.getElementById('externalPlayerModalCloseBtn');
@@ -751,7 +775,23 @@
     function loadMatches(url, matchDayType) {
         const proxyUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent(url);
         matchesContainer.innerHTML = '';
+        
         loadingSpinner.style.display = 'block';
+        progressBarContainer.style.display = 'block';
+        progressBar.style.width = '0%';
+        
+        // Start simulated progress
+        let progress = 0;
+        clearInterval(progressInterval);
+        progressInterval = setInterval(() => {
+            if (progress < 95) {
+                progress += Math.floor(Math.random() * 5) + 1;
+                progressBar.style.width = `${progress}%`;
+            } else {
+                clearInterval(progressInterval);
+            }
+        }, 300);
+
         currentMatchDayType = matchDayType;
 
         document.querySelectorAll('.load-btn').forEach(btn => btn.classList.remove('active'));
@@ -769,7 +809,14 @@
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(html, 'text/html');
                 const matches = doc.querySelectorAll('li.single_match');
-                loadingSpinner.style.display = 'none';
+                
+                clearInterval(progressInterval);
+                progressBar.style.width = '100%';
+                
+                setTimeout(() => {
+                    loadingSpinner.style.display = 'none';
+                    progressBarContainer.style.display = 'none';
+                }, 500);
                 
                 if (matches.length === 0) {
                      showErrorScreen();
@@ -783,7 +830,9 @@
             })
             .catch(err => {
                 console.error(err);
+                clearInterval(progressInterval);
                 loadingSpinner.style.display = 'none';
+                progressBarContainer.style.display = 'none';
                 showErrorScreen();
             });
     }
