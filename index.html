@@ -916,7 +916,7 @@
                     const percent = minutesElapsed / totalMatchDuration;
                     if(progress) progress.style.strokeDashoffset = circumference * (1 - percent);
                 } else if (timeDifferenceInSeconds <= (firstHalfEnd + breakDuration) * 60) {
-                    timeText.textContent = 'Break';
+                    timeText.textContent = 'إستراحة';
                     const percent = firstHalfEnd / totalMatchDuration;
                     if(progress) progress.style.strokeDashoffset = circumference * (1 - percent);
                 } else if (timeDifferenceInSeconds <= (totalMatchDuration + breakDuration) * 60) {
