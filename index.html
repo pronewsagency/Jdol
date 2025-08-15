@@ -699,15 +699,10 @@
         "serverType": "external"
     },
     {
-        "name": "BEIN SPORTS 3",
-        "url": "go:bein3s1",
+        "name": "سيرفر كورة لايف",
+        "url": "go:D",
         "keywords": [
-            "جيرونا",
-            "ريال مدريد",
-            "فياريال",
-            "أتليتكو مدريد",
-            "برشلونة",
-            "فالنسيا"
+            "الأهلي"
         ],
         "serverType": "internal"
     }
@@ -897,13 +892,13 @@
             const timeUntilMatchInSeconds = matchDate.diff(now, 'seconds').seconds;
             let minutesElapsed;
             
-            const matchEndTimestamp = matchDate.plus({ minutes: totalMatchDuration + breakDuration + 5 }).toMillis() / 1000;
+            const matchEndTimestamp = matchDate.plus({ hours: 2 }).toMillis() / 1000;
             
             if (now.toMillis() / 1000 > matchEndTimestamp) {
                 countdownCircle.style.display = 'none';
             } else if (timeUntilMatchInSeconds > 0 && timeUntilMatchInSeconds <= countdownStartMinutes * 60) {
                 const remainingDuration = luxon.Duration.fromObject({ seconds: timeUntilMatchInSeconds }).rescale();
-                const formattedTime = remainingDuration.toFormat('h:mm:ss');
+                const formattedTime = remainingDuration.setLocale('en').toFormat('h:mm:ss');
                 
                 timeText.innerHTML = formattedTime;
                 timeText.style.fontSize = '12px';
@@ -921,13 +916,19 @@
                     const percent = minutesElapsed / totalMatchDuration;
                     if(progress) progress.style.strokeDashoffset = circumference * (1 - percent);
                 } else if (timeDifferenceInSeconds <= (firstHalfEnd + breakDuration) * 60) {
-                    timeText.textContent = 'إستراحة';
+                    timeText.textContent = 'Break';
                     const percent = firstHalfEnd / totalMatchDuration;
                     if(progress) progress.style.strokeDashoffset = circumference * (1 - percent);
                 } else if (timeDifferenceInSeconds <= (totalMatchDuration + breakDuration) * 60) {
                     const secondHalfTime = timeDifferenceInSeconds - (firstHalfEnd + breakDuration) * 60;
                     minutesElapsed = Math.floor(secondHalfTime / 60) + firstHalfEnd;
-                    timeText.textContent = `${minutesElapsed}'`;
+                    
+                    if (minutesElapsed >= 90) {
+                         timeText.textContent = "90+'";
+                         minutesElapsed = 90;
+                    } else {
+                         timeText.textContent = `${minutesElapsed}'`;
+                    }
                     const percent = minutesElapsed / totalMatchDuration;
                     if(progress) progress.style.strokeDashoffset = circumference * (1 - percent);
                 }
@@ -1014,8 +1015,8 @@
 
                     const matchTimestamp = matchDateObject ? matchDateObject.toMillis() / 1000 : '';
                     
-                    const isFinished = (matchDateObject && luxon.DateTime.local() > matchDateObject.plus({ minutes: 90 + 15 + 5 }));
-                    const isLive = !isFinished && matchDateObject && luxon.DateTime.local() >= matchDateObject.minus({ minutes: 30 }) && luxon.DateTime.local() <= matchDateObject.plus({ minutes: 90 + 15 + 5 });
+                    const isFinished = (matchDateObject && luxon.DateTime.local() > matchDateObject.plus({ hours: 2 }));
+                    const isLive = !isFinished && matchDateObject && luxon.DateTime.local() >= matchDateObject.minus({ minutes: 30 }) && luxon.DateTime.local() <= matchDateObject.plus({ hours: 2 });
                     const isNotStartedYet = !isFinished && !isLive;
                     
                     const matchRow = document.createElement('div');
