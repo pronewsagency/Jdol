@@ -663,6 +663,9 @@
     let allMatches = [];
     let matchesShownCount = 0;
     const matchesPerPage = 10;
+    
+    // Set a very short delay for sequential rendering
+    const sequentialRenderDelay = 50;
 
     const externalPlayerModal = document.getElementById('externalPlayerModal');
     const externalPlayerModalCloseBtn = document.getElementById('externalPlayerModalCloseBtn');
@@ -798,6 +801,182 @@
         loadMoreMatches(matchesToRender);
     }
     
+    // New function to handle sequential rendering
+    function renderMatchesSequentially(matches, index, container) {
+        if (index >= matches.length) {
+            const oldLoadMoreBtn = document.getElementById('load-more-btn');
+            if (oldLoadMoreBtn) {
+                oldLoadMoreBtn.remove();
+            }
+            if (matchesShownCount < allMatches.length) {
+                const loadMoreBtn = document.createElement('button');
+                loadMoreBtn.id = 'load-more-btn';
+                loadMoreBtn.className = 'load-btn';
+                loadMoreBtn.textContent = 'تحميل المزيد';
+                loadMoreBtn.onclick = () => loadMoreMatches(allMatches);
+                matchesContainer.appendChild(loadMoreBtn);
+            }
+            return;
+        }
+
+        const match = matches[index];
+        const fullIndex = matchesShownCount + index;
+
+        const homeTeam = match.querySelector('.team.hometeam .the_team')?.innerText.trim() || 'فريق';
+        const awayTeam = match.querySelector('.team.awayteam .the_team')?.innerText.trim() || 'فريق';
+        let matchScoreText = match.querySelector('.score')?.innerText.trim() ||
+                                     match.querySelector('.match_score')?.innerText.trim() ||
+                                     null;
+        
+        let mainScore = matchScoreText;
+        let penaltiesScore = null;
+        if (matchScoreText && matchScoreText.includes('(')) {
+            const scoreParts = matchScoreText.split('(');
+            mainScore = scoreParts[0].trim();
+            penaltiesScore = scoreParts[1].replace(')', '').trim();
+        }
+
+        let homeLogo = 'https://via.placeholder.com/60';
+        let awayLogo = 'https://via.placeholder.com/60';
+        let isHomeLogoExactMatch = false;
+        let isAwayLogoExactMatch = false;
+
+        for (const key in teamLogos) {
+            if (teamLogos[key].keywords.some(kw => homeTeam.includes(kw))) {
+                homeLogo = teamLogos[key].url;
+                isHomeLogoExactMatch = true;
+            }
+            if (teamLogos[key].keywords.some(kw => awayTeam.includes(kw))) {
+                awayLogo = teamLogos[key].url;
+                isAwayLogoExactMatch = true;
+            }
+        }
+
+        const matchTimeElement = match.querySelector('.match_time .the_otime');
+        const matchTime = matchTimeElement?.innerText.trim() || '-';
+        const timeOnly = matchTime.match(/\d{1,2}:\d{2}/) ? matchTime.match(/\d{1,2}:\d{2}/)[0] : matchTime;
+
+        let matchDateObject = null;
+        if (timeOnly !== '-') {
+            const now = luxon.DateTime.local();
+            const [hours, minutes] = timeOnly.split(':').map(Number);
+            
+            let matchDate = now;
+            if (currentMatchDayType === 'yesterday') {
+                matchDate = now.minus({ days: 1 });
+            } else if (currentMatchDayType === 'tomorrow') {
+                matchDate = now.plus({ days: 1 });
+            }
+            matchDateObject = matchDate.set({ hour: hours, minute: minutes, second: 0, millisecond: 0 });
+        }
+
+        const matchTimestamp = matchDateObject ? matchDateObject.toMillis() / 1000 : '';
+
+        const matchRow = document.createElement('div');
+        matchRow.className = 'match-row';
+        matchRow.innerHTML = `
+            <div class="teams-time">
+              <div class="team" id="home-team-container-${fullIndex}"></div>
+              <div class="match-time" id="match-time-container-${fullIndex}">
+                <div class="countdown-circle">
+                  <svg>
+                    <circle class="bg"></circle>
+                    <circle class="progress"></circle>
+                  </svg>
+                  <div class="time-text" data-time="${timeOnly}"
+                                       data-match-timestamp="${matchTimestamp || ''}"
+                                       data-match-day="${currentMatchDayType}"
+                                       data-score="${mainScore || ''}"
+                                       data-penalties="${penaltiesScore || ''}">
+                    ${timeOnly}
+                  </div>
+                </div>
+              </div>
+              <div class="team" id="away-team-container-${fullIndex}"></div>
+            </div>
+            <div class="channel-container" id="channel-container-${fullIndex}"></div>
+        `;
+        
+        container.appendChild(matchRow);
+        
+        const homeContainer = matchRow.querySelector(`#home-team-container-${fullIndex}`);
+        homeContainer.appendChild(createTeamLogo(homeLogo, homeTeam, isHomeLogoExactMatch));
+        const homeNameDiv = document.createElement('div');
+        homeNameDiv.className = 'team-name';
+        homeNameDiv.textContent = abbreviateTeamName(homeTeam);
+        homeContainer.appendChild(homeNameDiv);
+
+        const awayContainer = matchRow.querySelector(`#away-team-container-${fullIndex}`);
+        awayContainer.appendChild(createTeamLogo(awayLogo, awayTeam, isAwayLogoExactMatch));
+        const awayNameDiv = document.createElement('div');
+        awayNameDiv.className = 'team-name';
+        awayNameDiv.textContent = abbreviateTeamName(awayTeam);
+        awayContainer.appendChild(awayNameDiv);
+
+        const channelContainer = matchRow.querySelector(`#channel-container-${fullIndex}`);
+        const watchBtnContainer = document.createElement('div');
+        watchBtnContainer.className = 'watch-btn-container';
+
+        const watchBtn = document.createElement('a');
+        watchBtn.href = '#';
+        watchBtn.className = 'watch-btn';
+        watchBtn.textContent = 'شاهد المباراة';
+
+        const finishedBtn = document.createElement('div');
+        finishedBtn.className = 'finished-btn';
+        finishedBtn.textContent = 'انتهت';
+
+        const notStartedBtn = document.createElement('div');
+        notStartedBtn.className = 'not-started-btn';
+        notStartedBtn.textContent = 'لم تبدأ بعد';
+
+        const now = luxon.DateTime.local();
+        const matchDate = matchDateObject;
+        const totalMatchDuration = 90;
+        const breakDuration = 15;
+
+        let timeDifferenceInMinutes = Infinity;
+        if (matchDate) {
+            timeDifferenceInMinutes = now.diff(matchDate, 'minutes').minutes;
+        }
+        
+        const isFinished = (matchDate && now > matchDate.plus({ minutes: totalMatchDuration + breakDuration + 5 }));
+        const isLive = !isFinished && matchDate && now >= matchDate.minus({ minutes: 30 }) && now <= matchDate.plus({ minutes: totalMatchDuration + breakDuration + 5 });
+        const isNotStartedYet = !isFinished && !isLive;
+
+        if (isFinished) {
+            watchBtnContainer.appendChild(finishedBtn);
+        } else if (isLive) {
+             watchBtn.addEventListener('click', (event) => {
+                event.preventDefault();
+                renderLiveServers(homeTeam, awayTeam);
+                liveServersModal.style.display = 'block';
+            });
+            watchBtnContainer.appendChild(watchBtn);
+        } else if (isNotStartedYet) {
+             watchBtnContainer.appendChild(notStartedBtn);
+        } else {
+             watchBtn.addEventListener('click', (event) => {
+                event.preventDefault();
+                renderLiveServers(homeTeam, awayTeam);
+                liveServersModal.style.display = 'block';
+            });
+            watchBtnContainer.appendChild(watchBtn);
+        }
+        
+        channelContainer.appendChild(watchBtnContainer);
+
+        setTimeout(() => {
+            matchRow.style.opacity = '1';
+        }, 10);
+        
+        // Call the function for the next match with a short delay
+        setTimeout(() => {
+            renderMatchesSequentially(matches, index + 1, container);
+        }, sequentialRenderDelay);
+    }
+
+
     function loadMoreMatches(matchesToLoad) {
         const end = Math.min(matchesShownCount + matchesPerPage, matchesToLoad.length);
         const matchesInSlice = matchesToLoad.slice(matchesShownCount, end);
@@ -807,172 +986,11 @@
             oldLoadMoreBtn.remove();
         }
 
-        matchesInSlice.forEach((match, indexInSlice) => {
-            const fullIndex = matchesShownCount + indexInSlice;
+        matchesShownCount += matchesInSlice.length;
 
-            const homeTeam = match.querySelector('.team.hometeam .the_team')?.innerText.trim() || 'فريق';
-            const awayTeam = match.querySelector('.team.awayteam .the_team')?.innerText.trim() || 'فريق';
-            let matchScoreText = match.querySelector('.score')?.innerText.trim() ||
-                                         match.querySelector('.match_score')?.innerText.trim() ||
-                                         null;
-            
-            let mainScore = matchScoreText;
-            let penaltiesScore = null;
-            if (matchScoreText && matchScoreText.includes('(')) {
-                const scoreParts = matchScoreText.split('(');
-                mainScore = scoreParts[0].trim();
-                penaltiesScore = scoreParts[1].replace(')', '').trim();
-            }
+        // Call the new function to render matches sequentially
+        renderMatchesSequentially(matchesInSlice, 0, matchesContainer);
 
-            let homeLogo = 'https://via.placeholder.com/60';
-            let awayLogo = 'https://via.placeholder.com/60';
-            let isHomeLogoExactMatch = false;
-            let isAwayLogoExactMatch = false;
-
-            for (const key in teamLogos) {
-                if (teamLogos[key].keywords.some(kw => homeTeam.includes(kw))) {
-                    homeLogo = teamLogos[key].url;
-                    isHomeLogoExactMatch = true;
-                }
-                if (teamLogos[key].keywords.some(kw => awayTeam.includes(kw))) {
-                    awayLogo = teamLogos[key].url;
-                    isAwayLogoExactMatch = true;
-                }
-            }
-
-            const matchTimeElement = match.querySelector('.match_time .the_otime');
-            const matchTime = matchTimeElement?.innerText.trim() || '-';
-            const timeOnly = matchTime.match(/\d{1,2}:\d{2}/) ? matchTime.match(/\d{1,2}:\d{2}/)[0] : matchTime;
-
-            let matchDateObject = null;
-            if (timeOnly !== '-') {
-                const now = luxon.DateTime.local();
-                const [hours, minutes] = timeOnly.split(':').map(Number);
-                
-                let matchDate = now;
-                if (currentMatchDayType === 'yesterday') {
-                    matchDate = now.minus({ days: 1 });
-                } else if (currentMatchDayType === 'tomorrow') {
-                    matchDate = now.plus({ days: 1 });
-                }
-                matchDateObject = matchDate.set({ hour: hours, minute: minutes, second: 0, millisecond: 0 });
-            }
-
-            const matchTimestamp = matchDateObject ? matchDateObject.toMillis() / 1000 : '';
-
-            const matchRow = document.createElement('div');
-            matchRow.className = 'match-row';
-            matchRow.style.opacity = '0';
-            matchRow.style.transition = 'opacity 0.5s ease-in-out';
-            
-            matchRow.innerHTML = `
-                <div class="teams-time">
-                  <div class="team" id="home-team-container-${fullIndex}"></div>
-                  <div class="match-time" id="match-time-container-${fullIndex}">
-                    <div class="countdown-circle">
-                      <svg>
-                        <circle class="bg"></circle>
-                        <circle class="progress"></circle>
-                      </svg>
-                      <div class="time-text" data-time="${timeOnly}"
-                                           data-match-timestamp="${matchTimestamp || ''}"
-                                           data-match-day="${currentMatchDayType}"
-                                           data-score="${mainScore || ''}"
-                                           data-penalties="${penaltiesScore || ''}">
-                        ${timeOnly}
-                      </div>
-                    </div>
-                  </div>
-                  <div class="team" id="away-team-container-${fullIndex}"></div>
-                </div>
-                <div class="channel-container" id="channel-container-${fullIndex}"></div>
-            `;
-            
-            matchesContainer.appendChild(matchRow);
-            
-            const homeContainer = matchRow.querySelector(`#home-team-container-${fullIndex}`);
-            homeContainer.appendChild(createTeamLogo(homeLogo, homeTeam, isHomeLogoExactMatch));
-            const homeNameDiv = document.createElement('div');
-            homeNameDiv.className = 'team-name';
-            homeNameDiv.textContent = abbreviateTeamName(homeTeam);
-            homeContainer.appendChild(homeNameDiv);
-
-            const awayContainer = matchRow.querySelector(`#away-team-container-${fullIndex}`);
-            awayContainer.appendChild(createTeamLogo(awayLogo, awayTeam, isAwayLogoExactMatch));
-            const awayNameDiv = document.createElement('div');
-            awayNameDiv.className = 'team-name';
-            awayNameDiv.textContent = abbreviateTeamName(awayTeam);
-            awayContainer.appendChild(awayNameDiv);
-
-            const channelContainer = matchRow.querySelector(`#channel-container-${fullIndex}`);
-            const watchBtnContainer = document.createElement('div');
-            watchBtnContainer.className = 'watch-btn-container';
-
-            const watchBtn = document.createElement('a');
-            watchBtn.href = '#';
-            watchBtn.className = 'watch-btn';
-            watchBtn.textContent = 'شاهد المباراة';
-
-            const finishedBtn = document.createElement('div');
-            finishedBtn.className = 'finished-btn';
-            finishedBtn.textContent = 'انتهت';
-
-            const notStartedBtn = document.createElement('div');
-            notStartedBtn.className = 'not-started-btn';
-            notStartedBtn.textContent = 'لم تبدأ بعد';
-
-            const now = luxon.DateTime.local();
-            const matchDate = matchDateObject;
-            const totalMatchDuration = 90;
-            const breakDuration = 15;
-
-            let timeDifferenceInMinutes = Infinity;
-            if (matchDate) {
-                timeDifferenceInMinutes = now.diff(matchDate, 'minutes').minutes;
-            }
-            
-            const isFinished = (matchDate && now > matchDate.plus({ minutes: totalMatchDuration + breakDuration + 5 }));
-            const isLive = !isFinished && matchDate && now >= matchDate.minus({ minutes: 30 }) && now <= matchDate.plus({ minutes: totalMatchDuration + breakDuration + 5 });
-            const isNotStartedYet = !isFinished && !isLive;
-
-            if (isFinished) {
-                watchBtnContainer.appendChild(finishedBtn);
-            } else if (isLive) {
-                 watchBtn.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    renderLiveServers(homeTeam, awayTeam);
-                    liveServersModal.style.display = 'block';
-                });
-                watchBtnContainer.appendChild(watchBtn);
-            } else if (isNotStartedYet) {
-                 watchBtnContainer.appendChild(notStartedBtn);
-            } else {
-                 watchBtn.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    renderLiveServers(homeTeam, awayTeam);
-                    liveServersModal.style.display = 'block';
-                });
-                watchBtnContainer.appendChild(watchBtn);
-            }
-            
-            channelContainer.appendChild(watchBtnContainer);
-
-            setTimeout(() => {
-                matchRow.style.opacity = '1';
-            }, 10);
-        });
-
-        matchesShownCount = end;
-
-        if (matchesShownCount < matchesToLoad.length) {
-            const loadMoreBtn = document.createElement('button');
-            loadMoreBtn.id = 'load-more-btn';
-            loadMoreBtn.className = 'load-btn';
-            loadMoreBtn.textContent = 'تحميل المزيد';
-            loadMoreBtn.onclick = () => loadMoreMatches(matchesToLoad);
-            matchesContainer.appendChild(loadMoreBtn);
-        }
-        
         updateMatchTimers();
     }
     
