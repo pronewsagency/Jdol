@@ -646,11 +646,54 @@
 };
 
     const matchLinks = [
-        { "name": "سيرفر الأسطورة", "url": "go:A", "keywords": ["النصر"], "serverType": "internal" },
-        { "name": "سيرفر YALLA Shoot", "url": "go:B", "keywords": ["برشلونة", "ريال مدريد"], "serverType": "internal" },
-        { "name": "مشغل خارجي", "url": "go:C", "keywords": ["ليفربول", "مانشستر سيتي"], "serverType": "external" },
-        { "name": "سيرفر كورة لايف", "url": "go:D", "keywords": ["الأهلي"], "serverType": "internal" }
-    ];
+    {
+        "name": "BEIN SPORTS 1",
+        "url": "go:bein1s1",
+        "keywords": [
+            "ليفربول",
+            "مانشستر سيتي",
+            "مانشستر يونايتد",
+            "آرسنال",
+            "تشيلسي",
+            "نيوكاسل يونايتد",
+            "فولهام",
+            "توتنهام هوتسبير"
+        ],
+        "serverType": "internal"
+    },
+    {
+        "name": "BEIN SPORTS 1",
+        "url": "go:bein1s2",
+        "keywords": [
+            "ليفربول",
+            "مانشستر سيتي",
+            "مانشستر يونايتد",
+            "تشيلسي",
+            "آرسنال",
+            "نيوكاسل",
+            "فولهام",
+            "توتنهام هوتسبير"
+        ],
+        "serverType": "internal"
+    },
+    {
+        "name": "مشغل خارجي",
+        "url": "go:C",
+        "keywords": [
+            "ليفربول",
+            "مانشستر سيتي"
+        ],
+        "serverType": "external"
+    },
+    {
+        "name": "سيرفر كورة لايف",
+        "url": "go:D",
+        "keywords": [
+            "الأهلي"
+        ],
+        "serverType": "internal"
+    }
+];
 
     const matchesContainer = document.getElementById('matches-container');
     const loadingSpinner = document.getElementById('loading');
