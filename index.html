@@ -553,7 +553,7 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
-        border-top: 1px solid white;
+        border-top: none; /* تم حذف الخط الأبيض */
         z-index: 200;
     }
 
@@ -568,11 +568,13 @@
         font-weight: 700;
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     }
-
-    .nav-item i {
-        font-size: 20px;
+    
+    .nav-item img {
+        width: 20px;
+        height: 20px;
         margin-bottom: 4px;
     }
+
 </style>
 </head>
 <body>
@@ -595,23 +597,23 @@
 
 <div id="bottom-navbar">
     <a href="go:jdol" class="nav-item">
-        <i class="fas fa-futbol"></i>
+        <img src="https://i.ibb.co/zTBdwn70/Jdol.png" alt="جدول المباريات">
         <span>جدول المباريات</span>
     </a>
     <a href="go:VOD" class="nav-item">
-        <i class="fas fa-film"></i>
+        <img src="https://i.ibb.co/pvH5w15B/Vod.png" alt="VOD">
         <span>VOD</span>
     </a>
     <a href="go:HOME" class="nav-item">
-        <i class="fas fa-tv"></i>
+        <img src="https://i.ibb.co/Kjnjj9QY/Tive.png" alt="تلفاز">
         <span>تلفاز</span>
     </a>
     <a href="go:youtube" class="nav-item">
-        <i class="fab fa-youtube"></i>
+        <img src="https://i.ibb.co/QvhSTYtf/Youtube.png" alt="يوتيوب">
         <span>يوتيوب</span>
     </a>
     <a href="go:telegram" class="nav-item">
-        <i class="fab fa-telegram"></i>
+        <img src="https://i.ibb.co/B5Rv0qR1/Tlgram.png" alt="تلغرام">
         <span>تلغرام</span>
     </a>
 </div>
