@@ -217,6 +217,16 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
             display: block;
         }
+        
+        /* إضافة أكواد التلاشي */
+        img {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        
+        .fade-in {
+            opacity: 1;
+        }
 
         /* Features Section */
         #features {
@@ -365,7 +375,6 @@
                     <p>7101875</p>
                 </div>
 
-                <!-- قسم الخطوات الأفقي -->
                 <div class="screenshots-container">
                     <p class="alert-message">
                         هذا التنبيه يظهر بسبب كون المشغل بإصدار قديم ولكنه آمن 100% لا تقلق، إذا ظهر لك التنبيه فإتبع الخطوات هذه:
@@ -445,6 +454,22 @@
             <p>© 2025 PRO TV . جميع الحقوق محفوظة.</p>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const images = document.querySelectorAll('img');
+
+            images.forEach(img => {
+                if (img.complete) {
+                    img.classList.add('fade-in');
+                } else {
+                    img.addEventListener('load', () => {
+                        img.classList.add('fade-in');
+                    });
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
