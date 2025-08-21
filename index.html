@@ -9,7 +9,7 @@
 <style>
     body {
         font-family: 'Cairo', sans-serif;
-        background: #192842;
+        background: linear-gradient(to bottom, #192842, #192842);
         color: white;
         padding: 20px;
         direction: rtl;
@@ -17,8 +17,8 @@
     }
 
     .match-row {
-        background: black;
-        border: 1px solid white;
+        background: linear-gradient(to right, #100f8a 50%, #09034a);
+        border: none;
         border-radius: 8px;
         margin-bottom: 15px;
         padding: 15px;
@@ -140,7 +140,8 @@
     }
     
     .match-score-finished {
-        background-color: red;
+background: linear-gradient(to bottom, #80001A, #AB012B,#80001A)
+        background-color: white;
         border: 1px solid white;
         border-radius: 5px;
         padding: 10px 15px;
@@ -157,7 +158,7 @@
     .match-score-finished .main-score {
         font-size: 9px;
         font-weight: bold;
-        color: white;
+        color: black;
     }
 
     .match-score-finished .penalties-score {
@@ -187,7 +188,7 @@
     }
 
     .watch-btn {
-        background: linear-gradient(to right, #FF0000, #CC0000);
+        background: linear-gradient(to bottom, #80001A, #AB012B,#80001A);
         border: none;
         color: white;
         border-radius: 6px;
@@ -203,6 +204,7 @@
     }
 
     .finished-btn {
+background: linear-gradient(to bottom, #80001A, #AB012B,#80001A)
         background: red;
         color: white;
         padding: 10px 15px;
@@ -214,8 +216,8 @@
     }
 
     .not-started-btn {
-        background-color: #333;
-        color: white;
+        background: linear-gradient(to bottom, #999, #fff,#999);
+        color: #000;
         padding: 10px 15px;
         border-radius: 6px;
         font-weight: 700;
@@ -229,9 +231,9 @@
     }
 
     .loading-spinner {
-        border: 4px solid rgba(255, 255, 255, 0.3);
+        border: 4-px solid rgba(255, 255, 255, 0.3);
         border-radius: 50%;
-        border-top: 4px solid #fff;
+        border-top: 4-px solid #fff;
         width: 30px;
         height: 30px;
         animation: spin 1s linear infinite;
@@ -258,7 +260,7 @@
     #progress-bar {
         width: 0%;
         height: 100%;
-        background-color: red;
+        background-color: #fff;
         transition: width 0.3s ease;
     }
 
@@ -317,7 +319,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background: #2a2a2a;
+        background: linear-gradient(to right, #2a2a2a, #000000);
         padding: 10px;
         border-radius: 6px;
         margin-bottom: 10px;
@@ -329,7 +331,7 @@
     }
 
     .live-server-btn {
-        background: #FF0000;
+        background: linear-gradient(to right, #FF0000, #CC0000);
         border: none;
         color: white;
         border-radius: 6px;
@@ -344,7 +346,7 @@
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     }
     .external-player-btn {
-        background: #FF0000;
+        background: linear-gradient(to right, #FF0000, #CC0000);
         border: none;
         color: white;
         border-radius: 6px;
@@ -426,7 +428,7 @@
         flex-grow: 1;
         padding: 10px;
         border-radius: 20px;
-        background-color: black;
+        background-color: #09034a;
         border: 1px solid white;
     }
 
@@ -455,7 +457,7 @@
         padding: 10px 15px;
         border-radius: 5px;
         border: none;
-        background-color: #333;
+        background: linear-gradient(to right, #100f8a, #09034a);
         color: white;
         font-family: 'Cairo', sans-serif;
         font-size: 16px;
@@ -549,11 +551,11 @@
         left: 0;
         width: 100%;
         height: 60px;
-        background-color: #192842;
+        background: linear-gradient(to top, #192842, #192842);
         display: flex;
         justify-content: space-around;
         align-items: center;
-        border-top: none; /* تم حذف الخط الأبيض */
+        border-top: none; 
         z-index: 200;
     }
 
@@ -597,23 +599,23 @@
 
 <div id="bottom-navbar">
     <a href="go:telegram" class="nav-item">
-        <img src="https://i.ibb.co/B5Rv0qR1/Tlgram.png" alt="جدول المباريات">
+        <img src="https://hussam9595.github.io/Pronews/telegram-brands-solid-full.svg" alt="جدول المباريات">
         <span>تلغرام</span>
     </a>
     <a href="go:youtube" class="nav-item">
-        <img src="https://i.ibb.co/QvhSTYtf/Youtube.png" alt="VOD">
+        <img src="https://hussam9595.github.io/Pronews/youtube-brands-solid-full.svg" alt="VOD">
         <span>يوتيوب</span>
     </a>
     <a href="go:HOME" class="nav-item">
-        <img src="https://i.ibb.co/Kjnjj9QY/Tive.png" alt="تلفاز">
+        <img src="https://hussam9595.github.io/Pronews/tv-solid-full.svg" alt="تلفاز">
         <span>تلفاز</span>
     </a>
     <a href="go:VOD" class="nav-item">
-        <img src="https://i.ibb.co/pvH5w15B/Vod.png" alt="يوتيوب">
+        <img src="https://hussam9595.github.io/Pronews/circle-play-solid-full.svg" alt="يوتيوب">
         <span>VOD</span>
     </a>
     <a href="go:jdol" class="nav-item">
-        <img src="https://i.ibb.co/zTBdwn70/Jdol.png" alt="تلغرام">
+        <img src="https://hussam9595.github.io/Pronews/calendar-days-solid-full.svg" alt="تلغرام">
         <span>جدول المباريات</span>
     </a>
 </div>
@@ -657,7 +659,28 @@
   "أتليتكو مدريد": { "url": "https://upload.wikimedia.org/wikipedia/ar/f/f4/Atletico_Madrid_2017_logo.svg", "keywords": ["أتليتكو مدريد"] },
   "فالنسيا": { "url": "https://upload.wikimedia.org/wikipedia/ar/d/d3/Valencia_CF.svg", "keywords": ["فالنسيا"] },
   "فياريال": { "url": "https://upload.wikimedia.org/wikipedia/ar/7/70/Villarreal_CF_logo.svg", "keywords": ["فياريال"] },
-  "تيرول": { "url": "https://upload.wikimedia.org/wikipedia/fr/5/5b/WSG_Swarovski_Tirol_%28logo%29.svg", "keywords": ["تيرول"] }
+  "تيرول": { "url": "https://upload.wikimedia.org/wikipedia/fr/5/5b/WSG_Swarovski_Tirol_%28logo%29.svg", "keywords": ["تيرول"] },
+  "فلامينغو": { "url": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Flamengo_braz_logo.svg", "keywords": ["فلامينغو"] },
+  "تشيلسي": { "url": "https://static.wikia.nocookie.net/logopedia/images/e/e2/Chelsea_FC_logo.svg", "keywords": ["تشيلسي"] },
+  "مانشستر سيتي": { "url": "https://static.wikia.nocookie.net/logopedia/images/6/61/Manchester_City_2016.svg/revision/latest?cb=20210831045441", "keywords": ["م.سيتي"] },
+  "مانشستر يونايتد": { "url": "https://static.wikia.nocookie.net/logopedia/images/8/86/Manchester_United_FC_logo_%282D%29.svg/revision/latest?cb=20121127174015", "keywords": ["مانشستر يونايتد"] },
+  "توتنهام": { "url": "https://static.wikia.nocookie.net/logopedia/images/7/72/Tottenham_logos.png", "keywords": ["توتنهام هوتسبير"] },
+  "نيوكاسل يونايتد": { "url": "https://static.wikia.nocookie.net/logopedia/images/b/b8/Newcastle_United_FC_logo.svg", "keywords": ["نيوكاسل يونايتد"] },
+  "ليستر سيتي": { "url": "https://static.wikia.nocookie.net/logopedia/images/a/a4/Leicester_City_FC_logo.png", "keywords": ["ليستر سيتي"] },
+  "آرسنال": { "url": "https://static.wikia.nocookie.net/logopedia/images/1/1a/Arsenal_FC_logo.svg", "keywords": ["آرسنال"] },
+  "آستون فيلا": { "url": "https://static.wikia.nocookie.net/logopedia/images/d/d2/Aston_Villa_FC_logo.svg", "keywords": ["آستون فيلا"] },
+  "برينتفورد": { "url": "https://static.wikia.nocookie.net/logopedia/images/c/c9/Brentford_FC_logo.svg", "keywords": ["برينتفورد"] },
+  "كريستال بالاس": { "url": "https://static.wikia.nocookie.net/logopedia/images/0/0c/Crystal_Palace_FC_logo.svg", "keywords": ["كريستال بالاس"] },
+  "ايفرتون": { "url": "https://static.wikia.nocookie.net/logopedia/images/7/7c/Everton_FC_logo.svg", "keywords": ["ايفرتون"] },
+  "فولهام": { "url": "https://static.wikia.nocookie.net/logopedia/images/d/db/Fulham_FC_logo.svg", "keywords": ["فولهام"] },
+  "ليدز يونايتد": { "url": "https://static.wikia.nocookie.net/logopedia/images/5/5e/Leeds_United_AFC_logo.svg", "keywords": ["ليدز يونايتد"] },
+  "نوتنغهام فوريست": { "url": "https://static.wikia.nocookie.net/logopedia/images/b/bb/Nottingham_Forest_FC_logo.svg", "keywords": ["نوتنغهام فوريست"] },
+  "شيفيلد يونايتد": { "url": "https://static.wikia.nocookie.net/logopedia/images/9/9c/Sheffield_United_FC_logo.svg", "keywords": ["شيفيلد يونايتد"] },
+  "ويستهام يونايتد": { "url": "https://static.wikia.nocookie.net/logopedia/images/c/c2/West_Ham_United_FC_logo.svg", "keywords": ["ويستهام يونايتد"] },
+  "ولفرهامبتون": { "url": "https://static.wikia.nocookie.net/logopedia/images/d/d5/Wolverhampton_Wanderers_FC_logo.svg", "keywords": ["ولفرهامبتون"] },
+  "أشبيلية": { "url": "https://static.wikia.nocookie.net/logopedia/images/1/1d/Sevilla.png", "keywords": ["أشبيلية"] },
+  "ريال سوسيداد": { "url": "https://static.wikia.nocookie.net/logopedia/images/3/33/Real_Sociedad.png", "keywords": ["ريال سوسيداد"] },
+  "ليفانتي": { "url": "https://static.wikia.nocookie.net/logopedia/images/d/d4/Levante.png", "keywords": ["ليفانتي"] }
 };
 
     const matchLinks = [
