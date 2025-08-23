@@ -142,6 +142,21 @@
         line-height: 1;
         margin-top: 2px;
     }
+
+    .countdown-circle .countdown-time {
+        font-size: 12px;
+        line-height: 1;
+        text-align: center;
+    }
+
+    .countdown-circle .countdown-hours,
+    .countdown-circle .countdown-minutes,
+    .countdown-circle .countdown-seconds {
+        font-size: 10px;
+        font-weight: normal;
+        margin: 0;
+        line-height: 1;
+    }
     
     .match-score-finished {
         background: linear-gradient(to bottom, #80001A, #AB012B,#80001A);
@@ -1202,7 +1217,7 @@
         setInterval(() => {
             const now = luxon.DateTime.local();
             const matchTimestamp = timeText.getAttribute('data-match-timestamp');
-            const matchDate = matchTimestamp ? luxon.DateTime.fromMillis(parseInt(matchTimestamp) * 1000) : null;
+            const matchDate = matchTimestamp ? luxon.DateTime.fromMillis(parseInt(matchTimestamp)) : null;
             
             if (!matchDate) {
                 timeText.textContent = timeText.getAttribute('data-time');
@@ -1214,15 +1229,15 @@
             const timeUntilMatchInSeconds = matchDate.diff(now, 'seconds').seconds;
             let minutesElapsed;
             
-            const matchEndTimestamp = matchDate.plus({ hours: 2 }).toMillis() / 1000;
+            const matchEndTimestamp = matchDate.plus({ hours: 2 }).toMillis();
             
-            if (now.toMillis() / 1000 > matchEndTimestamp) {
+            if (now.toMillis() > matchEndTimestamp) {
                 countdownCircle.style.display = 'none';
             } else if (timeUntilMatchInSeconds > 0 && timeUntilMatchInSeconds <= countdownStartMinutes * 60) {
                 const remainingDuration = luxon.Duration.fromObject({ seconds: timeUntilMatchInSeconds }).rescale();
-                const formattedTime = remainingDuration.setLocale('en').toFormat('h:mm:ss');
+                const formattedTime = remainingDuration.toFormat('h:mm:ss');
                 
-                timeText.innerHTML = formattedTime;
+                timeText.innerHTML = `<span class="countdown-time">${formattedTime}</span>`;
                 timeText.style.fontSize = '12px';
                 
                 const percent = 1 - (timeUntilMatchInSeconds / (countdownStartMinutes * 60));
@@ -1333,14 +1348,21 @@
                         
                         let matchDate = now;
                         matchDateObject = matchDate.set({ hour: hours, minute: minutes, second: 0, millisecond: 0 });
+                        
+                        if (matchDateObject < now.minus({ hours: 12 })) {
+                             matchDateObject = matchDateObject.plus({ days: 1 });
+                        }
                     }
 
-                    const matchTimestamp = matchDateObject ? matchDateObject.toMillis() / 1000 : '';
+                    const matchTimestamp = matchDateObject ? matchDateObject.toMillis() : '';
                     
-                    const isFinished = (matchDateObject && luxon.DateTime.local() > matchDateObject.plus({ hours: 2 }));
-                    const isLive = !isFinished && matchDateObject && luxon.DateTime.local() >= matchDateObject.minus({ minutes: 30 }) && luxon.DateTime.local() <= matchDateObject.plus({ hours: 2 });
-                    const isNotStartedYet = !isFinished && !isLive;
+                    const now = luxon.DateTime.local();
+                    const isFinished = (matchDateObject && now > matchDateObject.plus({ hours: 2 }));
+                    const isLive = !isFinished && matchDateObject && now >= matchDateObject && now <= matchDateObject.plus({ hours: 2 });
                     
+                    const timeUntilMatchInSeconds = matchDateObject ? matchDateObject.diff(now, 'seconds').seconds : 0;
+                    const isNotStartedYet = !isFinished && !isLive && (timeUntilMatchInSeconds > 1800); // 1800 seconds = 30 minutes
+
                     const matchRow = document.createElement('div');
                     matchRow.className = 'match-row';
                     matchRow.style.opacity = '0';
@@ -1428,22 +1450,15 @@
 
                     if (isFinished) {
                         watchBtnContainer.appendChild(finishedBtn);
-                    } else if (isLive) {
+                    } else if (isLive || timeUntilMatchInSeconds <= 1800 && timeUntilMatchInSeconds > 0) {
                          watchBtn.addEventListener('click', (event) => {
                             event.preventDefault();
                             renderLiveServers(homeTeam, awayTeam);
                             liveServersModal.style.display = 'block';
                         });
                         watchBtnContainer.appendChild(watchBtn);
-                    } else if (isNotStartedYet) {
-                         watchBtnContainer.appendChild(notStartedBtn);
                     } else {
-                         watchBtn.addEventListener('click', (event) => {
-                            event.preventDefault();
-                            renderLiveServers(homeTeam, awayTeam);
-                            liveServersModal.style.display = 'block';
-                        });
-                        watchBtnContainer.appendChild(watchBtn);
+                         watchBtnContainer.appendChild(notStartedBtn);
                     }
                     
                     channelContainer.appendChild(watchBtnContainer);
