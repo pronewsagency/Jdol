@@ -299,16 +299,19 @@
     }
 
     .modal-content {
-        background-color: #1a1a1a;
-        margin: 5% auto;
-        padding: 20px;
-        padding-top: 40px; 
-        border: 1px solid #888;
-        width: 90%;
-        max-width: 300px;
-        border-radius: 10px;
-        position: relative;
-    }
+    background-color: #1a1a1a;
+    margin: 5% auto;
+    padding: 20px;
+    padding-top: 40px; 
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 300px;
+    max-height: 50vh; /* تحديد أقصى ارتفاع */
+    overflow-y: auto; /* إضافة التمرير العمودي */
+    border-radius: 10px;
+    position: relative;
+}
+
 
     .modal-title {
         display: none;
