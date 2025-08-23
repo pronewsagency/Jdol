@@ -32,7 +32,11 @@
         opacity: 0;
         transition: opacity 0.5s ease-in-out;
     }
-
+    
+    .match-row:focus {
+        outline: 2px solid white;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
     .teams-time {
         display: flex;
         align-items: center;
@@ -140,7 +144,7 @@
     }
     
     .match-score-finished {
-background: linear-gradient(to bottom, #80001A, #AB012B,#80001A);
+        background: linear-gradient(to bottom, #80001A, #AB012B,#80001A);
         border: 1px solid white;
         border-radius: 5px;
         padding: 10px 15px;
@@ -200,6 +204,10 @@ background: linear-gradient(to bottom, #80001A, #AB012B,#80001A);
         font-family: 'Cairo', sans-serif;
         display: block;
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+    .watch-btn:focus {
+        outline: 2px solid white;
+        background: linear-gradient(to bottom, #AB012B, #80001A, #AB012B);
     }
 
     .finished-btn {
@@ -343,6 +351,10 @@ background: linear-gradient(to bottom, #80001A, #AB012B,#80001A);
         display: block;
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     }
+    .live-server-btn:focus {
+        outline: 2px solid white;
+        background: linear-gradient(to right, #CC0000, #FF0000);
+    }
     .external-player-btn {
         background: linear-gradient(to right, #FF0000, #CC0000);
         border: none;
@@ -462,6 +474,9 @@ background: linear-gradient(to bottom, #80001A, #AB012B,#80001A);
         cursor: pointer;
         transition: background-color 0.3s ease;
     }
+    .refresh-btn:focus {
+        outline: 2px solid white;
+    }
 
     .refresh-btn:hover {
         background-color: #555;
@@ -489,7 +504,11 @@ background: linear-gradient(to bottom, #80001A, #AB012B,#80001A);
         margin-right: auto;
         font-family: 'Cairo', sans-serif;
     }
-    
+    .retry-btn:focus {
+        outline: 2px solid white;
+        background-color: #777;
+    }
+
     .external-player-modal-content {
         background-color: #1a1a1a;
         margin: 15% auto;
@@ -531,6 +550,10 @@ background: linear-gradient(to bottom, #80001A, #AB012B,#80001A);
         flex-grow: 1;
         text-align: center;
     }
+    .download-player-btn:focus {
+        outline: 2px solid white;
+        background-color: #6cbf6f;
+    }
     
     .watch-external-btn {
         background-color: red;
@@ -542,6 +565,11 @@ background: linear-gradient(to bottom, #80001A, #AB012B,#80001A);
         flex-grow: 1;
         text-align: center;
     }
+    .watch-external-btn:focus {
+        outline: 2px solid white;
+        background-color: #ff3333;
+    }
+    
 
     #bottom-navbar {
         position: fixed;
@@ -568,6 +596,11 @@ background: linear-gradient(to bottom, #80001A, #AB012B,#80001A);
         font-weight: 700;
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     }
+    .nav-item:focus {
+        outline: 2px solid white;
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.1);
+    }
     
     .nav-item img {
         width: 20px;
@@ -582,9 +615,9 @@ background: linear-gradient(to bottom, #80001A, #AB012B,#80001A);
 <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script>
 
 <div class="search-refresh-container">
-    <button id="refresh-btn" class="refresh-btn"><i class="fas fa-sync-alt"></i></button>
+    <button id="refresh-btn" class="refresh-btn" tabindex="0"><i class="fas fa-sync-alt"></i></button>
     <div class="search-box">
-        <input type="text" id="search-input" class="search-input-field" placeholder="ابحث عن مباراة...">
+        <input type="text" id="search-input" class="search-input-field" placeholder="ابحث عن مباراة..." tabindex="0">
         <i class="fas fa-search"></i>
     </div>
 </div>
@@ -596,23 +629,23 @@ background: linear-gradient(to bottom, #80001A, #AB012B,#80001A);
 <div id="matches-container" style="max-width:700px; margin:auto;"></div>
 
 <div id="bottom-navbar">
-    <a href="go:telegram" class="nav-item">
+    <a href="go:telegram" class="nav-item" tabindex="0">
         <img src="https://hussam9595.github.io/Pronews/telegram-brands-solid-full.svg" alt="جدول المباريات">
         <span>تلغرام</span>
     </a>
-    <a href="go:youtube" class="nav-item">
+    <a href="go:youtube" class="nav-item" tabindex="0">
         <img src="https://hussam9595.github.io/Pronews/youtube-brands-solid-full.svg" alt="VOD">
         <span>يوتيوب</span>
     </a>
-    <a href="go:HOME" class="nav-item">
+    <a href="go:HOME" class="nav-item" tabindex="0">
         <img src="https://hussam9595.github.io/Pronews/tv-solid-full.svg" alt="تلفاز">
         <span>تلفاز</span>
     </a>
-    <a href="go:VOD" class="nav-item">
+    <a href="go:VOD" class="nav-item" tabindex="0">
         <img src="https://hussam9595.github.io/Pronews/circle-play-solid-full.svg" alt="يوتيوب">
         <span>VOD</span>
     </a>
-    <a href="go:jdol" class="nav-item">
+    <a href="go:jdol" class="nav-item" tabindex="0">
         <img src="https://hussam9595.github.io/Pronews/calendar-days-solid-full.svg" alt="تلغرام">
         <span>جدول المباريات</span>
     </a>
@@ -620,7 +653,7 @@ background: linear-gradient(to bottom, #80001A, #AB012B,#80001A);
 
 <div id="liveServersModal" class="modal">
     <div class="modal-content">
-        <span id="liveServersModalCloseBtn" class="close-btn">×</span>
+        <span id="liveServersModalCloseBtn" class="close-btn" tabindex="0">×</span>
         <h2 class="modal-title"></h2>
         <ul id="liveServerList" class="server-list">
         </ul>
@@ -629,11 +662,11 @@ background: linear-gradient(to bottom, #80001A, #AB012B,#80001A);
 
 <div id="externalPlayerModal" class="modal">
     <div class="external-player-modal-content">
-        <span id="externalPlayerModalCloseBtn" class="close-btn">×</span>
+        <span id="externalPlayerModalCloseBtn" class="close-btn" tabindex="0">×</span>
         <p>هذا السيرفر يحتاج لمشغل خارجي</p>
         <div class="modal-buttons-container">
-            <a id="downloadPlayerBtn" class="download-player-btn" href="go:player">تحميل المشغل</a>
-            <a id="watchExternalBtn" class="watch-external-btn" href="#">شاهد</a>
+            <a id="downloadPlayerBtn" class="download-player-btn" href="go:player" tabindex="0">تحميل المشغل</a>
+            <a id="watchExternalBtn" class="watch-external-btn" href="#" tabindex="0">شاهد</a>
         </div>
     </div>
 </div>
@@ -672,7 +705,7 @@ background: linear-gradient(to bottom, #80001A, #AB012B,#80001A);
   "ايفرتون": { "url": "https://static.wikia.nocookie.net/logopedia/images/7/7c/Everton_FC_logo.svg", "keywords": ["ايفرتون"] },
   "فولهام": { "url": "https://static.wikia.nocookie.net/logopedia/images/d/db/Fulham_FC_logo.svg", "keywords": ["فولهام"] },
   "ليدز يونايتد": { "url": "https://static.wikia.nocookie.net/logopedia/images/5/5e/Leeds_United_AFC_logo.svg", "keywords": ["ليدز يونايتد"] },
-  "نوتنغهام فوريست": { "url": "https://static.wikia.nocookie.net/logopedia/images/b/bb/Nottingham_Forest_FC_logo.svg", "keywords": ["نوتنغهام فوريست"] },
+  "نوتنغهام فوريست": { "url": "https://static.wikia.nocookie.com/logopedia/images/b/bb/Nottingham_Forest_FC_logo.svg", "keywords": ["نوتنغهام فوريست"] },
   "شيفيلد يونايتد": { "url": "https://static.wikia.nocookie.net/logopedia/images/9/9c/Sheffield_United_FC_logo.svg", "keywords": ["شيفيلد يونايتد"] },
   "ويستهام يونايتد": { "url": "https://static.wikia.nocookie.net/logopedia/images/c/c2/West_Ham_United_FC_logo.svg", "keywords": ["وست هام يونايتد"] },
   "ولفرهامبتون": { "url": "https://static.wikia.nocookie.net/logopedia/images/d/d5/Wolverhampton_Wanderers_FC_logo.svg", "keywords": ["ولفرهامبتون"] },
@@ -761,20 +794,22 @@ background: linear-gradient(to bottom, #80001A, #AB012B,#80001A);
             return;
         }
 
-        matchingServerLinks.forEach((linkData) => {
+        matchingServerLinks.forEach((linkData, index) => {
             const li = document.createElement('li');
             li.className = 'server-item';
             
             const liveBtn = document.createElement('a');
             liveBtn.className = 'live-server-btn';
             liveBtn.textContent = linkData.name;
-
+            liveBtn.tabIndex = 0; // Make server buttons focusable
+            
             if (linkData.serverType === "external") {
                 liveBtn.onclick = (e) => {
                     e.preventDefault();
                     watchExternalBtn.href = linkData.url;
                     liveServersModal.style.display = 'none';
                     externalPlayerModal.style.display = 'block';
+                    setTimeout(() => externalPlayerModal.querySelector('.download-player-btn').focus(), 100);
                 };
             } else {
                 liveBtn.href = linkData.url;
@@ -784,6 +819,12 @@ background: linear-gradient(to bottom, #80001A, #AB012B,#80001A);
             li.appendChild(liveBtn);
             liveServerList.appendChild(li);
         });
+        setTimeout(() => {
+            const firstServerBtn = liveServersModal.querySelector('.live-server-btn');
+            if (firstServerBtn) {
+                firstServerBtn.focus();
+            }
+        }, 100);
     }
 
     function loadMatches(url) {
@@ -849,12 +890,13 @@ background: linear-gradient(to bottom, #80001A, #AB012B,#80001A);
         matchesContainer.innerHTML = `
             <div class="error-message">
                 <p>الإنترنت ضعيف</p>
-                <button class="retry-btn" id="retry-btn">أعد المحاولة</button>
+                <button class="retry-btn" id="retry-btn" tabindex="0">أعد المحاولة</button>
             </div>
         `;
         document.getElementById('retry-btn').addEventListener('click', () => {
             loadMatches('https://jdwel.com/today/');
         });
+        setTimeout(() => document.getElementById('retry-btn').focus(), 100);
     }
 
     function createTeamLogo(imgUrl, teamName, isExactMatch) {
@@ -1046,7 +1088,8 @@ background: linear-gradient(to bottom, #80001A, #AB012B,#80001A);
                     matchRow.className = 'match-row';
                     matchRow.style.opacity = '0';
                     matchRow.style.transition = 'opacity 0.5s ease-in-out';
-                    
+                    matchRow.tabIndex = 0; // Make match row focusable
+
                     matchRow.innerHTML = `
                         <div class="teams-time">
                           <div class="team" id="home-team-container-${index}"></div>
@@ -1116,6 +1159,7 @@ background: linear-gradient(to bottom, #80001A, #AB012B,#80001A);
                     watchBtn.href = '#';
                     watchBtn.className = 'watch-btn';
                     watchBtn.textContent = 'شاهد المباراة';
+                    watchBtn.tabIndex = 0; // Make watch button focusable
 
                     const finishedBtn = document.createElement('div');
                     finishedBtn.className = 'finished-btn';
@@ -1153,6 +1197,12 @@ background: linear-gradient(to bottom, #80001A, #AB012B,#80001A);
                     
                     index++;
                     setTimeout(displayNextMatch, 500); 
+                } else {
+                    // Once all matches are rendered, focus on the first match row
+                    const firstMatchRow = document.querySelector('.match-row');
+                    if (firstMatchRow) {
+                        firstMatchRow.focus();
+                    }
                 }
             }
             displayNextMatch();
@@ -1179,10 +1229,23 @@ background: linear-gradient(to bottom, #80001A, #AB012B,#80001A);
 
     liveServersModalCloseBtn.addEventListener('click', () => {
         liveServersModal.style.display = 'none';
+        // Return focus to the element that opened the modal
+        const activeElement = document.activeElement;
+        if (activeElement && activeElement.classList.contains('watch-btn')) {
+            activeElement.focus();
+        }
     });
     
     externalPlayerModalCloseBtn.addEventListener('click', () => {
         externalPlayerModal.style.display = 'none';
+        // Return focus to the previous modal
+        liveServersModal.style.display = 'block';
+        setTimeout(() => {
+            const firstServerBtn = liveServersModal.querySelector('.live-server-btn');
+            if (firstServerBtn) {
+                firstServerBtn.focus();
+            }
+        }, 100);
     });
 
     window.addEventListener('click', (event) => {
@@ -1191,6 +1254,49 @@ background: linear-gradient(to bottom, #80001A, #AB012B,#80001A);
         }
         if (event.target === externalPlayerModal) {
             externalPlayerModal.style.display = 'none';
+        }
+    });
+
+    // Add keyboard navigation logic
+    document.addEventListener('keydown', (event) => {
+        const activeElement = document.activeElement;
+
+        // Don't interfere with search input
+        if (activeElement === searchInput) {
+            return;
+        }
+
+        let isHandled = false;
+        let nextElement = null;
+
+        if (event.key === 'ArrowDown' || event.key === 'Down') {
+            const focusableElements = Array.from(document.querySelectorAll('.match-row:not([style*="opacity: 0"]), .watch-btn, .retry-btn, .live-server-btn, .nav-item, #refresh-btn, #search-input'));
+            const currentIndex = focusableElements.indexOf(activeElement);
+            if (currentIndex !== -1 && currentIndex < focusableElements.length - 1) {
+                nextElement = focusableElements[currentIndex + 1];
+            }
+            isHandled = true;
+        } else if (event.key === 'ArrowUp' || event.key === 'Up') {
+            const focusableElements = Array.from(document.querySelectorAll('.match-row:not([style*="opacity: 0"]), .watch-btn, .retry-btn, .live-server-btn, .nav-item, #refresh-btn, #search-input'));
+            const currentIndex = focusableElements.indexOf(activeElement);
+            if (currentIndex > 0) {
+                nextElement = focusableElements[currentIndex - 1];
+            }
+            isHandled = true;
+        } else if (event.key === 'Enter' || event.key === ' ') {
+            if (activeElement && activeElement.click) {
+                activeElement.click();
+            }
+            isHandled = true;
+        }
+
+        if (nextElement) {
+            nextElement.focus();
+            isHandled = true;
+        }
+
+        if (isHandled) {
+            event.preventDefault();
         }
     });
 
