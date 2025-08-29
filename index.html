@@ -693,13 +693,13 @@
     const teamLogos = {
   "Al-Nassr FC": { "url": "https://upload.wikimedia.org/wikipedia/ar/thumb/a/ac/Al_Nassr_FC_Logo.svg/1200px-Al_Nassr_FC_Logo.svg.png", "keywords": ["النصر"] },
   "Al-Hilal SFC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/c/c1/Al-Hilal_SFC_logo.svg/1200px-Al-Hilal_SFC_logo.svg.png", "keywords": ["الهلال"] },
-  "Al-Ahli Saudi FC": { "url": "https://static.wikia.nocookie.net/logopedia/images/d/d2/Al-ahli-sfc-2008-logo.png", "keywords": ["الأهلي"] },
+  "Al-Ahli Saudi FC": { "url": "https://static.wikia.nocookie.net/logopedia/images/d/d2/Al-ahli-sfc-2008-logo.png", "keywords": ["الأهلي السعودي"] },
+  "Al-Ahly SC (Egypt)": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/5/5b/Al_Ahly_SC_logo.svg/1200px-Al_Ahly_SC_logo.svg.png", "keywords": ["الأهلي المصري"] },
   "Al-Ittihad Club": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/8/89/Ittihad_FC_logo.svg/1200px-Ittihad_FC_logo.svg.png", "keywords": ["الاتحاد"] },
   "Real Madrid CF": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png", "keywords": ["ريال مدريد", "Real Madrid"] },
   "FC Barcelona": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/1200px-FC_Barcelona_%28crest%29.svg.png", "keywords": ["برشلونة", "Barcelona"] },
   "Liverpool FC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/0/0c/Liverpool_FC.svg/1200px-Liverpool_FC.svg.png", "keywords": ["ليفربول", "Liverpool"] },
   "Manchester City FC": { "url": "https://static.wikia.nocookie.net/logopedia/images/6/61/Manchester_City_2016.svg", "keywords": ["مانشستر سيتي", "Man City"] },
-  "Al-Ahly SC (Egypt)": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/5/5b/Al_Ahly_SC_logo.svg/1200px-Al_Ahly_SC_logo.svg.png", "keywords": ["الأهلي المصري"] },
   "Zamalek SC": { "url": "https://static.wikia.nocookie.net/logopedia/images/7/7f/180px-ZamalekSC.png", "keywords": ["الزمالك"] },
   "بورنموث": { "url": "https://upload.wikimedia.org/wikipedia/ar/e/e5/AFC_Bournemouth_%282013%29.svg", "keywords": ["بورنموث"] },
   "جيرونا": { "url": "https://upload.wikimedia.org/wikipedia/ar/b/b7/Girona_FC_%282022%29.svg", "keywords": ["جيرونا"] },
@@ -1107,7 +1107,7 @@
         matches.forEach(match => {
             const homeTeam = match.querySelector('.team.hometeam .the_team')?.innerText.trim() || 'فريق';
             const awayTeam = match.querySelector('.team.awayteam .the_team')?.innerText.trim() || 'فريق';
-            const importantTeams = ["الهلال", "النصر", "ريال مدريد", "برشلونة", "ليفربول", "مانشستر سيتي"];
+            const importantTeams = ["الهلال", "النصر", "ريال مدريد", "برشلونة", "ليفربول", "مانشستر سيتي", "الأهلي السعودي", "الأهلي المصري"];
             const isImportant = importantTeams.some(teamName => homeTeam.includes(teamName) || awayTeam.includes(teamName));
             if (isImportant) {
                 importantMatches.push(match);
@@ -1125,6 +1125,7 @@
                     const match = matchList[index];
                     const homeTeam = match.querySelector('.team.hometeam .the_team')?.innerText.trim() || 'فريق';
                     const awayTeam = match.querySelector('.team.awayteam .the_team')?.innerText.trim() || 'فريق';
+                    
                     let matchScoreText = match.querySelector('.score')?.innerText.trim() ||
                                          match.querySelector('.match_score')?.innerText.trim() ||
                                          null;
@@ -1143,12 +1144,13 @@
                     let isAwayLogoExactMatch = false;
 
                     for (const key in teamLogos) {
-                        if (teamLogos[key].keywords.some(kw => homeTeam.includes(kw))) {
-                            homeLogo = teamLogos[key].url;
+                        const logoData = teamLogos[key];
+                        if (logoData.keywords.some(kw => homeTeam.includes(kw))) {
+                            homeLogo = logoData.url;
                             isHomeLogoExactMatch = true;
                         }
-                        if (teamLogos[key].keywords.some(kw => awayTeam.includes(kw))) {
-                            awayLogo = teamLogos[key].url;
+                        if (logoData.keywords.some(kw => awayTeam.includes(kw))) {
+                            awayLogo = logoData.url;
                             isAwayLogoExactMatch = true;
                         }
                     }
@@ -1177,13 +1179,13 @@
                     const isLive = !isFinished && matchDateObject && now >= matchDateObject && now <= matchDateObject.plus({ hours: 2 });
                     
                     const timeUntilMatchInSeconds = matchDateObject ? matchDateObject.diff(now, 'seconds').seconds : 0;
-                    const isNotStartedYet = !isFinished && !isLive && (timeUntilMatchInSeconds > 1800); // 1800 seconds = 30 minutes
+                    const isNotStartedYet = !isFinished && !isLive && (timeUntilMatchInSeconds > 1800);
 
                     const matchRow = document.createElement('div');
                     matchRow.className = 'match-row';
                     matchRow.style.opacity = '0';
                     matchRow.style.transition = 'opacity 0.5s ease-in-out';
-                    matchRow.tabIndex = 0; // Make match row focusable
+                    matchRow.tabIndex = 0;
 
                     matchRow.innerHTML = `
                         <div class="teams-time">
@@ -1254,7 +1256,7 @@
                     watchBtn.href = '#';
                     watchBtn.className = 'watch-btn';
                     watchBtn.textContent = 'شاهد المباراة';
-                    watchBtn.tabIndex = 0; // Make watch button focusable
+                    watchBtn.tabIndex = 0;
 
                     const finishedBtn = document.createElement('div');
                     finishedBtn.className = 'finished-btn';
