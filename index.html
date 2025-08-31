@@ -40,6 +40,14 @@
         outline: 2px solid white;
         box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
     }
+    
+    .league-name {
+        font-size: 14px;
+        font-weight: bold;
+        color: #ddd;
+        margin-bottom: 10px;
+    }
+
     .teams-time {
         display: flex;
         align-items: center;
@@ -694,179 +702,363 @@
 
 <script>
     const teamLogos = {
-  "Al-Nassr FC": { "url": "https://upload.wikimedia.org/wikipedia/ar/thumb/a/ac/Al_Nassr_FC_Logo.svg/1200px-Al_Nassr_FC_Logo.svg.png", "keywords": ["النصر"] },
-  "Al-Hilal SFC": { "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Al_Hilal_SFC_Logo.svg/800px-Al_Hilal_SFC_Logo.svg.png", "keywords": ["الهلال"] },
-  "Al-Ahli Saudi FC": { "url": "https://static.wikia.nocookie.net/logopedia/images/d/d2/Al-ahli-sfc-2008-logo.png", "keywords": ["الأهلي السعودي"] },
-  "Al-Ahly SC (Egypt)": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/5/5b/Al_Ahly_SC_logo.svg/1200px-Al_Ahly_SC_logo.svg.png", "keywords": ["الأهلي المصري"] },
-  "Al-Ittihad Club": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/8/87/Al-Ittihad_Club_%28Jeddah%29_logo.svg/1200px-Al-Ittihad_Club_%28Jeddah%29_logo.svg.png", "keywords": ["الاتحاد السكندري","المصري"] },
-  "Real Madrid CF": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png", "keywords": ["ريال مدريد", "Real Madrid"] },
-  "FC Barcelona": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/1200px-FC_Barcelona_%28crest%29.svg.png", "keywords": ["برشلونة", "Barcelona"] },
-  "Liverpool FC": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/0/0c/Liverpool_FC.svg/1200px-Liverpool_FC.svg.png", "keywords": ["ليفربول", "Liverpool"] },
-  "Manchester City FC": { "url": "https://static.wikia.nocookie.net/logopedia/images/6/61/Manchester_City_2016.svg", "keywords": ["مانشستر سيتي", "Man City"] },
-  "Zamalek SC": { "url": "https://static.wikia.nocookie.net/logopedia/images/7/7f/180px-ZamalekSC.png", "keywords": ["الزمالك"] },
-  "بورنموث": { "url": "https://upload.wikimedia.org/wikipedia/ar/e/e5/AFC_Bournemouth_%282013%29.svg", "keywords": ["بورنموث"] },
-  "جيرونا": { "url": "https://upload.wikimedia.org/wikipedia/ar/b/b7/Girona_FC_%282022%29.svg", "keywords": ["جيرونا"] },
-  "ريال مدريد": { "url": "https://upload.wikimedia.org/wikipedia/sco/5/56/Real_Madrid_CF.svg", "keywords": ["ريال مدريد"] },
-  "برشلونة": { "url": "https://upload.wikimedia.org/wikipedia/sco/4/47/FC_Barcelona_%28crest%29.svg", "keywords": ["برشلونة"] },
-  "أتليتكو مدريد": { "url": "https://upload.wikimedia.org/wikipedia/ar/f/f4/Atletico_Madrid_2017_logo.svg", "keywords": ["أتليتكو مدريد"] },
-  "فالنسيا": { "url": "https://upload.wikimedia.org/wikipedia/ar/d/d3/Valencia_CF.svg", "keywords": ["فالنسيا"] },
-  "فياريال": { "url": "https://upload.wikimedia.org/wikipedia/ar/7/70/Villarreal_CF_logo.svg", "keywords": ["فياريال"] },
-  "تيرول": { "url": "https://upload.wikimedia.org/wikipedia/fr/5/5b/WSG_Swarovski_Tirol_%28logo%29.svg", "keywords": ["تيرول"] },
-  "فلامينغو": { "url": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Flamengo_braz_logo.svg", "keywords": ["فلامينغو"] },
-  "تشيلسي": { "url": "https://static.wikia.nocookie.net/logopedia/images/e/e2/Chelsea_FC_logo.svg", "keywords": ["تشيلسي"] },
-  "أولمبيك ليون": { "url": "https://upload.wikimedia.org/wikipedia/ar/b/b2/%D8%B4%D8%B9%D8%A7%D8%B1_%D8%A3%D9%88%D9%84%D9%85%D8%A8%D9%8A%D9%83_%D9%84%D9%8A%D9%88%D9%86_2022.svg", "keywords": ["أولمبيك ليون"] },
-  "مانشستر يونايتد": { "url": "https://static.wikia.nocookie.net/logopedia/images/1/1c/Manchester_United_FC_logo.svg", "keywords": ["مانشستر يونايتد"] },
-  "توتنهام": { "url": "https://www.vectorkhazana.com/assets/images/products/Tottenham_Hotspur_Fc.png", "keywords": ["توتنهام هوتسبير"] },
-  "نيوكاسل يونايتد": { "url": "https://static.wikia.nocookie.net/logopedia/images/b/b8/Newcastle_United_FC_logo.svg", "keywords": ["نيوكاسل يونايتد"] },
-  "ليستر سيتي": { "url": "https://static.wikia.nocookie.net/logopedia/images/a/a4/Leicester_City_FC_logo.png", "keywords": ["ليستر سيتي"] },
-  "آرسنال": { "url": "https://static.wikia.nocookie.net/logopedia/images/1/1a/Arsenal_FC_logo.svg", "keywords": ["آرسنال"] },
-  "آستون فيلا": { "url": "https://static.wikia.nocookie.net/logopedia/images/d/d2/Aston_Villa_FC_logo.svg", "keywords": ["أستون فيلا"] },
-  "برينتفورد": { "url": "https://static.wikia.nocookie.net/logopedia/images/c/c9/Brentford_FC_logo.svg", "keywords": ["برينتفورد"] },
-  "كريستال بالاس": { "url": "https://static.wikia.nocookie.net/logopedia/images/0/0c/Crystal_Palace_FC_logo.svg", "keywords": ["كريستال بالاس"] },
-  "ايفرتون": { "url": "https://static.wikia.nocookie.net/logopedia/images/7/7c/Everton_FC_logo.svg", "keywords": ["إيفرتون"] },
-  "فولهام": { "url": "https://static.wikia.nocookie.net/logopedia/images/d/db/Fulham_FC_logo.svg", "keywords": ["فولهام"] },
-  "ليدز يونايتد": { "url": "https://static.wikia.nocookie.net/logopedia/images/5/5e/Leeds_United_AFC_logo.svg", "keywords": ["ليدز يونايتد"] },
-  "نوتنغهام فوريست": { "url": "https://static.wikia.nocookie.com/logopedia/images/b/bb/Nottingham_Forest_FC_logo.svg", "keywords": ["نوتنغهام فوريست"] },
-  "شيفيلد يونايتد": { "url": "https://static.wikia.nocookie.net/logopedia/images/9/9c/Sheffield_United_FC_logo.svg", "keywords": ["شيفيلد يونايتد"] },
-  "ويستهام يونايتد": { "url": "https://static.wikia.nocookie.net/logopedia/images/c/c2/West_Ham_United_FC_logo.svg", "keywords": ["وست هام يونايتد"] },
-  "ولفرهامبتون": { "url": "https://static.wikia.nocookie.net/logopedia/images/d/d5/Wolverhampton_Wanderers_FC_logo.svg", "keywords": ["ولفرهامبتون"] },
-  "أشبيلية": { "url": "https://static.wikia.nocookie.net/logopedia/images/1/1d/Sevilla.png", "keywords": ["أشبيلية"] },
-  "ريال سوسيداد": { "url": "https://static.wikia.nocookie.net/logopedia/images/3/33/Real_Sociedad.png", "keywords": ["ريال سوسييداد"] },
-  "ليفانتي": { "url": "https://static.wikia.nocookie.net/logopedia/images/d/d4/Levante.png", "keywords": ["ليفانتي"] },
-  "بيرنلي": { "url": "https://upload.wikimedia.org/wikipedia/ar/thumb/6/62/Burnley_F.C._Logo.svg/1200px-Burnley_F.C._Logo.svg.png", "keywords": ["بيرنلي"] },
-  "سندرلاند": { "url": "https://upload.wikimedia.org/wikipedia/ar/thumb/a/ad/Sunderland_AFC.svg/1200px-Sunderland_AFC.svg.png", "keywords": ["سندرلاند"] },
-  "ريال مايوركا": { "url": "https://upload.wikimedia.org/wikipedia/ar/thumb/e/e4/RCD_Mallorca.svg/1200px-RCD_Mallorca.svg.png", "keywords": ["ريال مايوركا"] },
-  "سيلتا دي فيغو": { "url": "https://upload.wikimedia.org/wikipedia/ar/thumb/1/12/RC_Celta_de_Vigo_logo.svg/1200px-RC_Celta_de_Vigo_logo.svg.png", "keywords": ["سيلتا دي فيغو"] },
-  "أتلتيكو مدريد": { "url": "https://upload.wikimedia.org/wikipedia/ar/thumb/3/33/%D8%B4%D8%B9%D8%A7%D8%B1_%D8%A3%D8%AA%D9%84%D8%AA%D9%8A%D9%83%D9%88_%D9%85%D8%AF%D8%B1%D9%8A%D8%AF_%282024%29.svg/1200px-%D8%B4%D8%B9%D8%A7%D8%B1_%D8%A3%D8%AA%D9%84%D8%AA%D9%8A%D9%83%D9%88_%D9%85%D8%AF%D8%B1%D9%8A%D8%AF_%282024%29.svg.png", "keywords": ["أتلتيكو مدريد"] },
-  "إلتشي": { "url": "https://static.wikia.nocookie.net/logopedia/images/8/82/Elche.png", "keywords": ["إلتشي"] },
-  "مارسيليا": { "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Olympique_Marseille_logo.svg/1582px-Olympique_Marseille_logo.svg.png", "keywords": ["مارسيليا"] },
-  "باريس": { "url": "https://upload.wikimedia.org/wikipedia/ar/thumb/4/4c/Paris_FC.svg/1200px-Paris_FC.svg.png", "keywords": ["باريس"] },
-  "نيس": { "url": "https://upload.wikimedia.org/wikipedia/ar/thumb/d/d2/OGC_Nice.svg/1200px-OGC_Nice.svg.png", "keywords": ["نيس"] },
-  "روما": { "url": "https://upload.wikimedia.org/wikipedia/ar/thumb/5/52/AS_Roma_logo_%282013%29.svg/556px-AS_Roma_logo_%282013%29.svg.png", "keywords": ["روما"] },
-  "إنتر ميلان": { "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/FC_Internazionale_Milano_2021.svg/1024px-FC_Internazionale_Milano_2021.svg.png", "keywords": ["إنتر ميلان"] },
-  "ميلان": { "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Logo_of_AC_Milan.svg/1306px-Logo_of_AC_Milan.svg.png", "keywords": ["ميلان"] },
-  "كريمونيسي": { "url": "https://static.wikia.nocookie.net/logopedia/images/e/e1/US_Cremonese_logo.svg", "keywords": ["كريمونيسي"] },
-  "نابولي": { "url": "https://static.wikia.nocookie.net/logopedia/images/0/08/Napolistemma.png", "keywords": ["نابولي"] },
-  "ساسولو": { "url": "https://static.wikia.nocookie.net/logopedia/images/e/e1/Sassuolo.png", "keywords": ["ساسولو"] },
-  "جنوى": { "url": "https://static.wikia.nocookie.net/logopedia/images/a/ab/Genoa_CFC_logo_%282022%29.svg", "keywords": ["جنوى"] },
-  "ليتشي": { "url": "https://static.wikia.nocookie.net/logopedia/images/1/14/600px-Leccestemma.png", "keywords": ["ليتشي"] },
-  "الجزائر": { "url": "https://d.top4top.io/p_35227a4i72.png", "keywords": ["الجزائر"] },
-  "السودان": { "url": "https://c.top4top.io/p_3522q73t81.png", "keywords": ["السودان"] },
-  "أوساسونا": { "url": "https://static.wikia.nocookie.net/logopedia/images/1/1e/Osasuna.png", "keywords": ["أوساسونا"] },
-  "نوتينغهام فورست": { "url": "https://static.wikia.nocookie.net/logopedia/images/8/8f/Nottingham_Forest.svg", "keywords": ["نوتينغهام فورست"] },
-  "ريال أوفييدو": { "url": "https://static.wikia.nocookie.net/logopedia/images/8/89/Real_Oviedo.png", "keywords": ["ريال أوفييدو"] },
-  "برايتون أند هوف ألبيون": { "url": "https://upload.wikimedia.org/wikipedia/sco/thumb/f/fd/Brighton_%26_Hove_Albion_logo.svg/1200px-Brighton_%26_Hove_Albion_logo.svg.png", "keywords": ["برايتون أند هوف ألبيون"] },
-  "طلائع الجيش": { "url": "https://k.top4top.io/p_3528ico9q1.png", "keywords": ["طلائع الجيش"] },
-  "البنك الأهلي": { "url": "https://upload.wikimedia.org/wikipedia/ar/thumb/c/ca/NBE_SC.png/250px-NBE_SC.png", "keywords": ["البنك الأهلي", "المصري"] },
-  "الإتحاد السكندري": { "url": "https://upload.wikimedia.org/wikipedia/ar/f/f1/%D8%B4%D8%B9%D8%A7%D8%B1_%D8%A7%D9%84%D8%A7%D8%AA%D8%AD%D8%A7%D8%AF_%D8%A7%D9%84%D8%B3%D9%83%D9%86%D8%AF%D8%B1%D9%8A.png", "keywords": ["الاتحاد السكندري", "المصري"] },
-  "إنبي": { "url": "https://upload.wikimedia.org/wikipedia/ar/b/ba/Enppi.png", "keywords": ["إنبي"] },
-  "المقاولون العرب": { "url": "https://upload.wikimedia.org/wikipedia/ar/c/ca/ArabContrectorsFC.png", "keywords": ["المقاولون العرب"] },
-  "سيراميكا كليوباترا": { "url": "https://b.top4top.io/p_3528xx3ke1.png", "keywords": ["سيراميكا كليوباترا"] },
-  "الرياض": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/3/39/Al-Riyadh_SC.svg/1200px-Al-Riyadh_SC.svg.png", "keywords": ["الرياض","السعودي"] },
-  "الشباب": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/2/2d/Al_Shabab_FC_%28Riyadh%29.svg/1200px-Al_Shabab_FC_%28Riyadh%29.svg.png", "keywords": ["الشباب", "السعودي"] },
-  "الخليج": { "url": "https://upload.wikimedia.org/wikipedia/ar/thumb/3/32/Al-Khaleej_FC_Logo.svg/1200px-Al-Khaleej_FC_Logo.svg.png", "keywords": ["الخليج", "السعودي"] },
-  "التعاون": { "url": "https://upload.wikimedia.org/wikipedia/en/thumb/0/08/Al_Taawoun_FC_Logo.svg/1200px-Al_Taawoun_FC_Logo.svg.png", "keywords": ["التعاون"] },
-  "هامبورغ": { "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Hamburger_SV_logo.svg/1200px-Hamburger_SV_logo.svg.png", "keywords": ["هامبورغ"] },
-  "سانت باولي": { "url": "https://upload.wikimedia.org/wikipedia/ar/thumb/8/8f/FC_St._Pauli_logo_%282018%29.svg/1200px-FC_St._Pauli_logo_%282018%29.svg.png", "keywords": ["سانت باولي"] }
+  "Saudi Pro League": {
+    "الهلال": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Al_Hilal_SFC_Logo.svg/800px-Al_Hilal_SFC_Logo.svg.png",
+    "النصر": "https://upload.wikimedia.org/wikipedia/ar/thumb/a/ac/Al_Nassr_FC_Logo.svg/1200px-Al_Nassr_FC_Logo.svg.png",
+    "الاتحاد": "https://upload.wikimedia.org/wikipedia/en/thumb/8/87/Al-Ittihad_Club_%28Jeddah%29_logo.svg/1200px-Al-Ittihad_Club_%28Jeddah%29_logo.svg.png",
+    "الأهلي السعودي": "https://static.wikia.nocookie.net/logopedia/images/d/d2/Al-ahli-sfc-2008-logo.png",
+    "الشباب": "https://upload.wikimedia.org/wikipedia/en/thumb/2/2d/Al_Shabab_FC_%28Riyadh%29.svg/1200px-Al_Shabab_FC_%28Riyadh%29.svg.png",
+    "التعاون": "https://upload.wikimedia.org/wikipedia/en/thumb/0/08/Al_Taawoun_FC_Logo.svg/1200px-Al_Taawoun_FC_Logo.svg.png",
+    "الرياض": "https://upload.wikimedia.org/wikipedia/en/thumb/3/39/Al-Riyadh_SC.svg/1200px-Al_Riyadh_SC.svg.png",
+    "الخليج": "https://upload.wikimedia.org/wikipedia/ar/thumb/3/32/Al-Khaleej_FC_Logo.svg/1200px-Al-Khaleej_FC_Logo.svg.png",
+    "الفتح": "https://i.top4top.io/p_3530n9yvr1.png",
+    "ضمك": "https://upload.wikimedia.org/wikipedia/ar/thumb/0/0b/Damac_FC.svg/250px-Damac_FC.svg.png",
+    "الفيحاء": "https://e.top4top.io/p_3530yvi7t1.png",
+    "الاتفاق": "https://upload.wikimedia.org/wikipedia/ar/thumb/3/3b/%D8%B4%D8%B9%D8%A7%D8%B1_%D9%86%D8%A7%D8%AF%D9%8A_%D8%A7%D9%84%D8%A7%D8%AA%D9%81%D8%A7%D9%82_2022.svg/1200px-%D8%B4%D8%B9%D8%A7%D8%B1_%D9%86%D8%A7%D8%AF%D9%8A_%D8%A7%D9%84%D8%A7%D8%AA%D9%81%D8%A7%D9%82_2022.svg.png",
+    "الوحدة": "https://upload.wikimedia.org/wikipedia/ar/thumb/5/55/Al_Wehda_FC_Logo.svg/1200px-Al_Wehda_FC_Logo.svg.png",
+    "الحزم": "https://upload.wikimedia.org/wikipedia/ar/9/91/%D8%B4%D8%B9%D8%A7%D8%B1_%D9%86%D8%A7%D8%AF%D9%8A_%D8%A7%D9%84%D8%AD%D8%B2%D9%85.svg",
+    "الأخدود": "https://l.top4top.io/p_35305d2gf1.png",
+    "نيوم": "https://upload.wikimedia.org/wikipedia/ar/2/2b/Neom-Logo.png",
+    "النجمة": "https://a.top4top.io/p_35304ootf1.png",
+    "القادسية": "https://b.top4top.io/p_3530wi2le1.png"
+  },
+  "Egyptian Premier League": {
+    "الأهلي": "https://static.wikia.nocookie.net/logopedia/images/5/5d/Al_Ahly_SC_logo.svg.png",
+    "الزمالك": "https://static.wikia.nocookie.net/logopedia/images/7/7f/180px-ZamalekSC.png",
+    "الاتحاد السكندري": "https://upload.wikimedia.org/wikipedia/ar/f/f1/%D8%B4%D8%B9%D8%A7%D8%B1_%D8%A7%D9%84%D8%A7%D8%AA%D8%AD%D8%A7%D8%AF_%D8%A7%D9%84%D8%B3%D9%83%D9%86%D8%AF%D8%B1%D9%8A.png",
+    "طلائع الجيش": "https://k.top4top.io/p_3528ico9q1.png",
+    "البنك الأهلي": "https://upload.wikimedia.org/wikipedia/ar/thumb/c/ca/NBE_SC.png/250px-NBE_SC.png",
+    "إنبي": "https://upload.wikimedia.org/wikipedia/ar/b/ba/Enppi.png",
+    "المقاولون العرب": "https://upload.wikimedia.org/wikipedia/ar/c/ca/ArabContrectorsFC.png",
+    "سيراميكا كليوباترا": "https://b.top4top.io/p_3528xx3ke1.png",
+    "مودرن سبورت": "https://upload.wikimedia.org/wikipedia/ar/3/31/%D9%86%D8%A7%D8%AF%D9%8A_%D9%85%D9%88%D8%AF%D8%B1%D9%86_%D8%B3%D8%A8%D9%88%D8%B1%D8%AA.png",
+    "بيراميدز": "https://upload.wikimedia.org/wikipedia/ar/3/3f/Pyramids_F.C_%282018%29.png",
+    "المصري البورسعيدي": "https://upload.wikimedia.org/wikipedia/ar/6/61/Masry.png",
+    "سموحة": "https://upload.wikimedia.org/wikipedia/ar/3/3f/Smouha_SC_logo.png",
+    "فاركو": "https://upload.wikimedia.org/wikipedia/ar/thumb/f/ff/Pharco_FC.png/250px-Pharco_FC.png",
+    "بتروجيت": "https://upload.wikimedia.org/wikipedia/ar/archive/3/33/20231126083353%21Petrojet-Club-Logo.png",
+    "زد إف سي": "https://i.top4top.io/p_35296s4551.png",
+    "الإسماعيلي": "https://a.top4top.io/p_3529pzjbk1.png",
+    "غزل المحلة": "https://f.top4top.io/p_35308cux71.png",
+    "حرس الحدود": "https://upload.wikimedia.org/wikipedia/ar/a/a7/Haras_El_Hodoud_logo_2018.png",
+    "الجونة": "https://upload.wikimedia.org/wikipedia/commons/b/b0/El_Gouna_FC_Logo.png",
+    "وادي دجلة": "https://upload.wikimedia.org/wikipedia/ar/0/08/Wadi_Degla_Logo.png",
+    "كهرباء الإسماعيلية": "https://d.top4top.io/p_3530xzuhh1.png"
+  },
+  "La Liga": {
+    "ريال مدريد": "https://upload.wikimedia.org/wikipedia/sco/5/56/Real_Madrid_CF.svg",
+    "برشلونة": "https://upload.wikimedia.org/wikipedia/sco/4/47/FC_Barcelona_%28crest%29.svg",
+    "جيرونا": "https://upload.wikimedia.org/wikipedia/ar/b/b7/Girona_FC_%282022%29.svg",
+    "أتليتكو مدريد": "https://upload.wikimedia.org/wikipedia/ar/f/f4/Atletico_Madrid_2017_logo.svg",
+    "فالنسيا": "https://upload.wikimedia.org/wikipedia/ar/d/d3/Valencia_CF.svg",
+    "فياريال": "https://upload.wikimedia.org/wikipedia/ar/7/70/Villarreal_CF_logo.svg",
+    "أشبيلية": "https://static.wikia.nocookie.net/logopedia/images/1/1d/Sevilla.png",
+    "ريال سوسيداد": "https://static.wikia.nocookie.net/logopedia/images/3/33/Real_Sociedad.png",
+    "ليفانتي": "https://static.wikia.nocookie.net/logopedia/images/d/d4/Levante.png",
+    "ريال مايوركا": "https://upload.wikimedia.org/wikipedia/ar/thumb/e/e4/RCD_Mallorca.svg/1200px-RCD_Mallorca.svg.png",
+    "سيلتا دي فيغو": "https://upload.wikimedia.org/wikipedia/ar/thumb/1/12/RC_Celta_de_Vigo_logo.svg/1200px-RC_Celta_de_Vigo_logo.svg.png",
+    "أتلتيكو مدريد": "https://upload.wikimedia.org/wikipedia/ar/thumb/3/33/%D8%B4%D8%B9%D8%A7%D8%B1_%D8%A3%D8%AA%D9%84%D8%AA%D9%8A%D9%83%D9%88_%D9%85%D8%AF%D8%B1%D9%8A%D8%AF_%282024%29.svg/1200px-%D8%B4%D8%B9%D8%A7%D8%B1_%D8%A3%D8%AA%D9%84%D8%AA%D9%8A%D9%83%D9%88_%D9%85%D8%AF%D8%B1%D9%8A%D8%AF_%282024%29.svg.png",
+    "إلتشي": "https://static.wikia.nocookie.net/logopedia/images/8/82/Elche.png",
+    "أوساسونا": "https://static.wikia.nocookie.net/logopedia/images/1/1e/Osasuna.png",
+    "ريال سوسييداد": "https://static.wikia.nocookie.net/logopedia/images/3/33/Real_Sociedad.png",
+    "ريال بيتيس": "https://static.wikia.nocookie.net/logopedia/images/8/88/Real_Betis_2022.svg",
+    "أتلتيك بيلباو": "https://static.wikia.nocookie.net/logopedia/images/e/ea/Athletic_Club.png",
+    "سيلتا دي فيغو": "https://static.wikia.nocookie.net/logopedia/images/3/3d/Celta_de_Vigo.png",
+    "خيتافي": "https://static.wikia.nocookie.net/logopedia/images/e/ea/Getafe.png",
+    "ديبورتيفو ألافيس": "https://static.wikia.nocookie.net/logopedia/images/2/29/Deportivo_Alaves_2020.png",
+    "ألميريا": "https://upload.wikimedia.org/wikipedia/en/thumb/4/4a/UD_Almeria_logo.svg/887px-UD_Almeria_logo.svg.png",
+    "غرناطة": "https://static.wikia.nocookie.net/logopedia/images/d/d4/Granada_CF_2023.png",
+    "رايو فايكانو": "https://static.wikia.nocookie.net/logopedia/images/f/f8/Rayo_Vallecano.png",
+    "لاس بالماس": "https://upload.wikimedia.org/wikipedia/ar/thumb/c/c2/UD_Las_Palmas.svg/1200px-UD_Las_Palmas.svg.png",
+    "قادش": "https://static.wikia.nocookie.net/logopedia/images/c/c1/Cadizcf2009.png",
+    "إسبانيول": "https://static.wikia.nocookie.net/logopedia/images/9/94/RCD_Espanyol_logo.svg",
+    "ريال أوفييدو": "https://static.wikia.nocookie.net/logopedia/images/8/89/Real_Oviedo.png"
+  },
+  "Premier League": {
+    "ليفربول": "https://upload.wikimedia.org/wikipedia/en/thumb/0/0c/Liverpool_FC.svg/1200px-Liverpool_FC.svg.png",
+    "مانشستر سيتي": "https://static.wikia.nocookie.net/logopedia/images/6/61/Manchester_City_2016.svg",
+    "تشيلسي": "https://static.wikia.nocookie.net/logopedia/images/e/e2/Chelsea_FC_logo.svg",
+    "مانشستر يونايتد": "https://static.wikia.nocookie.net/logopedia/images/1/1c/Manchester_United_FC_logo.svg",
+    "توتنهام هوتسبير": "https://www.vectorkhazana.com/assets/images/products/Tottenham_Hotspur_Fc.png",
+    "نيوكاسل يونايتد": "https://static.wikia.nocookie.net/logopedia/images/b/b8/Newcastle_United_FC_logo.svg",
+    "ليستر سيتي": "https://static.wikia.nocookie.net/logopedia/images/a/a4/Leicester_City_FC_logo.png",
+    "آرسنال": "https://static.wikia.nocookie.net/logopedia/images/1/1a/Arsenal_FC_logo.svg",
+    "آستون فيلا": "https://static.wikia.nocookie.net/logopedia/images/d/d2/Aston_Villa_FC_logo.svg",
+    "برينتفورد": "https://static.wikia.nocookie.net/logopedia/images/c/c9/Brentford_FC_logo.svg",
+    "بورنموث": "https://upload.wikimedia.org/wikipedia/ar/e/e5/AFC_Bournemouth_%282013%29.svg",
+    "كريستال بالاس": "https://static.wikia.nocookie.net/logopedia/images/0/0c/Crystal_Palace_FC_logo.svg",
+    "ايفرتون": "https://static.wikia.nocookie.net/logopedia/images/7/7c/Everton_FC_logo.svg",
+    "فولهام": "https://static.wikia.nocookie.net/logopedia/images/d/db/Fulham_FC_logo.svg",
+    "نوتنغهام فوريست": "https://static.wikia.nocookie.com/logopedia/images/b/bb/Nottingham_Forest_FC_logo.svg",
+    "شيفيلد يونايتد": "https://static.wikia.nocookie.net/logopedia/images/9/9c/Sheffield_United_FC_logo.svg",
+    "ويستهام يونايتد": "https://static.wikia.nocookie.net/logopedia/images/c/c2/West_Ham_United_FC_logo.svg",
+    "ولفرهامبتون": "https://static.wikia.nocookie.net/logopedia/images/d/d5/Wolverhampton_Wanderers_FC_logo.svg",
+    "برايتون أند هوف ألبيون": "https://static.wikia.nocookie.net/logopedia/images/d/dd/Brighton_%26_Hove_Albion_2011.svg",
+    "أستون فيلا": "https://static.wikia.nocookie.net/logopedia/images/d/d6/Aston_Villa_2024.svg",
+    "برايتون": "https://static.wikia.nocookie.net/logopedia/images/d/dd/Brighton_%26_Hove_Albion_2011.svg",
+    "وولفرهامبتون": "https://static.wikia.nocookie.net/logopedia/images/d/d5/Wolverhampton_Wanderers_FC_logo.svg",
+    "نوتينغهام فورست": "https://static.wikia.nocookie.net/logopedia/images/8/8f/Nottingham_Forest.svg",
+    "إيفرتون": "https://static.wikia.nocookie.net/logopedia/images/f/fe/Everton_FC_logo_%282021%29.svg",
+    "ليدز يونايتد": "https://static.wikia.nocookie.net/logopedia/images/5/5e/Leeds_United_AFC_logo.svg",
+    "ساوثهامبتون": "https://static.wikia.nocookie.net/logopedia/images/2/2b/Southampton_FC_logo.svg",
+    "بيرنلي": "https://static.wikia.nocookie.net/logopedia/images/a/a2/Burnley_FC_Logo.svg.png",
+    "سندرلاند": "https://static.wikia.nocookie.net/logopedia/images/8/84/Sunderland_AFC_logo.svg",
+    "وست هام يونايتد": "https://static.wikia.nocookie.net/logopedia/images/c/c2/West_Ham_United_FC_logo.svg"
+  },
+  "Ligue 1": {
+    "مارسيليا": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Olympique_Marseille_logo.svg/1582px-Olympique_Marseille_logo.svg.png",
+    "باريس": "https://upload.wikimedia.org/wikipedia/ar/thumb/4/4c/Paris_FC.svg/1200px-Paris_FC.svg.png",
+    "نيس": "https://upload.wikimedia.org/wikipedia/ar/thumb/d/d2/OGC_Nice.svg/1200px-OGC_Nice.svg.png",
+    "أولمبيك ليون": "https://static.wikia.nocookie.net/logopedia/images/a/a6/Olympique_Lyonnais_2022.svg",
+    "باريس سان جيرمان": "https://static.wikia.nocookie.net/logopedia/images/e/ee/Paris_Saint-Germain_%282013%29.svg",
+    "ليل": "https://static.wikia.nocookie.net/logopedia/images/c/c1/Lille_OSC_2018.png",
+    "ليون": "https://static.wikia.nocookie.net/logopedia/images/a/a6/Olympique_Lyonnais_2022.svg",
+    "لانس": "https://static.wikia.nocookie.net/logopedia/images/c/c0/Racing_club_de_Lens.png/revision/latest?cb=20180821153531",
+    "ستراسبورغ": "https://upload.wikimedia.org/wikipedia/ar/7/7b/Racing_Club_de_Strasbourg_Alsace_logo_2016.png",
+    "تولوز": "https://static.wikia.nocookie.net/logopedia/images/3/35/Toulouse_FC_logo_%28introduced_2018%29.svg",
+    "مرسيليا": "https://static.wikia.nocookie.net/logopedia/images/8/88/Olympique_de_Marseille_logo.svg",
+    "موناكو": "https://static.wikia.nocookie.net/logopedia/images/5/59/AS_Monaco_FC_%28since_2021%29.png",
+    "أنجيه": "https://static.wikia.nocookie.net/logopedia/images/7/76/Angers_SCO_Crest_2021.png",
+    "نانت": "https://static.wikia.nocookie.net/logopedia/images/6/6f/FC_Nantes_2019_2.png",
+    "أوكسير": "https://static.wikia.nocookie.net/logopedia/images/6/63/AJ_Auxerre_logo.svg",
+    "لوريان": "https://static.wikia.nocookie.net/logopedia/images/4/4c/FC_Lorient_logo.svg",
+    "رين": "https://static.wikia.nocookie.net/logopedia/images/3/32/Stade-Rennais.png",
+    "ستاد بريست": "https://static.wikia.nocookie.net/logopedia/images/0/05/Stade_Brestois_29_logo.svg",
+    "ستاد رين": "https://static.wikia.nocookie.net/logopedia/images/3/32/Stade-Rennais.png",
+    "لوهافر": "https://static.wikia.nocookie.net/logopedia/images/f/f2/Havre_AC_logo.svg",
+    "ميتز": "https://static.wikia.nocookie.net/logopedia/images/f/f2/FC_Metz_2021.svg",
+    "تروا": "https://static.wikia.nocookie.net/logopedia/images/f/f2/FC_Metz_2021.svg"
+  },
+  "Serie A": {
+    "روما": "https://upload.wikimedia.org/wikipedia/ar/thumb/5/52/AS_Roma_logo_%282013%29.svg/556px-AS_Roma_logo_%282013%29.svg.png",
+    "إنتر ميلان": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/FC_Internazionale_Milano_2021.svg/1024px-FC_Internazionale_Milano_2021.svg.png",
+    "ميلان": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Logo_of_AC_Milan.svg/1306px-Logo_of_AC_Milan.svg.png",
+    "نابولي": "https://static.wikia.nocookie.net/logopedia/images/0/08/Napolistemma.png",
+    "ساسولو": "https://static.wikia.nocookie.net/logopedia/images/e/e1/Sassuolo.png",
+    "جنوى": "https://static.wikia.nocookie.net/logopedia/images/a/ab/Genoa_CFC_logo_%282022%29.svg",
+    "ليتشي": "https://static.wikia.nocookie.net/logopedia/images/1/14/600px-Leccestemma.png",
+    "كومو": "https://static.wikia.nocookie.net/logopedia/images/6/64/Como_1907_logo_%282019%29.svg",
+    "لاتسيو": "https://upload.wikimedia.org/wikipedia/en/thumb/c/ce/S.S._Lazio_badge.svg/1200px-S.S._Lazio_badge.svg.png",
+    "أتالانتا": "https://upload.wikimedia.org/wikipedia/en/6/66/AtalantaBC.svg",
+    "يوفنتوس": "https://i.top4top.io/p_3530mkhea1.png",
+    "فيورنتينا": "https://static.wikia.nocookie.net/logopedia/images/d/d4/ACF_Fiorentina_2022.svg",
+    "بولونيا": "https://static.wikia.nocookie.net/logopedia/images/7/7c/Logobologna2018.png",
+    "تورينو": "https://static.wikia.nocookie.net/logopedia/images/0/04/Torino_FC_logo.svg",
+    "أودينيزي": "https://static.wikia.nocookie.net/logopedia/images/8/86/Udinese%403.-other-logo.png",
+    "هيلاس فيرونا": "https://static.wikia.nocookie.net/logopedia/images/0/02/Logo_Hellas_Verona_FC_2020.png",
+    "كالياري": "https://static.wikia.nocookie.net/logopedia/images/a/a2/Cagliari_Calcio_logo_%28since_2015%29.svg",
+    "بيزا": "https://static.wikia.nocookie.net/logopedia/images/2/25/Pisa_Sporting_Club_logo.svg",
+    "بارما": "https://static.wikia.nocookie.net/logopedia/images/a/a0/Parma_Calcio_logo.png",
+    "كريمونيسي": "https://static.wikia.nocookie.net/logopedia/images/e/e1/US_Cremonese_logo.svg"
+  },
+  "International Friendly": {
+    "الجزائر": "https://d.top4top.io/p_35227a4i72.png",
+    "السودان": "https://c.top4top.io/p_3522q73t81.png"
+  },
+  "Bundesliga": {
+    "هامبورغ": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Hamburger_SV_logo.svg/1200px-Hamburger_SV_logo.svg.png",
+    "سانت باولي": "https://upload.wikimedia.org/wikipedia/ar/thumb/8/8f/FC_St._Pauli_logo_%282018%29.svg/1200px-FC_St._Pauli_logo_%282018%29.svg.png"
+  }
 };
+    
+    // تم استبدال matchLinks بـ leagueLinks لربط السيرفرات بالبطولات
+    const leagueLinks = {
+        "Saudi Pro League": [
+            { "name": "ثمانية", "url": "go:8", "serverType": "internal" }
+        ],
+        "Premier League": [
+            { "name": "BEIN SPORTS", "url": "go:BEIN", "serverType": "internal" }
+        ],
+        "La Liga": [
+            { "name": "BEIN SPORTS", "url": "go:BEIN", "serverType": "internal" }
+        ],
+        "Egyptian Premier League": [
+            { "name": "ON SPORT", "url": "go:ARAB", "serverType": "internal" }
+        ],
+        "Serie A": [
+            { "name": "STARZPLAY SPORT", "url": "go:AD SPORT", "serverType": "internal" }
+        ],
+        "International Friendly": [
+            { "name": "BEIN SPORTS", "url": "go:BEIN", "serverType": "internal" }
+        ],
+        "Ligue 1": [
+            { "name": "BEIN SPORTS", "url": "go:BEIN", "serverType": "internal" }
+        ],
+        // يمكنك إضافة المزيد من البطولات والسيرفرات هنا
+    };
 
-    const matchLinks = [
-    {
-        "name": "ثمانية",
-        "url": "go:8",
-        "keywords": [
-            "النصر",
-            "الهلال",
-            "الاتحاد",
-            "الأهلي"
-        ],
-        "serverType": "internal"
-    },
-    {
-        "name": "STARZPLAY SPORT",
-        "url": "go:AD SPORT",
-        "keywords": [
-            "ميلان",
-            "إنتر ميلان",
-            "روما"
-        ],
-        "serverType": "internal"
-    },
-    {
-        "name": "ثمانية",
-        "url": "go:8",
-        "keywords": [
-            "الهلال",
-            "الشباب"
-        ],
-        "serverType": "internal"
-    },
-    {
-        "name": "ON SPORT",
-        "url": "go:ARAB",
-        "keywords": [
-            "الزمالك",
-            "بيراميدز",
-            "إنبي",
-            "المصري البورسعيدي",
-            "الاتحاد الإسكندري",
-            "المقاولون العرب",
-            "طلائع الجيش",
-            "سيراميكا",
-            "أسوان"
-        ],
-        "serverType": "internal"
-    },
-    {
-        "name": "BEIN SPORTS",
-        "url": "go:BEIN",
-        "keywords": [
-            "برشلونة",
-            "ريال مدريد",
-            "أتلتيكو مدريد",
-            "إشبيلية",
-            "ريال سوسيداد",
-            "فياريال",
-            "أتليتيك بيلباو",
-            "ريال بيتيس",
-            "أوساسونا",
-            "سيلتا فيغو",
-            "تشيلسي",
-            "ليفربول",
-            "مانشستر سيتي",
-            "مانشستر يونايتد",
-            "آرسنال",
-            "نيوكاسل يونايتد",
-            "فولهام",
-            "توتنهام هوتسبير",
-            "إيفرتون",
-            "أستون فيلا",
-            "باريس سان جيرمان",
-            "ليل",
-            "مارسيليا",
-            "ليون",
-            "موناكو",
-            "نيس",
-            "ستراسبورغ",
-            "نانت",
-            "رين",
-            "مونبلييه",
-            "مصر",
-            "السنغال",
-            "مصر",
-            "المغرب",
-            "الجزائر",
-            "نيجيريا",
-            "الكاميرون",
-            "غانا",
-            "تونس",
-            "مالي",
-            "كوت ديفوار"
-        ],
-        "serverType": "internal"
-    }
-];
-
+    const leagues = {
+  "Egyptian Premier League": [
+    "الأهلي",
+    "الزمالك",
+    "بيراميدز",
+    "مودرن سبورت",
+    "إنبي",
+    "المصري البورسعيدي",
+    "الاتحاد السكندري",
+    "المقاولون العرب",
+    "سيراميكا كليوباترا",
+    "طلائع الجيش",
+    "سموحة",
+    "فاركو",
+    "البنك الأهلي",
+    "بتروجيت",
+    "الإسماعيلي",
+    "زد إف سي",
+    "غزل المحلة",
+    "حرس الحدود",
+    "الجونة",
+    "وادي دجلة",
+    "كهرباء الإسماعيلية"
+  ],
+  "Saudi Pro League": [
+    "الهلال",
+    "النصر",
+    "الاتحاد",
+    "الأهلي السعودي",
+    "الشباب",
+    "التعاون",
+    "الفتح",
+    "ضمك",
+    "الفيحاء",
+    "الخليج",
+    "الاتفاق",
+    "الوحدة",
+    "الحزم",
+    "الأخدود",
+    "الرياض",
+    "الأخدود",
+    "الحزم",
+    "نيوم",
+    "النجمة",
+    "القادسية"
+  ],
+  "La Liga": [
+    "ريال مدريد",
+    "برشلونة",
+    "جيرونا",
+    "أتلتيكو مدريد",
+    "أشبيلية",
+    "ريال سوسييداد",
+    "ريال بيتيس",
+    "فياريال",
+    "أتلتيك بيلباو",
+    "فالنسيا",
+    "أوساسونا",
+    "ريال مايوركا",
+    "سيلتا دي فيغو",
+    "قادش",
+    "لاس بالماس",
+    "غرناطة",
+    "ديبورتيفو ألافيس",
+    "خيتافي",
+    "ألميريا",
+    "رايو فايكانو",
+    "إسبانيول",
+    "إلتشي",
+    "ريال أوفييدو",
+    "ليفانتي"
+  ],
+  "Premier League": [
+    "مانشستر سيتي",
+    "آرسنال",
+    "مانشستر يونايتد",
+    "نيوكاسل يونايتد",
+    "ليفربول",
+    "توتنهام هوتسبير",
+    "أستون فيلا",
+    "برايتون أند هوف ألبيون",
+    "برينتفورد",
+    "فولهام",
+    "كريستال بالاس",
+    "تشيلسي",
+    "وولفرهامبتون",
+    "وست هام يونايتد",
+    "بورنموث",
+    "نوتينغهام فورست",
+    "إيفرتون",
+    "ليدز يونايتد",
+    "ليستر سيتي",
+    "ساوثهامبتون",
+    "بيرنلي",
+    "سندرلاند"
+  ],
+  "Serie A": [
+    "نابولي",
+    "لاتسيو",
+    "إنتر ميلان",
+    "ميلان",
+    "أتالانتا",
+    "روما",
+    "يوفنتوس",
+    "فيورنتينا",
+    "بولونيا",
+    "تورينو",
+    "بارما",
+    "ساسولو",
+    "أودينيزي",
+    "هيلاس فيرونا",
+    "جنوى",
+    "كالياري",
+    "ليتشي",
+    "بيزا",
+    "كريمونيسي",
+    "كومو"
+  ],
+  "Ligue 1": [
+    "باريس سان جيرمان",
+    "ستراسبورغ",
+    "مرسيليا",
+    "لانس",
+    "ليل",
+    "ستاد رين",
+    "أولمبيك ليون",
+    "موناكو",
+    "نيس",
+    "ميتز",
+    "لوريان",
+    "أوكسير",
+    "تولوز",
+    "ستراسبورغ",
+    "نانت",
+    "ستاد بريست",
+    "لوهافر",
+    "أوكسير",
+    "تروا",
+    "أنجيه"
+  ],
+  "Qatar Stars League": [
+    "السد",
+    "الدحيل",
+    "العربي",
+    "الريان",
+    "الغرافة",
+    "الأهلي القطري",
+    "أم صلال",
+    "المرخية",
+    "الخور",
+    "الشمال",
+    "قطر",
+    "الوكره"
+  ],
+  "UAE Pro League": [
+    "شباب الأهلي",
+    "العين",
+    "الوصل",
+    "الوحدة",
+    "الشارقة",
+    "عجمان",
+    "اتحاد كلباء",
+    "الجزيرة",
+    "النصر",
+    "بني ياس",
+    "خورفكان",
+    "الإمارات",
+    "حتا",
+    "البطائح"
+  ]
+};
+    
     const matchesContainer = document.getElementById('matches-container');
     const loadingSpinner = document.getElementById('loading');
     const progressBarContainer = document.getElementById('progress-bar-container');
@@ -883,14 +1075,10 @@
     const externalPlayerModalCloseBtn = document.getElementById('externalPlayerModalCloseBtn');
     const watchExternalBtn = document.getElementById('watchExternalBtn');
 
-    function renderLiveServers(homeTeam, awayTeam) {
+    // تم تعديل الوظيفة لاستقبال اسم البطولة
+    function renderLiveServers(leagueName) {
         liveServerList.innerHTML = '';
-        const matchingServerLinks = matchLinks.filter(linkData => {
-            const allKeywords = [homeTeam, awayTeam];
-            return linkData.keywords.some(keyword => {
-                return allKeywords.some(teamName => teamName.includes(keyword) || keyword.includes(teamName));
-            });
-        });
+        const matchingServerLinks = leagueLinks[leagueName] || [];
 
         if (matchingServerLinks.length === 0) {
             liveServerList.innerHTML = '<p style="text-align: center;">لا يوجد سيرفرات متاحة لهذه المباراة حاليًا.</p>';
@@ -1025,7 +1213,6 @@
         return teamName;
     }
     
-    // New function to update a single timer
     function updateSingleMatchTimer(matchRow) {
         const countdownCircle = matchRow.querySelector('.countdown-circle');
         const timeText = countdownCircle?.querySelector('.time-text');
@@ -1108,6 +1295,21 @@
             }
         }, 1000);
     }
+    
+    function findLeagueName(homeTeam, awayTeam) {
+        const teams = [homeTeam.trim(), awayTeam.trim()];
+
+        for (const leagueName in leagues) {
+            const leagueTeams = leagues[leagueName];
+            const isHomeTeamInLeague = leagueTeams.includes(teams[0]);
+            const isAwayTeamInLeague = leagueTeams.includes(teams[1]);
+
+            if (isHomeTeamInLeague && isAwayTeamInLeague) {
+                return leagueName;
+            }
+        }
+        return null;
+    }
 
     function renderMatches(matches) {
         matchesContainer.innerHTML = '';
@@ -1153,19 +1355,20 @@
                         penaltiesScore = scoreParts[1].replace(')', '').trim();
                     }
 
+                    const leagueName = findLeagueName(homeTeam, awayTeam);
+
                     let homeLogo = 'https://via.placeholder.com/60';
                     let awayLogo = 'https://via.placeholder.com/60';
                     let isHomeLogoExactMatch = false;
                     let isAwayLogoExactMatch = false;
 
-                    for (const key in teamLogos) {
-                        const logoData = teamLogos[key];
-                        if (logoData.keywords.some(kw => homeTeam.includes(kw))) {
-                            homeLogo = logoData.url;
+                    if (leagueName && teamLogos[leagueName]) {
+                        if (teamLogos[leagueName][homeTeam]) {
+                            homeLogo = teamLogos[leagueName][homeTeam];
                             isHomeLogoExactMatch = true;
                         }
-                        if (logoData.keywords.some(kw => awayTeam.includes(kw))) {
-                            awayLogo = logoData.url;
+                        if (teamLogos[leagueName][awayTeam]) {
+                            awayLogo = teamLogos[leagueName][awayTeam];
                             isAwayLogoExactMatch = true;
                         }
                     }
@@ -1195,7 +1398,7 @@
                     
                     const timeUntilMatchInSeconds = matchDateObject ? matchDateObject.diff(now, 'seconds').seconds : 0;
                     const isNotStartedYet = !isFinished && !isLive && (timeUntilMatchInSeconds > 1800);
-
+                    
                     const matchRow = document.createElement('div');
                     matchRow.className = 'match-row';
                     matchRow.style.opacity = '0';
@@ -1203,6 +1406,7 @@
                     matchRow.tabIndex = 0;
 
                     matchRow.innerHTML = `
+                        ${leagueName ? `<div class="league-name">${leagueName}</div>` : ''}
                         <div class="teams-time">
                           <div class="team" id="home-team-container-${index}"></div>
                           <div class="match-time" id="match-time-container-${index}"></div>
@@ -1284,9 +1488,10 @@
                     if (isFinished) {
                         watchBtnContainer.appendChild(finishedBtn);
                     } else if (isLive || timeUntilMatchInSeconds <= 1800 && timeUntilMatchInSeconds > 0) {
-                         watchBtn.addEventListener('click', (event) => {
+                        // تم تعديل استدعاء الدالة هنا
+                        watchBtn.addEventListener('click', (event) => {
                             event.preventDefault();
-                            renderLiveServers(homeTeam, awayTeam);
+                            renderLiveServers(leagueName);
                             liveServersModal.style.display = 'block';
                         });
                         watchBtnContainer.appendChild(watchBtn);
@@ -1303,7 +1508,6 @@
                     index++;
                     setTimeout(displayNextMatch, 500); 
                 } else {
-                    // Once all matches are rendered, focus on the first match row
                     const firstMatchRow = document.querySelector('.match-row');
                     if (firstMatchRow) {
                         firstMatchRow.focus();
@@ -1334,7 +1538,6 @@
 
     liveServersModalCloseBtn.addEventListener('click', () => {
         liveServersModal.style.display = 'none';
-        // Return focus to the element that opened the modal
         const activeElement = document.activeElement;
         if (activeElement && activeElement.classList.contains('watch-btn')) {
             activeElement.focus();
@@ -1343,7 +1546,6 @@
     
     externalPlayerModalCloseBtn.addEventListener('click', () => {
         externalPlayerModal.style.display = 'none';
-        // Return focus to the previous modal
         liveServersModal.style.display = 'block';
         setTimeout(() => {
             const firstServerBtn = liveServersModal.querySelector('.live-server-btn');
@@ -1362,11 +1564,9 @@
         }
     });
 
-    // Add keyboard navigation logic
     document.addEventListener('keydown', (event) => {
         const activeElement = document.activeElement;
 
-        // Don't interfere with search input
         if (activeElement === searchInput) {
             return;
         }
