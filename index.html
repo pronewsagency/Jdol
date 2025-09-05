@@ -908,6 +908,25 @@
     "بيرو": "https://static.vecteezy.com/system/resources/previews/015/272/122/non_2x/peru-3d-rounded-flag-with-transparent-background-free-png.png",
     "كولومبيا": "https://vectorflags.s3.amazonaws.com/flags/co-circle-01.png",
     "بوليفيا": "https://vectorflags.s3.amazonaws.com/flags/bo-sphere-01.png"
+  },
+  "Euro championships": {
+    "فرنسا": "https://cdn.countryflags.com/thumbs/france/flag-round-250.png",
+    "إيطاليا": "https://cdn.countryflags.com/thumbs/italy/flag-round-250.png",
+    "إستونيا": "https://vectorflags.s3.amazonaws.com/flags/ee-circle-01.png",
+    "أوكرانيا": "https://cdn-icons-png.flaticon.com/512/197/197572.png"
+  },
+  "African championships": {
+    "إثيوبيا": "https://vectorflags.s3.amazonaws.com/flags/et-circle-01.png",
+    "مصر": "https://cdn.countryflags.com/thumbs/egypt/flag-round-250.png",
+    "السودان": "https://cdn.countryflags.com/thumbs/sudan/flag-round-250.png",
+    "السنغال": "https://static.vecteezy.com/system/resources/previews/011/571/425/non_2x/circle-flag-of-senegal-free-png.png"
+  },
+  "Asian championships": {
+    "العراق": "https://cdn.countryflags.com/thumbs/iraq/flag-round-500.png",
+    "تايلند": "https://cdn.countryflags.com/thumbs/thailand/flag-round-250.png",
+    "عمان": "https://cdn.countryflags.com/thumbs/oman/flag-round-250.png",
+    "كمبوديا": "https://vectorflags.s3.amazonaws.com/flags/kh-circle-01.png",
+    "تركمانستان": "https://cdn.countryflags.com/thumbs/turkmenistan/flag-round-250.png"
   }
 };
     
@@ -932,6 +951,21 @@
             { "name": "BEIN SPORTS", "url": "go:BEIN", "serverType": "internal" }
         ],
         "Ligue 1": [
+            { "name": "BEIN SPORTS", "url": "go:BEIN", "serverType": "internal" }
+        ],
+        "Cupa": [
+            { "name": "SSC", "url": "go:SSC", "serverType": "internal" }
+        ],
+        "Gulf cup": [
+            { "name": "ALKASS", "url": "go:ARAB", "serverType": "internal" }
+        ],
+        "Asian championships": [
+            { "name": "ALRABIAA", "url": "go:RABIAA", "serverType": "internal" }
+        ],
+        "African championships": [
+            { "name": "BEIN SPORTS", "url": "go:BEIN", "serverType": "internal" }
+        ],
+        "Euro championships": [
             { "name": "BEIN SPORTS", "url": "go:BEIN", "serverType": "internal" }
         ],
         // يمكنك إضافة المزيد من البطولات والسيرفرات هنا
@@ -1129,6 +1163,25 @@
     "بيرو",
     "كولومبيا",
     "بوليفيا"
+  ],
+  "Euro championships": [
+    "فرنسا",
+    "إيطاليا",
+    "إستونيا",
+    "أوكرانيا"
+  ],
+  "African championships": [
+    "إثيوبيا",
+    "مصر",
+    "السودان",
+    "السنغال"
+  ],
+  "Asian championships": [
+    "العراق",
+    "تايلند",
+    "عمان",
+    "كمبوديا",
+    "تركمانستان"
   ]
 };
     
@@ -1221,8 +1274,28 @@
                 const html = data.contents;
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(html, 'text/html');
-                const matches = doc.querySelectorAll('li.single_match');
+                const allMatchesFromSource = doc.querySelectorAll('li.single_match');
                 
+                // ** فلترة المباريات بناءً على الدوريات والمنتخبات المحددة **
+                const desiredLeagues = ["Premier League", "La Liga", "Egyptian Premier League", "Saudi Pro League", "Ligue 1", "Serie A", "Qatar Stars League", "UAE Pro League"];
+                const desiredTeams = ["العراق", "مصر", "السعودية", "الجزائر", "البرازيل", "الأرجنتين", "عمان", "اليمن"];
+
+                const filteredMatches = [];
+                allMatchesFromSource.forEach(match => {
+                    const homeTeam = match.querySelector('.team.hometeam .the_team')?.innerText.trim() || '';
+                    const awayTeam = match.querySelector('.team.awayteam .the_team')?.innerText.trim() || '';
+                    const leagueName = findLeagueName(homeTeam, awayTeam);
+
+                    const isDesiredLeague = desiredLeagues.includes(leagueName);
+                    const isDesiredTeam = desiredTeams.includes(homeTeam) || desiredTeams.includes(awayTeam);
+                    
+                    if (isDesiredLeague || isDesiredTeam) {
+                        filteredMatches.push(match);
+                    }
+                });
+
+                allMatches = filteredMatches;
+
                 clearInterval(progressInterval);
                 progressBar.style.width = '100%';
                 
@@ -1231,14 +1304,10 @@
                     progressBarContainer.style.display = 'none';
                 }, 500);
                 
-                if (matches.length === 0) {
-                     showErrorScreen();
+                if (allMatches.length === 0) {
+                     showErrorScreen("لم يتم العثور على مباريات اليوم من الدوريات والمنتخبات التي اخترتها.");
                      return;
                 }
-
-                allMatches = [];
-                matches.forEach(match => allMatches.push(match));
-
                 renderMatches(allMatches);
             })
             .catch(err => {
@@ -1246,14 +1315,14 @@
                 clearInterval(progressInterval);
                 loadingSpinner.style.display = 'none';
                 progressBarContainer.style.display = 'none';
-                showErrorScreen();
+                showErrorScreen("فشل في تحميل المباريات. يرجى التحقق من اتصالك بالإنترنت.");
             });
     }
 
-    function showErrorScreen() {
+    function showErrorScreen(message) {
         matchesContainer.innerHTML = `
             <div class="error-message">
-                <p>الإنترنت ضعيف</p>
+                <p>${message}</p>
                 <button class="retry-btn" id="retry-btn" tabindex="0">أعد المحاولة</button>
             </div>
         `;
