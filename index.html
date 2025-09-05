@@ -1471,7 +1471,7 @@
         matches.forEach(match => {
             const homeTeam = match.querySelector('.team.hometeam .the_team')?.innerText.trim() || 'فريق';
             const awayTeam = match.querySelector('.team.awayteam .the_team')?.innerText.trim() || 'فريق';
-            const importantTeams = ["العراق","الهلال", "النصر", "ريال مدريد", "برشلونة", "ليفربول", "مانشستر سيتي", "الأهلي السعودي", "الأهلي المصري","الأهلي القطري","السد","الغرافة","الزمالك","مصر","آرسنال"];
+            const importantTeams = ["إسبانيا","البرتغال","إنجلترا","إيطاليا","فرنسا","العراق","الهلال", "النصر", "ريال مدريد", "برشلونة", "ليفربول", "مانشستر سيتي", "الأهلي السعودي", "الأهلي المصري","الأهلي القطري","السد","الغرافة","الزمالك","مصر","آرسنال"];
             const isImportant = importantTeams.some(teamName => homeTeam.includes(teamName) || awayTeam.includes(teamName));
             if (isImportant) {
                 importantMatches.push(match);
