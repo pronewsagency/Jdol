@@ -7,7 +7,7 @@
       "servers": [
         {
           "type": "page",
-          "url": "https://www.elahmad.com/tv/watchtv.php?id=alsumaria",
+          "url": "http://het000.4rouwanda-shop.store/live/918454578001/index.m3u8",
           "headers": {
             "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36",
             "referer": "https://www.elahmad.com/"
