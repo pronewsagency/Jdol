@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>لوحة تحكم مولد الأكواد</title>
+    <style>
+        :root { --primary: #FCA311; --bg: #14213D; --card: #ffffff; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg); color: #333; padding: 20px; }
+        .editor-container { max-width: 900px; margin: auto; background: var(--card); padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        h2 { text-align: center; color: var(--bg); }
+        .input-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; color: #555; }
+        input, textarea { width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 14px; }
+        textarea { height: 80px; resize: vertical; }
+        .btn-generate { background: var(--primary); color: #fff; border: none; padding: 15px 30px; border-radius: 8px; cursor: pointer; width: 100%; font-size: 18px; font-weight: bold; transition: 0.3s; }
+        .btn-generate:hover { background: #e59400; }
+        #output-area { margin-top: 25px; display: none; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 8px; overflow-x: auto; border: 1px solid #ccc; position: relative; }
+        .copy-btn { position: absolute; top: 10px; left: 10px; background: #333; color: #fff; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<div class="editor-container">
+    <h2>🛠️ مولد كود Deep Link للمشغل</h2>
+    <p style="text-align: center; font-size: 13px; color: #777;">املأ البيانات أدناه لتحديث صفحة التوجيه تلقائياً</p>
+    <hr>
+
+    <div class="input-group">
+        <label>1. الرابط الافتراضي (الذي يفتح فوراً):</label>
+        <input type="text" id="mainUrl" placeholder="https://example.com/live.m3u8">
+    </div>
+
+    <div class="input-group">
+        <label>2. أسماء القنوات (افصل بينها بـ |):</label>
+        <textarea id="chNames" placeholder="beIN 1|beIN 2|OSN..."></textarea>
+    </div>
+
+    <div class="input-group">
+        <label>3. روابط القنوات (افصل بينها بـ |):</label>
+        <textarea id="chUrls" placeholder="url1|url2|url3..."></textarea>
+    </div>
+
+    <div class="input-group">
+        <label>4. روابط الشعارات (افصل بينها بـ |):</label>
+        <textarea id="chLogos" placeholder="logo1|logo2|logo3..."></textarea>
+    </div>
+
+    <button class="btn-generate" onclick="generateCode()">توليد الكود النهائي ✨</button>
+
+    <div id="output-area">
+        <label>انسخ الكود التالي واستخدمه:</label>
+        <pre><button class="copy-btn" onclick="copyCode()">نسخ الكود</button><code id="generatedCode"></code></pre>
+    </div>
+</div>
+
+<script>
+    function generateCode() {
+        const mainUrl = document.getElementById('mainUrl').value;
+        const names = document.getElementById('chNames').value;
+        const urls = document.getElementById('chUrls').value;
+        const logos = document.getElementById('chLogos').value;
+
+        const template = `<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوابة المشغل</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg: #0D1B2A; --accent: #FCA311; }
+        body { background: var(--bg); color: #fff; font-family: 'Cairo', sans-serif; margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; text-align: center; }
+        .play-btn { width: 85px; height: 85px; background: #fff; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; transition: 0.3s; box-shadow: 0 0 20px rgba(252, 163, 17, 0.4); }
+        .play-btn:hover { transform: scale(1.1); background: var(--accent); }
+        .triangle { width: 0; height: 0; border-top: 18px solid transparent; border-bottom: 18px solid transparent; border-left: 30px solid var(--bg); margin-left: 6px; }
+        .loader { font-size: 20px; animation: pulse 1.5s infinite; }
+        .hidden { display: none; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div id="status" class="loader">جاري فتح التطبيق...</div>
+    <div id="fallback" class="hidden">
+        <div class="play-btn" onclick="launchApp()">
+            <div class="triangle"></div>
+        </div>
+        <p style="margin-top: 15px;">اضغط هنا للتشغيل</p>
+    </div>
+</div>
+
+<script>
+    function launchApp() {
+        const mainVideoUrl = "${mainUrl}";
+        const chNames = "${names}";
+        const chUrls = "${urls}";
+        const chLogos = "${logos}";
+
+        const params = new URLSearchParams();
+        params.append("url", mainVideoUrl);
+        params.append("channel_names", chNames);
+        params.append("channel_urls", chUrls);
+        params.append("channel_logos", chLogos);
+
+        window.location.href = "myapp://player?" + params.toString();
+    }
+    window.onload = function() {
+        launchApp();
+        setTimeout(() => {
+            document.getElementById("status").textContent = "لم يفتح التطبيق؟";
+            document.getElementById("fallback").classList.remove("hidden");
+        }, 2500);
+    };
+<\/script>
+</body>
+</html>`;
+
+        document.getElementById('generatedCode').textContent = template;
+        document.getElementById('output-area').style.display = 'block';
+    }
+
+    function copyCode() {
+        const code = document.getElementById('generatedCode').textContent;
+        navigator.clipboard.writeText(code);
+        alert('تم نسخ الكود بنجاح!');
+    }
+</script>
+
+</body>
+</html>
