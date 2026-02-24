@@ -3,64 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PRO Player Elite - Static Fade</title>
+    <title>AKO Player Elite Final</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.5/shaka-player.compiled.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
         :root { --glass: rgba(255, 255, 255, 0.08); --border: rgba(255, 255, 255, 0.12); }
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; overflow: hidden; font-family: sans-serif; }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; overflow: hidden; font-family: sans-serif; user-select: none; }
         
         .player-wrapper { position: relative; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center; background: #000; cursor: pointer; }
-        video { width: 100%; height: 100%; object-fit: fill; pointer-events: none; }
+        /* ملء الشاشة كوضع افتراضي */
+        video { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
 
-        /* السبنر */
         #loader { position: absolute; z-index: 100; display: flex; align-items: center; justify-content: center; pointer-events: none; }
         .spinner { width: 45px; height: 45px; border: 3px solid rgba(255, 255, 255, 0.1); border-top: 3px solid #fff; border-radius: 50%; animation: spin 0.8s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        /* تأثير التلاشي الثابت في مكانه */
-        .ui-element { 
-            transition: opacity 0.5s ease-in-out, visibility 0.5s; 
-            opacity: 1; visibility: visible; 
-        }
-        .hide-ui .ui-element { 
-            opacity: 0; visibility: hidden; 
-            /* أزلنا transform هنا لضمان عدم تحرك الأزرار يميناً أو يساراً */
-        }
+        .ui-element { transition: opacity 0.5s ease-in-out, visibility 0.5s; opacity: 1; visibility: visible; }
+        .hide-ui .ui-element { opacity: 0; visibility: hidden; }
 
-        /* التحكم في المنتصف - ثابت دائماً */
-        .center-ui { 
-            position: absolute; top: 50%; left: 50%; 
-            transform: translate(-50%, -50%) !important; /* تثبيت دائم في السنتر */
-            display: flex; align-items: center; gap: 30px; z-index: 50; 
-        }
-        .btn-modern { background: var(--glass); border: 1px solid var(--border); border-radius: 50%; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(10px); transition: 0.2s; }
+        .center-ui { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) !important; display: flex; align-items: center; gap: 30px; z-index: 50; }
+        .btn-modern { background: var(--glass); border: 1px solid var(--border); border-radius: 50%; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(10px); transition: transform 0.2s; outline: none; }
         .btn-side { width: 40px; height: 40px; font-size: 0.85rem; }
         .btn-main { width: 60px; height: 60px; font-size: 1.5rem; background: rgba(255,255,255,0.12); }
-        .btn-modern:hover { transform: scale(1.1); }
 
-        /* الشريط السفلي */
+        /* ستايل التركيز للريموت دون تخريب الشكل */
+        .btn-modern:focus, .right-tools i:focus { border-color: #fff; background: rgba(255,255,255,0.2); transform: scale(1.1); }
+
         .bottom-ui { position: absolute; bottom: 0; width: 100%; padding: 15px 25px 20px 25px; background: linear-gradient(transparent, rgba(0,0,0,0.85)); z-index: 40; box-sizing: border-box; }
         .progress-box { width: 100%; height: 2px; background: rgba(255,255,255,0.15); margin-bottom: 15px; }
-        .progress-fill { width: 0%; height: 100%; background: #fff; }
+        .progress-fill { width: 0%; height: 100%; background: #fff; transition: width 0.1s linear; }
 
         .controls-row { display: flex; justify-content: space-between; align-items: center; color: #fff; }
         .live-capsule { background: var(--glass); padding: 5px 15px; border-radius: 20px 20px 20px 6px; border: 1px solid var(--border); backdrop-filter: blur(10px); }
-        .status-txt { font-size: 0.55rem; font-weight: 800; opacity: 0.5; }
         .brand { font-size: 1rem; font-weight: 700; display: flex; align-items: center; gap: 6px; }
         .dot { width: 6px; height: 6px; background: #ff3b30; border-radius: 50%; box-shadow: 0 0 6px #ff3b30; }
 
         .right-tools { display: flex; gap: 18px; font-size: 1.1rem; align-items: center; }
-        .right-tools i { cursor: pointer; opacity: 0.7; transition: 0.2s; }
+        .right-tools i { cursor: pointer; opacity: 0.7; transition: 0.2s; padding: 5px; outline: none; border-radius: 4px; }
 
         .popup-menu {
             position: absolute; bottom: 75px; left: 25px; background: rgba(15,15,15,0.95);
             border-radius: 10px; padding: 6px; display: none; flex-direction: column; min-width: 130px; 
             z-index: 100; backdrop-filter: blur(15px); border: 1px solid var(--border);
         }
-        .popup-menu div { padding: 8px 12px; cursor: pointer; color: #bbb; font-size: 0.8rem; border-radius: 6px; text-align: right; }
-        .popup-menu div:hover { background: rgba(255,255,255,0.1); color: #fff; }
+        .popup-menu div { padding: 8px 12px; cursor: pointer; color: #bbb; font-size: 0.8rem; border-radius: 6px; text-align: right; outline: none; }
+        .popup-menu div:hover, .popup-menu div:focus { background: rgba(255,255,255,0.1); color: #fff; }
     </style>
 </head>
 <body>
@@ -70,26 +58,25 @@
     <video id="videoElement" autoplay muted playsinline></video>
 
     <div class="center-ui ui-element">
-        <button class="btn-modern btn-side" id="rewindBtn"><i class="fas fa-undo"></i></button>
-        <button class="btn-modern btn-main" id="playBtn"><i class="fas fa-pause"></i></button>
-        <button class="btn-modern btn-side" id="forwardBtn"><i class="fas fa-redo"></i></button>
+        <button class="btn-modern btn-side" id="rewindBtn" tabindex="1"><i class="fas fa-undo"></i></button>
+        <button class="btn-modern btn-main" id="playBtn" tabindex="2"><i class="fas fa-pause"></i></button>
+        <button class="btn-modern btn-side" id="forwardBtn" tabindex="3"><i class="fas fa-redo"></i></button>
     </div>
 
     <div id="qualityMenu" class="popup-menu ui-element"></div>
     <div id="audioMenu" class="popup-menu ui-element"></div>
+    <div id="aspectMenu" class="popup-menu ui-element"></div>
 
     <div class="bottom-ui ui-element">
         <div class="progress-box" id="pTrack"><div class="progress-fill" id="pFill"></div></div>
         <div class="controls-row">
-            <div class="live-capsule">
-                <div class="status-txt">LIVE</div>
-                <div class="brand">PRO <div class="dot"></div></div>
-            </div>
+            <div class="live-capsule"><div class="brand">AKO <div class="dot"></div></div></div>
             <div class="right-tools">
-                <i class="fas fa-language" id="audioBtn"></i>
-                <i class="fas fa-cog" id="setBtn"></i>
-                <i class="fas fa-expand" id="fsBtn"></i>
-                <i class="fas fa-volume-mute" id="volBtn"></i>
+                <i class="fas fa-mobile-screen-button" id="rotateBtn" tabindex="4"></i>
+                <i class="fas fa-language" id="audioBtn" tabindex="5"></i>
+                <i class="fas fa-cog" id="setBtn" tabindex="6"></i>
+                <i class="fas fa-expand" id="fsBtn" tabindex="7"></i>
+                <i class="fas fa-volume-mute" id="volBtn" tabindex="8"></i>
             </div>
         </div>
     </div>
@@ -104,27 +91,14 @@
         const player = new shaka.Player(video);
         const container = document.getElementById('mainContainer');
         const loader = document.getElementById('loader');
-        const volBtn = document.getElementById('volBtn');
         let timer;
 
         player.configure({ drm: { clearKeys: clearKeys } });
 
-        video.addEventListener('waiting', () => loader.style.display = 'flex');
         video.addEventListener('timeupdate', () => {
-            if (video.currentTime > 0 && !video.paused) loader.style.display = 'none';
+            if (video.currentTime > 0) loader.style.display = 'none';
             document.getElementById('pFill').style.width = (video.currentTime / video.duration) * 100 + '%';
         });
-
-        const toggleUI = () => {
-            if (!container.classList.contains('hide-ui')) {
-                container.classList.add('hide-ui');
-                document.getElementById('qualityMenu').style.display = 'none';
-                document.getElementById('audioMenu').style.display = 'none';
-            } else {
-                container.classList.remove('hide-ui');
-                resetTimer();
-            }
-        };
 
         const resetTimer = () => {
             clearTimeout(timer);
@@ -133,79 +107,79 @@
             }
         };
 
-        container.onclick = () => {
-            if (video.muted) { video.muted = false; volBtn.className = 'fas fa-volume-up'; }
-            toggleUI();
-        };
+        const closeMenus = () => document.querySelectorAll('.popup-menu').forEach(m => m.style.display = 'none');
 
-        // منع إغلاق الواجهة عند النقر على الأزرار
-        document.querySelectorAll('.btn-modern, .right-tools i, .popup-menu').forEach(el => {
-            el.onclick = (e) => e.stopPropagation();
-        });
-
-        document.getElementById('playBtn').onclick = (e) => {
-            e.stopPropagation();
-            video.paused ? video.play() : video.pause();
+        // أحداث الأزرار (إصلاح النقر)
+        const action = (e, callback) => {
+            if(e) { e.preventDefault(); e.stopPropagation(); }
+            callback();
             resetTimer();
         };
 
-        video.onplay = () => document.getElementById('playBtn').innerHTML = '<i class="fas fa-pause"></i>';
-        video.onpause = () => {
-            document.getElementById('playBtn').innerHTML = '<i class="fas fa-play"></i>';
-            container.classList.remove('hide-ui');
-            clearTimeout(timer);
-        };
-
-        document.getElementById('rewindBtn').onclick = (e) => { e.stopPropagation(); video.currentTime -= 10; resetTimer(); };
-        document.getElementById('forwardBtn').onclick = (e) => { e.stopPropagation(); video.currentTime += 10; resetTimer(); };
-
-        document.getElementById('volBtn').onclick = (e) => {
-            e.stopPropagation();
+        document.getElementById('playBtn').onclick = (e) => action(e, () => video.paused ? video.play() : video.pause());
+        document.getElementById('rewindBtn').onclick = (e) => action(e, () => video.currentTime -= 10);
+        document.getElementById('forwardBtn').onclick = (e) => action(e, () => video.currentTime += 10);
+        document.getElementById('volBtn').onclick = (e) => action(e, () => {
             video.muted = !video.muted;
-            volBtn.className = video.muted ? 'fas fa-volume-mute' : 'fas fa-volume-up';
+            document.getElementById('volBtn').className = video.muted ? 'fas fa-volume-mute' : 'fas fa-volume-up';
+        });
+
+        video.onplay = () => document.getElementById('playBtn').innerHTML = '<i class="fas fa-pause"></i>';
+        video.onpause = () => document.getElementById('playBtn').innerHTML = '<i class="fas fa-play"></i>';
+
+        container.onclick = () => {
+            if (video.muted) { video.muted = false; document.getElementById('volBtn').className = 'fas fa-volume-up'; }
+            if (container.classList.contains('hide-ui')) { container.classList.remove('hide-ui'); resetTimer(); }
+            else { container.classList.add('hide-ui'); closeMenus(); }
         };
 
-        document.getElementById('fsBtn').onclick = (e) => {
-            e.stopPropagation();
-            if (!document.fullscreenElement) container.requestFullscreen();
-            else document.exitFullscreen();
-        };
-
-        const setupMenu = (btnId, menuId, type) => {
-            document.getElementById(btnId).onclick = (e) => {
-                e.stopPropagation();
+        // إدارة القوائم
+        const setupMenu = (btnId, menuId, title, itemsFn, selectFn) => {
+            document.getElementById(btnId).onclick = (e) => action(e, () => {
                 const menu = document.getElementById(menuId);
-                const otherMenuId = menuId === 'qualityMenu' ? 'audioMenu' : 'qualityMenu';
-                document.getElementById(otherMenuId).style.display = 'none';
-                menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
-                
-                if(menu.style.display === 'flex') {
-                    const tracks = player.getVariantTracks();
-                    menu.innerHTML = `<div style="color:#555; font-size:0.6rem; padding:5px 10px;">${type}</div>`;
-                    if(type === 'اللغة') {
-                        [...new Set(tracks.map(t => t.language))].forEach(lang => {
-                            const item = document.createElement('div');
-                            item.innerText = lang === 'ar' ? 'العربية' : lang === 'en' ? 'الإنجليزية' : lang;
-                            item.onclick = () => { player.selectAudioLanguage(lang); menu.style.display = 'none'; };
-                            menu.appendChild(item);
-                        });
-                    } else {
-                        tracks.sort((a,b)=>b.height-a.height).filter((v,i,a)=>a.findIndex(t=>t.height===v.height)===i).forEach(t => {
-                            const item = document.createElement('div');
-                            item.innerText = t.height + 'p';
-                            item.onclick = () => { player.configure({abr:{enabled:false}}); player.selectVariantTrack(t,true); menu.style.display='none'; };
-                            menu.appendChild(item);
-                        });
-                    }
+                const isVisible = menu.style.display === 'flex';
+                closeMenus();
+                if (!isVisible) {
+                    menu.style.display = 'flex';
+                    menu.innerHTML = `<div style="color:#555;font-size:0.6rem;padding:5px;">${title}</div>`;
+                    itemsFn().forEach((item, i) => {
+                        const div = document.createElement('div');
+                        div.innerText = item.label;
+                        div.tabIndex = 10 + i;
+                        div.onclick = () => { selectFn(item.val); closeMenus(); };
+                        menu.appendChild(div);
+                    });
                 }
-            };
+            });
         };
 
-        setupMenu('audioBtn', 'audioMenu', 'اللغة');
-        setupMenu('setBtn', 'qualityMenu', 'الجودة');
+        setupMenu('fsBtn', 'aspectMenu', 'عرض', 
+            () => [{label:'ملء الشاشة', val:'cover'}, {label:'الأصلي', val:'contain'}, {label:'تمدد', val:'fill'}],
+            (v) => video.style.objectFit = v
+        );
 
-        try { await player.load(manifestUri); video.play(); } catch (e) { console.error(e); }
-        container.onmousemove = resetTimer;
+        setupMenu('audioBtn', 'audioMenu', 'اللغة', 
+            () => [...new Set(player.getVariantTracks().map(t => t.language))].map(l => ({label: l=='ar'?'العربية':'English', val: l})),
+            (l) => player.selectAudioLanguage(l)
+        );
+
+        setupMenu('setBtn', 'qualityMenu', 'الجودة',
+            () => player.getVariantTracks().sort((a,b)=>b.height-a.height).filter((v,i,a)=>a.findIndex(t=>t.height===v.height)===i).map(t => ({label: t.height+'p', val: t})),
+            (t) => { player.configure({abr:{enabled:false}}); player.selectVariantTrack(t, true); }
+        );
+
+        // دعم الريموت (بدون تغيير الشكل)
+        window.addEventListener('keydown', (e) => {
+            if (container.classList.contains('hide-ui')) { container.classList.remove('hide-ui'); resetTimer(); return; }
+            const focusable = document.querySelectorAll('button, i[tabindex], .popup-menu div[tabindex]');
+            let index = Array.from(focusable).indexOf(document.activeElement);
+            if (e.key === 'ArrowRight') { index = Math.max(0, index - 1); focusable[index]?.focus(); }
+            if (e.key === 'ArrowLeft') { index = Math.min(focusable.length - 1, index + 1); focusable[index]?.focus(); }
+            if (e.key === 'Enter' && document.activeElement) document.activeElement.click();
+            resetTimer();
+        });
+
+        try { await player.load(manifestUri); video.play(); } catch (e) {}
     }
 
     document.addEventListener('DOMContentLoaded', () => { shaka.polyfill.installAll(); init(); });
