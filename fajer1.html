@@ -1,66 +1,189 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<title>Live Player</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AKO Player Slim Pro</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.5/shaka-player.compiled.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root { --glass: rgba(255, 255, 255, 0.1); --border: rgba(255, 255, 255, 0.15); }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; overflow: hidden; font-family: 'Segoe UI', Tahoma, sans-serif; }
+        
+        .player-wrapper { position: relative; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center; background: #000; }
+        video { width: 100%; height: 100%; object-fit: contain; }
 
-<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+        /* التحكم في إخفاء الواجهة */
+        .hide-ui .ui-element { opacity: 0; visibility: hidden; transition: 0.6s ease; }
+        .ui-element { transition: 0.3s ease; opacity: 1; visibility: visible; }
 
-<style>
-html, body {
-    margin: 0;
-    padding: 0;
-    background: black;
-    height: 100%;
-}
-video {
-    width: 100%;
-    height: 100%;
-    background: black;
-}
-</style>
+        /* الأزرار الوسطى - تم تصغيرها وجعلها أنعم */
+        .center-ui { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 25px; z-index: 50; }
+        .btn-ako { 
+            background: var(--glass); border: 1px solid var(--border); border-radius: 50%; color: white; 
+            cursor: pointer; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(8px); transition: 0.2s;
+        }
+        .btn-side { width: 55px; height: 55px; font-size: 1.1rem; }
+        .btn-main { width: 75px; height: 75px; font-size: 1.8rem; background: rgba(255,255,255,0.18); }
+        .btn-ako:hover { background: rgba(255,255,255,0.25); transform: scale(1.05); }
+
+        /* الشريط السفلي */
+        .bottom-ui { position: absolute; bottom: 0; width: 100%; padding: 30px; background: linear-gradient(transparent, rgba(0,0,0,0.8)); z-index: 40; box-sizing: border-box; }
+        
+        /* شريط التقدم - نحيف جداً */
+        .progress-box { width: 100%; height: 3px; background: rgba(255,255,255,0.2); margin-bottom: 20px; cursor: pointer; position: relative; }
+        .progress-fill { width: 0%; height: 100%; background: #fff; position: relative; }
+        .progress-fill::after { content: ''; position: absolute; right: -4px; top: -4px; width: 10px; height: 10px; background: #fff; border-radius: 50%; display: none; }
+        .progress-box:hover .progress-fill::after { display: block; }
+
+        .controls-row { display: flex; justify-content: space-between; align-items: center; color: #fff; }
+        
+        /* كبسولة LIVE AKO */
+        .live-capsule { background: var(--glass); padding: 8px 20px; border-radius: 30px 30px 30px 8px; border: 1px solid var(--border); backdrop-filter: blur(10px); }
+        .live-capsule .status { font-size: 0.7rem; color: #aaa; font-weight: bold; }
+        .live-capsule .brand { font-size: 1.2rem; font-weight: bold; display: flex; align-items: center; gap: 6px; }
+        .dot { width: 8px; height: 8px; background: #ff4444; border-radius: 50%; box-shadow: 0 0 8px #ff4444; }
+
+        .right-tools { display: flex; gap: 20px; font-size: 1.3rem; }
+        .right-tools i { cursor: pointer; opacity: 0.8; transition: 0.2s; }
+        .right-tools i:hover { opacity: 1; transform: scale(1.1); }
+
+        /* قائمة الجودة */
+        #qMenu {
+            position: absolute; bottom: 90px; left: 30px; background: rgba(10,10,10,0.95);
+            border-radius: 10px; padding: 8px; display: none; flex-direction: column; min-width: 140px; z-index: 100;
+        }
+        #qMenu div { padding: 8px 15px; cursor: pointer; font-size: 0.9rem; color: #ccc; border-radius: 5px; }
+        #qMenu div:hover { background: rgba(255,255,255,0.1); color: #fff; }
+    </style>
 </head>
-
 <body>
 
-<video id="video" controls autoplay playsinline></video>
+<div class="player-wrapper" id="mainContainer">
+    <video id="videoElement" autoplay playsinline></video>
+
+    <div class="center-ui ui-element">
+        <button class="btn-ako btn-side" id="rewindBtn"><i class="fas fa-undo"></i></button>
+        <button class="btn-ako btn-main" id="playBtn"><i class="fas fa-pause"></i></button>
+        <button class="btn-ako btn-side" id="forwardBtn"><i class="fas fa-redo"></i></button>
+    </div>
+
+    <div id="qMenu" class="ui-element"></div>
+
+    <div class="bottom-ui ui-element">
+        <div class="progress-box" id="pTrack"><div class="progress-fill" id="pFill"></div></div>
+        <div class="controls-row">
+            <div class="live-capsule">
+                <div class="status">LIVE</div>
+                <div class="brand">AKO <div class="dot"></div></div>
+            </div>
+            <div class="right-tools">
+                <i class="fas fa-cog" id="setBtn"></i>
+                <i class="fas fa-expand" id="fsBtn"></i>
+                <i class="fas fa-volume-up" id="volBtn"></i>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
-const apiUrl = "https://tv.alfajertv.com/api/get-stream.php?channel=fajer1";
-const video = document.getElementById("video");
-
-fetch(apiUrl, {
-    headers: {
-        "Referer": "https://tv.alfajertv.com/"
+    // الدالة المطلوبة (onCreate logic)
+    function hexStringToByteArray(hexString) {
+        if (hexString.length % 2 !== 0) return null;
+        var result = new Uint8Array(hexString.length / 2);
+        for (var i = 0; i < hexString.length; i += 2) {
+            result[i / 2] = parseInt(hexString.substr(i, 2), 16);
+        }
+        return result;
     }
-})
-.then(res => res.text())
-.then(streamUrl => {
-    streamUrl = streamUrl.trim();
 
-    if (Hls.isSupported()) {
-        const hls = new Hls({
-            xhrSetup: function (xhr, url) {
-                xhr.setRequestHeader(
-                    "Referer",
-                    "https://tv.alfajertv.com/"
-                );
+    const manifestUri = 'https://sps1.starzplayarabia.com/out/v1/eee188845e9543699fd24e5a9890c6e2/index.mpd';
+    const clearKeys = { 'b253c726c24c7c94a3ddf9b1907e2c76': '097963d6ad73c3d712a104981de0ed42' };
+
+    async function init() {
+        const video = document.getElementById('videoElement');
+        const player = new shaka.Player(video);
+        const container = document.getElementById('mainContainer');
+
+        player.configure({ drm: { clearKeys: clearKeys } });
+
+        // --- الربط الفعلي للأزرار ---
+
+        // 1. تشغيل / إيقاف
+        const playBtn = document.getElementById('playBtn');
+        playBtn.onclick = () => video.paused ? video.play() : video.pause();
+        video.onplay = () => playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+        video.onpause = () => playBtn.innerHTML = '<i class="fas fa-play"></i>';
+
+        // 2. تقديم / تأخير (مربوط بالبث)
+        document.getElementById('rewindBtn').onclick = () => video.currentTime -= 10;
+        document.getElementById('forwardBtn').onclick = () => video.currentTime += 10;
+
+        // 3. التحكم بالصوت
+        const volBtn = document.getElementById('volBtn');
+        volBtn.onclick = () => {
+            video.muted = !video.muted;
+            volBtn.className = video.muted ? 'fas fa-volume-mute' : 'fas fa-volume-up';
+        };
+
+        // 4. ملء الشاشة
+        document.getElementById('fsBtn').onclick = () => {
+            if (!document.fullscreenElement) container.requestFullscreen();
+            else document.exitFullscreen();
+        };
+
+        // 5. شريط التقدم (التحكم بالموقع الزمني)
+        const pFill = document.getElementById('pFill');
+        video.ontimeupdate = () => {
+            const perc = (video.currentTime / video.duration) * 100;
+            pFill.style.width = perc + '%';
+        };
+        document.getElementById('pTrack').onclick = (e) => {
+            const rect = e.currentTarget.getBoundingClientRect();
+            const pos = (e.clientX - rect.left) / rect.width;
+            video.currentTime = pos * video.duration;
+        };
+
+        // 6. زر الترس (قائمة الجودة)
+        const qMenu = document.getElementById('qMenu');
+        document.getElementById('setBtn').onclick = (e) => {
+            e.stopPropagation();
+            if(qMenu.style.display === 'flex') {
+                qMenu.style.display = 'none';
+            } else {
+                const tracks = player.getVariantTracks();
+                qMenu.innerHTML = '<div style="color:#666; font-size:0.7rem; pointer-events:none">الجودة</div>';
+                tracks.sort((a,b) => b.height - a.height).forEach(t => {
+                    const item = document.createElement('div');
+                    item.innerText = t.height + 'p' + (t.active ? ' ✓' : '');
+                    item.onclick = () => {
+                        player.configure({abr: {enabled: false}});
+                        player.selectVariantTrack(t, true);
+                    };
+                    qMenu.appendChild(item);
+                });
+                qMenu.style.display = 'flex';
             }
-        });
+        };
 
-        hls.loadSource(streamUrl);
-        hls.attachMedia(video);
+        // إخفاء الواجهة تلقائياً
+        let timer;
+        const resetTimer = () => {
+            container.classList.remove('hide-ui');
+            clearTimeout(timer);
+            if(!video.paused) timer = setTimeout(() => container.classList.add('hide-ui'), 3000);
+        };
+        container.onmousemove = resetTimer;
+        window.onclick = () => qMenu.style.display = 'none';
 
-    } else {
-        // Safari
-        video.src = streamUrl;
+        try { await player.load(manifestUri); } catch (e) { console.error(e); }
     }
-})
-.catch(err => {
-    console.error("خطأ:", err);
-});
-</script>
 
+    document.addEventListener('DOMContentLoaded', () => {
+        shaka.polyfill.installAll();
+        init();
+    });
+</script>
 </body>
 </html>
