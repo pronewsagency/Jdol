@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مُنسق السيرفرات الاحترافي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --secondary: #10b981;
+            --danger: #ef4444;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #1e293b;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container { width: 100%; max-width: 800px; }
+
+        .main-card {
+            background: var(--card);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        .header { text-align: center; margin-bottom: 30px; }
+        .header h1 { color: var(--primary); margin: 0; font-size: 1.8rem; }
+        .header p { color: #64748b; font-size: 0.9rem; margin-top: 5px; }
+
+        /* حاوية الجزء الواحد */
+        .part-box {
+            background: #f1f5f9;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border: 1px solid #cbd5e1;
+            position: relative;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .part-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #cbd5e1;
+        }
+
+        .part-title { font-weight: 700; color: #334155; }
+
+        /* صف السيرفر الواحد */
+        .server-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        /* الأزرار الصغيرة */
+        .btn-small {
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .btn-add-server { background: var(--secondary); color: white; }
+        .btn-remove { background: var(--danger); color: white; font-size: 18px; }
+        .btn-small:hover { opacity: 0.8; transform: scale(1.05); }
+
+        /* الأزرار الرئيسية */
+        .actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn-main {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: 0.2s;
+        }
+
+        .btn-part { background: #334155; color: white; }
+        .btn-generate { background: var(--primary); color: white; }
+        .btn-main:hover { opacity: 0.9; transform: translateY(-2px); }
+
+        /* منطقة النتيجة */
+        .result-area {
+            margin-top: 30px;
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 20px;
+            display: none;
+        }
+
+        .result-label { color: #94a3b8; font-size: 0.8rem; margin-bottom: 10px; display: block; }
+        
+        .result-text {
+            word-break: break-all;
+            font-family: monospace;
+            color: #38bdf8;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .btn-copy {
+            width: 100%;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .btn-copy:hover { background: var(--secondary); border-color: var(--secondary); }
+
+        /* إشعار النسخ */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #10b981;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            display: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="main-card">
+        <div class="header">
+            <h1>مُنسق سيرفرات المحتوى</h1>
+            <p>أضف الأجزاء والسيرفرات بشكل منفصل وسيقوم النظام بربطها تلقائياً</p>
+        </div>
+
+        <div id="parts-container">
+            </div>
+
+        <div class="actions">
+            <button class="btn-main btn-part" onclick="addNewPart()">+ إضافة جزء جديد</button>
+            <button class="btn-main btn-generate" onclick="generateOutput()">توليد الكود النهائي</button>
+        </div>
+
+        <div class="result-area" id="resultArea">
+            <span class="result-label">الناتج النهائي:</span>
+            <div class="result-text" id="finalResult"></div>
+            <button class="btn-copy" onclick="copyResult()">نسخ الكود بالكامل</button>
+        </div>
+    </div>
+</div>
+
+<div class="toast" id="copyToast">تم النسخ إلى الحافظة!</div>
+
+<script>
+    let partCounter = 0;
+
+    // إضافة جزء جديد
+    function addNewPart() {
+        partCounter++;
+        const container = document.getElementById('parts-container');
+        
+        const partDiv = document.createElement('div');
+        partDiv.className = 'part-box';
+        partDiv.id = `part-container-${partCounter}`;
+        
+        partDiv.innerHTML = `
+            <div class="part-header">
+                <span class="part-title">الجزء ${partCounter}</span>
+                <button class="btn-small btn-remove" onclick="removeElement('part-container-${partCounter}')" title="حذف هذا الجزء">×</button>
+            </div>
+            <div class="servers-list" id="servers-list-${partCounter}">
+                <div class="server-row">
+                    <input type="text" class="server-input" placeholder="رابط السيرفر">
+                    <button class="btn-small btn-add-server" onclick="addServerField(${partCounter})" title="إضافة سيرفر">+</button>
+                </div>
+            </div>
+        `;
+        
+        container.appendChild(partDiv);
+    }
+
+    // إضافة حقل سيرفر داخل جزء
+    function addServerField(partId) {
+        const list = document.getElementById(`servers-list-${partId}`);
+        const rowId = 'row-' + Math.random().toString(36).substr(2, 9);
+        
+        const row = document.createElement('div');
+        row.className = 'server-row';
+        row.id = rowId;
+        row.innerHTML = `
+            <input type="text" class="server-input" placeholder="رابط سيرفر إضافي">
+            <button class="btn-small btn-remove" onclick="removeElement('${rowId}')">×</button>
+        `;
+        list.appendChild(row);
+        row.querySelector('input').focus();
+    }
+
+    // حذف أي عنصر
+    function removeElement(id) {
+        document.getElementById(id).remove();
+    }
+
+    // معالجة البيانات وتوليد النص النهائي
+    function generateOutput() {
+        const partBoxes = document.querySelectorAll('.part-box');
+        let partsResults = [];
+
+        partBoxes.forEach(box => {
+            const inputs = box.querySelectorAll('.server-input');
+            let servers = [];
+            
+            inputs.forEach(input => {
+                if (input.value.trim() !== "") {
+                    servers.push(input.value.trim());
+                }
+            });
+
+            if (servers.length > 0) {
+                // ربط سيرفرات الجزء الواحد بـ &&
+                partsResults.push(servers.join('&&'));
+            }
+        });
+
+        const resultArea = document.getElementById('resultArea');
+        const finalResult = document.getElementById('finalResult');
+
+        if (partsResults.length > 0) {
+            // ربط الأجزاء بـ |
+            const output = partsResults.join('|');
+            finalResult.innerText = output;
+            resultArea.style.display = 'block';
+            resultArea.scrollIntoView({ behavior: 'smooth' });
+        } else {
+            alert("من فضلك أدخل رابط سيرفر واحد على الأقل.");
+        }
+    }
+
+    // وظيفة النسخ
+    function copyResult() {
+        const text = document.getElementById('finalResult').innerText;
+        navigator.clipboard.writeText(text).then(() => {
+            const toast = document.getElementById('copyToast');
+            toast.style.display = 'block';
+            setTimeout(() => toast.style.display = 'none', 2000);
+        });
+    }
+
+    // تشغيل أول جزء تلقائياً
+    window.onload = addNewPart;
+</script>
+
+</body>
+</html>
