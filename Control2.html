@@ -34,8 +34,11 @@
         .btn { padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-family: inherit; font-weight: bold; transition: 0.2s; }
         .btn-primary { background: var(--primary); color: white; }
         .btn-secondary { background: var(--secondary); color: white; }
-        .btn-danger { background: #ef4444; color: white; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; }
+        .btn-danger { background: #ef4444; color: white; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
         
+        .btn-move { background: #64748b; color: white; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 12px; border-radius: 6px; flex-shrink: 0; }
+        .btn-move:hover { background: #475569; }
+
         .results-container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; display: none; }
         .result-box { background: #1e293b; color: #38bdf8; padding: 15px; border-radius: 10px; font-family: monospace; font-size: 0.85rem; word-break: break-all; max-height: 200px; overflow-y: auto; }
         .copy-tag { color: #94a3b8; font-size: 0.75rem; margin-bottom: 5px; display: block; font-weight: bold; }
@@ -50,7 +53,7 @@
         <div class="box">
             <span class="section-title">1. إعدادات السلسلة</span>
             <div class="row-flex">
-                <input type="text" id="seriesName" placeholder="أدخل اسم المسلسل هنا (مثال: الكينج)" oninput="updatePreview()">
+                <input type="text" id="seriesName" placeholder="أدخل اسم المسلسل هنا (مثال: الكينج)">
             </div>
         </div>
 
@@ -84,6 +87,19 @@
 <script>
     let partCount = 0;
 
+    // دالة إنشاء أزرار التحكم (الترتيب: إضافة/حذف ثم الأسهم)
+    function getControlsHtml(partId, isFirst = false) {
+        const actionBtn = isFirst 
+            ? `<button class="btn btn-secondary" style="padding:0 10px; height:28px;" onclick="addSvr(${partId})">+</button>` 
+            : `<button class="btn btn-danger" onclick="removeSvr(this, ${partId})">×</button>`;
+        
+        return `
+            ${actionBtn}
+            <button class="btn btn-move" onclick="moveSvr(this, -1, ${partId})">▲</button>
+            <button class="btn btn-move" onclick="moveSvr(this, 1, ${partId})">▼</button>
+        `;
+    }
+
     function addNewPart() {
         partCount++;
         const container = document.getElementById('parts-container');
@@ -99,7 +115,7 @@
                 <div class="server-row">
                     <span class="server-badge">سيرفر 1</span>
                     <input type="text" class="url-input-${partCount}" placeholder="رابط السيرفر الأول">
-                    <button class="btn btn-secondary" style="padding:0 10px;" onclick="addSvr(${partCount})">+</button>
+                    ${getControlsHtml(partCount, true)}
                 </div>
             </div>
         `;
@@ -111,14 +127,23 @@
         const svrIndex = list.querySelectorAll('.server-row').length + 1;
         const row = document.createElement('div');
         row.className = 'server-row';
-        const rid = 'row-' + Math.random().toString(36).substr(2, 5);
-        row.id = rid;
         row.innerHTML = `
             <span class="server-badge">سيرفر ${svrIndex}</span>
             <input type="text" class="url-input-${id}" placeholder="سيرفر إضافي">
-            <button class="btn btn-danger" onclick="removeSvr('${rid}', ${id})">×</button>
+            ${getControlsHtml(id, false)}
         `;
         list.appendChild(row);
+    }
+
+    function moveSvr(btn, direction, partId) {
+        const row = btn.closest('.server-row');
+        const list = document.getElementById('list-' + partId);
+        if (direction === -1 && row.previousElementSibling) {
+            list.insertBefore(row, row.previousElementSibling);
+        } else if (direction === 1 && row.nextElementSibling) {
+            list.insertBefore(row.nextElementSibling, row);
+        }
+        reorderServers(partId);
     }
 
     function removePart(id) {
@@ -126,24 +151,35 @@
         reorderParts();
     }
 
-    function removeSvr(rid, partId) {
-        document.getElementById(rid).remove();
+    function removeSvr(btn, partId) {
+        btn.closest('.server-row').remove();
         reorderServers(partId);
     }
 
     function reorderParts() {
         const parts = document.querySelectorAll('.part-box');
-        partCount = 0;
-        parts.forEach((p, i) => {
-            partCount++;
-            p.querySelector('.ep-num').innerText = partCount;
+        let count = 0;
+        parts.forEach((p) => {
+            count++;
+            p.querySelector('.ep-num').innerText = count;
         });
     }
 
     function reorderServers(partId) {
-        const rows = document.getElementById('list-' + partId).querySelectorAll('.server-row');
+        const list = document.getElementById('list-' + partId);
+        const rows = list.querySelectorAll('.server-row');
         rows.forEach((row, i) => {
             row.querySelector('.server-badge').innerText = 'سيرفر ' + (i + 1);
+            
+            const isNowFirst = (i === 0);
+            const dangerBtn = row.querySelector('.btn-danger');
+            const secondaryBtn = row.querySelector('.btn-secondary');
+
+            if (isNowFirst && dangerBtn) {
+                dangerBtn.outerHTML = `<button class="btn btn-secondary" style="padding:0 10px; height:28px;" onclick="addSvr(${partId})">+</button>`;
+            } else if (!isNowFirst && secondaryBtn) {
+                secondaryBtn.outerHTML = `<button class="btn btn-danger" onclick="removeSvr(this, ${partId})">×</button>`;
+            }
         });
     }
 
@@ -152,9 +188,9 @@
         if(!val) return;
         document.getElementById('parts-container').innerHTML = "";
         partCount = 0;
-        // تنظيف الروابط من أي @Name قديم عند الاستيراد
         const cleanVal = val.replace(/@Name=\d+/g, "");
         cleanVal.split('|').forEach(ep => {
+            if(!ep.trim()) return;
             partCount++;
             const svrs = ep.split('&&');
             const container = document.getElementById('parts-container');
@@ -162,7 +198,12 @@
             div.className = 'part-box'; div.id = 'part-'+partCount;
             let html = `<div style="display:flex; justify-content:space-between; margin-bottom:10px;"><strong>الحلقة <span class="ep-num">${partCount}</span></strong><button class="btn btn-danger" onclick="removePart('${div.id}')">×</button></div><div id="list-${partCount}">`;
             svrs.forEach((s, i) => {
-                html += `<div class="server-row"><span class="server-badge">سيرفر ${i+1}</span><input type="text" class="url-input-${partCount}" value="${s.trim()}">${i===0?`<button class="btn btn-secondary" style="padding:0 10px;" onclick="addSvr(${partCount})">+</button>`:`<button class="btn btn-danger" onclick="removeSvr(this.parentElement.id, ${partCount})">×</button>`}</div>`;
+                html += `
+                <div class="server-row">
+                    <span class="server-badge">سيرفر ${i+1}</span>
+                    <input type="text" class="url-input-${partCount}" value="${s.trim()}">
+                    ${getControlsHtml(partCount, i === 0)}
+                </div>`;
             });
             div.innerHTML = html + `</div>`;
             container.appendChild(div);
@@ -175,16 +216,13 @@
         let titleParts = [seriesName];
 
         const allParts = document.querySelectorAll('.part-box');
-        
         allParts.forEach((part, index) => {
             const epNum = index + 1;
-            titleParts.push("E" + epNum); // توليد E1, E2 تلقائياً
-
+            titleParts.push("E" + epNum);
             const inputs = part.querySelectorAll('input[type="text"]');
             let svrsWithNames = [];
             inputs.forEach((inp, sIdx) => {
                 if(inp.value.trim()) {
-                    // إضافة @Name= وترقيم السيرفر 1, 2, 3...
                     svrsWithNames.push(inp.value.trim() + "@Name=" + (sIdx + 1));
                 }
             });
