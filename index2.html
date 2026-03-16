@@ -10,10 +10,22 @@
 </head>
 <body>
     <iframe 
+        id="live-player"
         src="https://toneassertive.net/embed/cosjzd7el0" 
-        allow="autoplay; encrypted-media; fullscreen" 
-        sandbox="allow-scripts allow-same-origin allow-forms"
+        allow="autoplay; encrypted-media; fullscreen; picture-in-picture" 
         allowfullscreen>
     </iframe>
+
+    <script>
+        // حقن كود إضافي لمنع التحويل (Redirect)
+        var iframe = document.getElementById('live-player');
+        iframe.onload = function() {
+            try {
+                iframe.contentWindow.window.top = iframe.contentWindow.window.self;
+            } catch (e) {
+                console.log("Security policy blocked direct top-level override, but frame is loading.");
+            }
+        };
+    </script>
 </body>
 </html>
