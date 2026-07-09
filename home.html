@@ -303,16 +303,10 @@
             <div class="view-all-btn focusable" tabindex="0" onclick="showFullSection(0)">عرض الكل</div>
         </div>
         <div class="channels-grid">
-            
-                <div class="channel-card focusable" tabindex="0" 
-     onclick="AndroidBridge.openPlayer(JSON.stringify({
-         'url': 'https://ktvlive.online/stream/hls/ch1.m3u8',
-         'userAgent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36',
-         'referer': '',
-         'drm': ''
-     }))">
-     شاهد القناة
-                </div>
+            <div class="channel-card focusable" tabindex="0"
+onclick="AndroidBridge.openPlayer('{\"url\":\"https://ktvlive.online/stream/hls/ch1.m3u8\",\"userAgent\":\"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\",\"referer\":\"\",\"drm\":\"\"}')">
+    شاهد القناة
+</div>
                     <div class="img-container" style="background: transparent;">
                         <div class="img-loader" style="opacity: 1; display: block;"></div> 
                         <i class="fa-solid fa-tv error-icon"></i>
