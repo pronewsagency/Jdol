@@ -1757,36 +1757,28 @@ function deleteSlide() {
 }
 
 window.onload = initApp;
-function openChannel(id){
+function openChannel(id) {
+    let result = "";
 
-    let result="";
-
-    if(window.sections){
-
-        window.sections.forEach(function(section){
-
-            section.pkgs.forEach(function(ch){
-
-                if(ch.id=="max1" || ch.id==id){
-
+    if (window.sections) {
+        window.sections.forEach(function(section) {
+            section.pkgs.forEach(function(ch) {
+                // شرط عام: إذا كان الـ ID الخاص بالقناة يطابق الـ ID الذي استدعيته
+                if (ch.id == id) {
                     result = JSON.stringify(ch);
-
                 }
-
             });
-
         });
-
     }
 
-
-    if(window.Android){
-
+    // إذا تم العثور على القناة، نرسلها مباشرة للتطبيق
+    if (result !== "" && window.Android) {
         Android.openChannel(result);
-
+    } else {
+        console.error("لم يتم العثور على بيانات للقناة: " + id);
     }
-
 }
+      
     </script>
 
 
