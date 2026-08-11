@@ -1,0 +1,549 @@
+{
+  "sections": [
+    {
+      "title": "كأس العالم",
+      "items": [
+        {
+          "name": "beIN MAX 1",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=beIN MAX 1@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "beIN MAX 2",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=beIN MAX 2@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "beIN MAX 3",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=beIN MAX 3@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "beIN MAX 4",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=beIN MAX 4@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        }
+      ]
+    },
+    {
+      "title": "كأس العالم 2",
+      "items": [
+        {
+          "name": "beIN MAX 1",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=beIN MAX 1@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "beIN MAX 2",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=beIN MAX 2@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "beIN MAX 3",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=beIN MAX 3@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        }
+      ]
+    },
+    {
+      "title": "beIN SPORTS",
+      "items": [
+        {
+          "name": "beIN 1",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=beIN 1@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "beIN 2",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=beIN 2@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "beIN 3",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=beIN 3@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "beIN 4",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=beIN 4@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "beIN 5",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=beIN 5@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "beIN 6",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=beIN 6@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "beIN 7",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=beIN 7@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "beIN 8",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=beIN 8@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        }
+      ]
+    },
+    {
+      "title": "STARZPLAY",
+      "items": [
+        {
+          "name": "STARZPLAY SPORT 1",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=STARZPLAY SPORT 1@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "STARZPLAY SPORT 2",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=STARZPLAY SPORT 2@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "STARZPLAY SPORT 3",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=STARZPLAY SPORT 3@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "STARZPLAY MOVIES",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=STARZPLAY MOVIES@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "STARZPLAY SERIES",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=STARZPLAY SERIES@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        }
+      ]
+    },
+    {
+      "title": "SHAHID SPORT",
+      "items": [
+        {
+          "name": "SHAHID SPORTS 1",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=SHAHID SPORTS 1@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "SHAHID SPORTS 2",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=SHAHID SPORTS 2@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "SHAHID SPORTS 3",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=SHAHID SPORTS 3@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "SHAHID SPORTS 4",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=SHAHID SPORTS 4@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "SHAHID SPORTS 5",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=SHAHID SPORTS 5@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        }
+      ]
+    },
+    {
+      "title": "STC SPORT",
+      "items": [
+        {
+          "name": "STC SPORT 1",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=STC SPORT 1@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "STC SPORT 2",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=STC SPORT 2@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "STC SPORT 3",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=STC SPORT 3@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "STC SPORT 4",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=STC SPORT 4@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "STC CINEMA",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=STC CINEMA@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "STC DRAMA",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=STC DRAMA@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "STC FAMILY",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=STC FAMILY@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        }
+      ]
+    },
+    {
+      "title": "الرياضة العربية",
+      "items": [
+        {
+          "name": "ثمانية 1",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=ثمانية 1@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "ثمانية 2",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=ثمانية 2@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "ثمانية 3",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=ثمانية 3@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "IRAQIA SPORT",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=IRAQIA SPORT@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "ALKASS 1",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=ALKASS 1@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "ALKASS 2",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=ALKASS 2@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "ALKASS 3",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=ALKASS 3@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "ALKASS 4",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=ALKASS 4@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "ALKASS 5",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=ALKASS 5@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "KSA SPORT 1",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=KSA SPORT 1@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "KSA SPORT 2",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=KSA SPORT 2@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "KSA SPORT 3",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=KSA SPORT 3@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "DUBAI SPORT 1",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=DUBAI SPORT 1@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "DUBAI SPORT 2",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=DUBAI SPORT 2@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "DUBAI SPORT 3",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=DUBAI SPORT 3@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "SHARJA SPORT",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=SHARJA SPORT@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        }
+      ]
+    },
+    {
+      "title": "الرياضة الكردية",
+      "items": [
+        {
+          "name": "NRT SPORT",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=NRT SPORT@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "ARO SPORT",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=ARO SPORT@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "ASTERA SPORT",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=ASTERA SPORT@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "ZAXO SPORT",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=ZAXO SPORT@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "DUHUK SPORT",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=DUHUK SPORT@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        }
+      ]
+    },
+    {
+      "title": "ART",
+      "items": [
+        {
+          "name": "ART AFLAM 1",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=ART AFLAM 1@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "ART AFLAM 2",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=ART AFLAM 2@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "ART HIKAYAT",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=ART HIKAYAT@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "ART HIKAYAT 2",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=ART HIKAYAT 2@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "ART CINEMA",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=ART CINEMA@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        }
+      ]
+    },
+    {
+      "title": "MBC",
+      "items": [
+        {
+          "name": "MBC 1",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=MBC 1@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "MBC 2",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=MBC 2@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "MBC 3",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=MBC 3@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "MBC 4",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=MBC 4@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "MBC 5",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=MBC 5@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "MBC ACTION",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=MBC ACTION@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "MBC IRAQ",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=MBC IRAQ@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "MBC DRAMA",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=MBC DRAMA@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "MBC MASR 1",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=MBC MASR 1@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "MBC MASR 2",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=MBC MASR 2@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "MBC BOLLYWOOD",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=MBC BOLLYWOOD@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "MBC MAX",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=MBC MAX@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        }
+      ]
+    },
+    {
+      "title": "SHAHID",
+      "items": [
+        {
+          "name": "SHAHID MOVIES",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=SHAHID MOVIES@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "SHAHID ACTION",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=SHAHID ACTION@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "SHAHID AFLAM",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=SHAHID AFLAM@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "SHAHID THRILLER",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=SHAHID THRILLER@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "SHAHID KHALIJI",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=SHAHID KHALIJI@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "SHAHID MARAYA",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=SHAHID MARAYA@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "SHAHID TASH",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=SHAHID TASH@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "SHAHID SILFI",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=SHAHID SILFI@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "SHAHID WIFI",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=SHAHID WIFI@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "SHAHID LUBA",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=SHAHID LUBA@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "SHAHID SHAM",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=SHAHID SHAM@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "SHAHID ALKABIR",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=SHAHID ALKABIR@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        }
+      ]
+    },
+    {
+      "title": "ROTANA",
+      "items": [
+        {
+          "name": "ROTANA CINEMA",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=ROTANA CINEMA@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "ROTANA AFLAM",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=ROTANA AFLAM@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "ROTANA CLASSIC",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=ROTANA CLASSIC@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "ROTANA COMEDY",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=ROTANA COMEDY@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "ROTANA KHALIJIA",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=ROTANA KHALIJIA@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "ROTANA KIDS",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=ROTANA KIDS@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        }
+      ]
+    },
+    {
+      "title": "NEWS",
+      "items": [
+        {
+          "name": "AL-JAZEERA",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=AL-JAZEERA@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "ALHADATH",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=ALHADATH@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "SKY NEWS",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=SKY NEWS@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "RT TODAY",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=RT TODAY@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "ALARABY",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=ALARABY@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        },
+        {
+          "name": "IRAN NEWS",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=IRAN NEWS@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        }
+      ]
+    },
+    {
+      "title": "القنوات الدينية",
+      "items": [
+        {
+          "name": "KARBALA",
+          "logo": "",
+          "url": "https://example.com/dummy/live.m3u8@Name=KARBALA@UA=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36@Ref=https://example.com/"
+        }
+      ]
+    }
+  ]
+}
