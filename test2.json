@@ -231,62 +231,32 @@
       ]
     },
     {
-      "title": "الرياضة الكردية",
-      "items": [
-        {
-          "name": "NRT SPORT",
-          "logo": "https:\/\/h.top4top.io\/p_37041i6a93.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=NRT SPORT@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
-        },
-        {
-          "name": "ARO SPORT",
-          "logo": "https:\/\/g.top4top.io\/p_37044rq5y2.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=ARO SPORT@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
-        },
-        {
-          "name": "ASTERA SPORT",
-          "logo": "https:\/\/i.top4top.io\/p_37047yjic4.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=ASTERA SPORT@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
-        },
-        {
-          "name": "ZAXO SPORT",
-          "logo": "https:\/\/e.top4top.io\/p_3704sdnmt0.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=ZAXO SPORT@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
-        },
-        {
-          "name": "DUHUK SPORT",
-          "logo": "https:\/\/f.top4top.io\/p_3704h6lig1.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=DUHUK SPORT@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
-        }
-      ]
-    },
-    {
       "title": "ART",
       "items": [
         {
           "name": "ART AFLAM 1",
           "logo": "https:\/\/a.top4top.io\/p_3703w34f91.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=ART AFLAM 1@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/ev-fast-mpd.starzplayarabia.com\/live\/eds\/ART_Aflam\/DASH\/ART_Aflam.mpd#DRM=264e7cb9dfd6b9e5c281c97db4c2b4fa:47425a7e8f7e4030d186559852ae97db@Name=ART AFLAM 1"
         },
         {
           "name": "ART AFLAM 2",
           "logo": "https:\/\/l.top4top.io\/p_3703fy1af1.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=ART AFLAM 2@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/ev-fast-mpd.starzplayarabia.com\/live\/eds\/ART_Aflam_2\/DASH\/ART_Aflam_2.mpd#DRM=809a386e57689d56c01a5c3190889641:d54639bb7d418d515e5198663a6d7ae5@Name=ART AFLAM 2"
         },
         {
           "name": "ART HIKAYAT",
           "logo": "https:\/\/d.top4top.io\/p_370360rpg1.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=ART HIKAYAT@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/ev-fast-mpd.starzplayarabia.com\/live\/eds\/ART_Hekayat\/DASH\/ART_Hekayat.mpd#DRM=3d614bb04140eda383d117fb55e9a361:b669cdf2cb65eff56d1e3534c7a54b53@Name=ART HIKAYAT"
         },
         {
           "name": "ART HIKAYAT 2",
           "logo": "https:\/\/e.top4top.io\/p_3703x2hal2.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=ART HIKAYAT 2@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/ev-fast-mpd.starzplayarabia.com\/live\/eds\/ART_Hekayat_2\/DASH\/ART_Hekayat_2.mpd#DRM=4ccb01903d6868e27953ff0298d4ac05:d156518d6ab453d9f9d12c243280be8f@Name=ART HIKAYAT 2"
         },
         {
           "name": "ART CINEMA",
           "logo": "https:\/\/d.top4top.io\/p_3703c09u01.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=ART CINEMA@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/ev-fast-mpd.starzplayarabia.com\/live\/eds\/ART_Cinema\/DASH\/ART_Cinema.mpd#DRM=bd484fc91dcf152010a0e367e15ab60e:d9bed0a77b7da410129820bcc6606670@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/@Name=ART CINEMA"
         }
       ]
     },
@@ -296,62 +266,62 @@
         {
           "name": "MBC 1",
           "logo": "https:\/\/k.top4top.io\/p_34723g21f5.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=MBC 1@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/shd-gcp-live.edgenextcdn.net\/live\/bitmovin-mbc-1-usa\/fdac3a4fc0473f1f56e07ec1d63a4b7b\/index.m3u8@Name=متعدد"
         },
         {
           "name": "MBC 2",
           "logo": "https:\/\/l.top4top.io\/p_3472zoyxa6.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=MBC 2@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/shd-gcp-live.edgenextcdn.net\/live\/bitmovin-mbc-2\/51db9d7fa48a27d051f1eecb68069151\/index.mpd#DRM=e3ce77324a3d4fa2a913b26cc1976052:17774f82a3b9e33ea7a149596acbb20f@Name=متعدد"
         },
         {
           "name": "MBC 3",
           "logo": "https:\/\/a.top4top.io\/p_3472dnyni7.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=MBC 3@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/shd-gcp-live.edgenextcdn.net\/live\/bitmovin-mbc-3-usa\/5d58265a862a476dc7f97694addb5ded\/index.m3u8@Name=متعدد"
         },
         {
           "name": "MBC 4",
           "logo": "https:\/\/b.top4top.io\/p_3472c0id98.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=MBC 4@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/shd-gcp-live.edgenextcdn.net\/live\/bitmovin-mbc-4\/24f134f1cd63db9346439e96b86ca6ed\/index.m3u8@Name=متعدد"
         },
         {
           "name": "MBC 5",
           "logo": "https:\/\/c.top4top.io\/p_3472g6nf91.jpg",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=MBC 5@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/shd-gcp-live.edgenextcdn.net\/live\/bitmovin-mbc-5\/ee6b000cee0629411b666ab26cb13e9b\/index.m3u8@Name=متعدد"
         },
         {
           "name": "MBC ACTION",
           "logo": "https:\/\/d.top4top.io\/p_3472slhqv2.jpg",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=MBC ACTION@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/shd-gcp-live.edgenextcdn.net\/live\/bitmovin-mbc-action\/8ea6ca1108d03e03da5e61372354f5c8\/index.mpd#DRM=e3ce77324a3d4fa2a913b26cc1976052:17774f82a3b9e33ea7a149596acbb20f@Name=متعدد"
         },
         {
           "name": "MBC IRAQ",
           "logo": "https:\/\/e.top4top.io\/p_3472jzadg3.jpg",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=MBC IRAQ@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/shd-gcp-live.edgenextcdn.net\/live\/bitmovin-mbc-iraq\/e38c44b1b43474e1c39cb5b90203691e\/index.m3u8@Name=متعدد"
         },
         {
           "name": "MBC DRAMA",
           "logo": "https:\/\/f.top4top.io\/p_347234lz24.jpg",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=MBC DRAMA@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/shd-gcp-live.edgenextcdn.net\/live\/bitmovin-mbc-drama\/2c28a458e2f3253e678b07ac7d13fe71\/index.m3u8@Name=متعدد"
         },
         {
           "name": "MBC MASR 1",
           "logo": "https:\/\/g.top4top.io\/p_3472tumn95.jpg",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=MBC MASR 1@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/shd-gcp-live.lg.mncdn.com\/live\/bitmovin-mbc-masr\/956eac069c78a35d47245db6cdbb1575\/index.m3u8@Name=متعدد"
         },
         {
           "name": "MBC MASR 2",
           "logo": "https:\/\/g.top4top.io\/p_3472tumn95.jpg",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=MBC MASR 2@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/shd-gcp-live.akamaized.net\/live\/bitmovin-mbc-masr-2\/754931856515075b0aabf0e583495c68\/index.m3u8@Name=متعدد"
         },
         {
           "name": "MBC BOLLYWOOD",
           "logo": "https:\/\/h.top4top.io\/p_34724547b6.jpg",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=MBC BOLLYWOOD@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/shd-gcp-live.edgenextcdn.net\/live\/bitmovin-mbc-bollywood\/546eb40d7dcf9a209255dd2496903764\/index.m3u8@Name=متعدد"
         },
         {
           "name": "MBC MAX",
           "logo": "https:\/\/i.top4top.io\/p_3472rlmt67.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=MBC MAX@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/shd-gcp-live.edgenextcdn.net\/live\/bitmovin-mbc-max\/b628d2bbaee0431a17859963edf2975f\/index.mpd#DRM=e3ce77324a3d4fa2a913b26cc1976052:17774f82a3b9e33ea7a149596acbb20f@Name=متعدد"
         }
       ]
     },
@@ -361,62 +331,62 @@
         {
           "name": "SHAHID MOVIES",
           "logo": "https:\/\/e.top4top.io\/p_3472suhqi1.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=SHAHID MOVIES@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/shd-amg-fast.edgenextcdn.net\/tx011\/playlist.m3u8@Name=SHAHID MOVIES"
         },
         {
           "name": "SHAHID ACTION",
           "logo": "https:\/\/f.top4top.io\/p_34722d6dl2.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=SHAHID ACTION@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/shd-amg-fast.edgenextcdn.net\/tx011\/playlist.m3u8@Name=متعدد"
         },
         {
           "name": "SHAHID AFLAM",
           "logo": "https:\/\/g.top4top.io\/p_3472lto6z3.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=SHAHID AFLAM@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/shd-amg-fast.edgenextcdn.net\/tx001\/playlist.m3u8@Name=SHAHID AFLAM"
         },
         {
           "name": "SHAHID THRILLER",
           "logo": "https:\/\/h.top4top.io\/p_3472zonh04.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=SHAHID THRILLER@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/shd-amg-fast.edgenextcdn.net\/tx012\/playlist.m3u8@Name=SHAHID THRILLER"
         },
         {
           "name": "SHAHID KHALIJI",
           "logo": "https:\/\/i.top4top.io\/p_3472ml9j95.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=SHAHID KHALIJI@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/shd-amg-fast.edgenextcdn.net\/tx003\/playlist.m3u8@Name=SHAHID KHALIJI"
         },
         {
           "name": "SHAHID MARAYA",
           "logo": "https:\/\/j.top4top.io\/p_3472bzeqg6.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=SHAHID MARAYA@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/shd-amg-fast.edgenextcdn.net\/tx008\/playlist.m3u8@Name=SHAHID MARAYA"
         },
         {
           "name": "SHAHID TASH",
           "logo": "https:\/\/k.top4top.io\/p_3472pu1737.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=SHAHID TASH@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/shd-amg-fast.edgenextcdn.net\/tx015\/playlist.m3u8@Name=SHAHID TASH"
         },
         {
           "name": "SHAHID SILFI",
           "logo": "https:\/\/l.top4top.io\/p_3472tu8ou8.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=SHAHID SILFI@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/shd-amg-fast.edgenextcdn.net\/tx017\/playlist.m3u8@Name=SHAHID SILFI"
         },
         {
           "name": "SHAHID WIFI",
           "logo": "https:\/\/f.top4top.io\/p_34729lgog1.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=SHAHID WIFI@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/shd-amg-fast.edgenextcdn.net\/tx025\/playlist.m3u8@Name=SHAHID WIFI"
         },
         {
           "name": "SHAHID LUBA",
           "logo": "https:\/\/g.top4top.io\/p_34721m89h2.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=SHAHID LUBA@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/shd-amg-fast.edgenextcdn.net\/tx014\/playlist.m3u8@Name=SHAHID LUBA"
         },
         {
           "name": "SHAHID SHAM",
           "logo": "https:\/\/i.top4top.io\/p_3472jwngx3.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=SHAHID SHAM@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/shd-amg-fast.edgenextcdn.net\/tx010\/playlist.m3u8@Name=SHAHID SHAM"
         },
         {
           "name": "SHAHID ALKABIR",
           "logo": "https:\/\/j.top4top.io\/p_3472g1hqx4.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=SHAHID ALKABIR@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/shd-amg-fast.edgenextcdn.net\/tx013\/playlist.m3u8@Name=SHAHID ALKABIR"
         }
       ]
     },
@@ -426,12 +396,12 @@
         {
           "name": "ROTANA CINEMA",
           "logo": "https:\/\/f.top4top.io\/p_3472lv8cu1.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=ROTANA CINEMA@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/scccrwb-live.cdn.intigral-ott.net\/bpk-tv\/ROTCK\/wv-pr\/manifest.mpd###\/GATvPQJhlMp4r1EzxAQzw:KNbkiya8yqgDHdIyWtddTQ@Name=ROTANA CINEMA"
         },
         {
           "name": "ROTANA AFLAM",
           "logo": "https:\/\/g.top4top.io\/p_3472h7e6p2.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=ROTANA AFLAM@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/scccrwb-live.cdn.intigral-ott.net\/bpk-tv\/ROTFP\/wv-pr\/manifest.mpd###9enSUE3YbW0YCDe47+5pKQ:bNJCKjUVOP6e+TBU4na2ZA@Name=ROTANA AFLAM"
         },
         {
           "name": "ROTANA CLASSIC",
@@ -441,17 +411,17 @@
         {
           "name": "ROTANA COMEDY",
           "logo": "https:\/\/i.top4top.io\/p_3472z7qb84.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=ROTANA COMEDY@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/scccrwb-live.cdn.intigral-ott.net\/bpk-tv\/ROTF\/wv-pr\/manifest.mpd###Pv5xn7v9GX75t3Y4cZ1Ktw:gN3nFRDI4rkvBzx5Sx\/MTA@Name=ROTANA COMEDY"
         },
         {
           "name": "ROTANA KHALIJIA",
           "logo": "https:\/\/j.top4top.io\/p_3472uks115.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=ROTANA KHALIJIA@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/scccrwb-live.cdn.intigral-ott.net\/bpk-tv\/ROTK\/wv-pr\/manifest.mpd###pcG0DK6JcCR0XlY0PPQ7UA:zk4BzjCYi6vMTtGM7u8BvA@Name=ROTANA KHALIJIA"
         },
         {
           "name": "ROTANA KIDS",
           "logo": "https:\/\/k.top4top.io\/p_3472j88y36.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=ROTANA KIDS@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/scccrwb-live.cdn.intigral-ott.net\/bpk-tv\/ROTI\/wv-pr\/manifest.mpd###ZqFEMAl6w6SVZM79ShgEfQ:Kr2syt6ROEm11J9moNxewA@Name=ROTANA KIDS"
         }
       ]
     },
@@ -461,32 +431,32 @@
         {
           "name": "AL-JAZEERA",
           "logo": "https:\/\/k.top4top.io\/p_3472zsttw1.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=AL-JAZEERA@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/live-hls-web-aja.getaj.net\/AJA\/index.m3u8@Name=AL-JAZEERA"
         },
         {
           "name": "ALHADATH",
           "logo": "https:\/\/l.top4top.io\/p_3472nlka22.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=ALHADATH@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/av.alarabiya.net\/alarabiapublish\/alhadath.smil\/playlist.m3u8@Name=ALHADATH"
         },
         {
           "name": "SKY NEWS",
           "logo": "https:\/\/a.top4top.io\/p_3472phs0o3.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=SKY NEWS@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/stream.skynewsarabia.com\/hls\/sna.m3u8@Name=SKY NEWS"
         },
         {
           "name": "RT TODAY",
           "logo": "https:\/\/b.top4top.io\/p_3472c3zuk4.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=RT TODAY@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/arabic.rt.com\/live\/@Name=RT TODAY"
         },
         {
           "name": "ALARABY",
           "logo": "https:\/\/c.top4top.io\/p_3472zfrg75.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=ALARABY@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/www.alaraby.com\/live-stream@Name=ALARABY"
         },
         {
           "name": "IRAN NEWS",
           "logo": "https:\/\/d.top4top.io\/p_3472dlzze6.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=IRAN NEWS@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/ncdn.telewebion.ir\/irinn\/live\/playlist.m3u8@UA=Mozilla\/5.0 (Linux; Android 15; 24115RA8EG Build\/AQ3A.240912.001; wv) AppleWebKit\/537.36 (KHTML, like Gecko) Version\/4.0 Chrome\/144.0.7559.132 Mobile Safari\/537.36@Ref=https:\/\/telewebion.ir\/@Name=IRAN NEWS"
         }
       ]
     },
@@ -496,7 +466,7 @@
         {
           "name": "KARBALA",
           "logo": "https:\/\/e.top4top.io\/p_3472bay5v7.png",
-          "url": "https:\/\/example.com\/dummy\/live.m3u8@Name=KARBALA@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36@Ref=https:\/\/example.com\/"
+          "url": "https:\/\/ktvlive.online\/stream\/hls\/ch1.m3u8@Name=KARBALA"
         }
       ]
     }
