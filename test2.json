@@ -196,17 +196,17 @@
         {
           "name": "KSA SPORT 1",
           "logo": "https:\/\/b.top4top.io\/p_3472w3cy33.png",
-          "url": "https:\/\/scccrwb-live.cdn.intigral-ott.net\/bpk-tv\/KSAS1\/wv-pr\/manifest.mpd###MwVzA5lbCgkNSlLKcV7Cew:97c3bNyqjVOoI6xSSLiVhA@Name=متعدد&&https:\/\/aloula.faulio.com\/api\/v1.1\/channels\/9\/player@Name=متعدد"
+          "url": "https:\/\/scccrwb-live.cdn.intigral-ott.net\/bpk-tv\/KSAS1\/wv-pr\/manifest.mpd###MwVzA5lbCgkNSlLKcV7Cew:97c3bNyqjVOoI6xSSLiVhA@Name=متعدد&&j[hls]:https:\/\/aloula.faulio.com\/api\/v1.1\/channels\/9\/player@Name=متعدد"
         },
         {
           "name": "KSA SPORT 2",
           "logo": "https:\/\/c.top4top.io\/p_34722s5eg4.png",
-          "url": "https:\/\/scccrwb-live.cdn.intigral-ott.net\/bpk-tv\/KSS2\/wv-pr\/manifest.mpd###u8HOMkm6XqTh+ZFRIEAb4A:CN4TgrOfBW8AG6iX9Y\/aAQ@Name=متعدد&&https:\/\/aloula.faulio.com\/api\/v1.1\/channels\/10\/player@Name=متعدد"
+          "url": "https:\/\/scccrwb-live.cdn.intigral-ott.net\/bpk-tv\/KSS2\/wv-pr\/manifest.mpd###u8HOMkm6XqTh+ZFRIEAb4A:CN4TgrOfBW8AG6iX9Y\/aAQ@Name=متعدد&&j[hls]:https:\/\/aloula.faulio.com\/api\/v1.1\/channels\/10\/player@Name=متعدد"
         },
         {
           "name": "KSA SPORT 3",
           "logo": "https:\/\/d.top4top.io\/p_3472u2c1o5.png",
-          "url": "https:\/\/scccrwb-live.cdn.intigral-ott.net\/bpk-tv\/KSS2\/wv-pr\/manifest.mpd###u8HOMkm6XqTh+ZFRIEAb4A:CN4TgrOfBW8AG6iX9Y\/aAQ@Name=متعدد&&https:\/\/aloula.faulio.com\/api\/v1.1\/channels\/11\/player@Name=متعدد"
+          "url": "https:\/\/scccrwb-live.cdn.intigral-ott.net\/bpk-tv\/KSS2\/wv-pr\/manifest.mpd###u8HOMkm6XqTh+ZFRIEAb4A:CN4TgrOfBW8AG6iX9Y\/aAQ@Name=متعدد&&j[hls]:https:\/\/aloula.faulio.com\/api\/v1.1\/channels\/11\/player@Name=متعدد"
         },
         {
           "name": "DUBAI SPORT 1",
