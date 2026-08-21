@@ -196,17 +196,17 @@
         {
           "name": "KSA SPORT 1",
           "logo": "https:\/\/b.top4top.io\/p_3472w3cy33.png",
-          "url": "https:\/\/scccrwb-live.cdn.intigral-ott.net\/bpk-tv\/KSAS1\/wv-pr\/manifest.mpd###MwVzA5lbCgkNSlLKcV7Cew:97c3bNyqjVOoI6xSSLiVhA@Name=متعدد"
+          "url": "https:\/\/scccrwb-live.cdn.intigral-ott.net\/bpk-tv\/KSAS1\/wv-pr\/manifest.mpd###MwVzA5lbCgkNSlLKcV7Cew:97c3bNyqjVOoI6xSSLiVhA@Name=متعدد&&https:\/\/aloula.faulio.com\/api\/v1.1\/channels\/9\/player@Name=متعدد"
         },
         {
           "name": "KSA SPORT 2",
           "logo": "https:\/\/c.top4top.io\/p_34722s5eg4.png",
-          "url": "https:\/\/scccrwb-live.cdn.intigral-ott.net\/bpk-tv\/KSS2\/wv-pr\/manifest.mpd###u8HOMkm6XqTh+ZFRIEAb4A:CN4TgrOfBW8AG6iX9Y\/aAQ@Name=متعدد"
+          "url": "https:\/\/scccrwb-live.cdn.intigral-ott.net\/bpk-tv\/KSS2\/wv-pr\/manifest.mpd###u8HOMkm6XqTh+ZFRIEAb4A:CN4TgrOfBW8AG6iX9Y\/aAQ@Name=متعدد&&https:\/\/aloula.faulio.com\/api\/v1.1\/channels\/10\/player@Name=متعدد"
         },
         {
           "name": "KSA SPORT 3",
           "logo": "https:\/\/d.top4top.io\/p_3472u2c1o5.png",
-          "url": "https:\/\/scccrwb-live.cdn.intigral-ott.net\/bpk-tv\/KSS2\/wv-pr\/manifest.mpd###u8HOMkm6XqTh+ZFRIEAb4A:CN4TgrOfBW8AG6iX9Y\/aAQ@Name=متعدد"
+          "url": "https:\/\/scccrwb-live.cdn.intigral-ott.net\/bpk-tv\/KSS2\/wv-pr\/manifest.mpd###u8HOMkm6XqTh+ZFRIEAb4A:CN4TgrOfBW8AG6iX9Y\/aAQ@Name=متعدد&&https:\/\/aloula.faulio.com\/api\/v1.1\/channels\/11\/player@Name=متعدد"
         },
         {
           "name": "DUBAI SPORT 1",
@@ -451,7 +451,7 @@
         {
           "name": "ALARABY",
           "logo": "https:\/\/c.top4top.io\/p_3472zfrg75.png",
-          "url": "https:\/\/www.alaraby.com\/live-stream@Name=ALARABY"
+          "url": "https:\/\/live.kwikmotion.com\/alaraby1live\/alaraby_abr\/playlist.m3u8?orig=arabic@Name=ALARABY"
         },
         {
           "name": "IRAN NEWS",
@@ -475,7 +475,7 @@
       "items": [
         {
           "name": "ALWAN 1",
-          "logo": "https:\/\/b.top4top.io\/p_388440rkz1.png",
+          "logo": "https:\/\/k.top4top.io\/p_38843whca1.png",
           "url": "https:\/\/ok.ru\/videoembed\/16505531408058@Name=متعدد&&https:\/\/redperch.space\/dramacardinal.php?id=alwan1&.m3u8@Name=SD"
         },
         {
@@ -485,13 +485,53 @@
         },
         {
           "name": "ALWAN 3",
-          "logo": "https:\/\/l.top4top.io\/p_3884ggpt21.png",
+          "logo": "https:\/\/a.top4top.io\/p_3884qsnn42.png",
           "url": "https:\/\/redperch.space\/dramacardinal.php?id=alwan3&.m3u8@Name=SD"
         },
         {
           "name": "ALWAN 4",
-          "logo": "https:\/\/a.top4top.io\/p_3884qsnn42.png",
+          "logo": "https:\/\/i.top4top.io\/p_38845pti51.png",
           "url": "https:\/\/redperch.space\/dramacardinal.php?id=alwan4&.m3u8@Name=SD"
+        }
+      ]
+    },
+    {
+      "title": "BEIN ENTERTAINMENT",
+      "items": [
+        {
+          "name": "beIN MOVIES 1",
+          "logo": "https:\/\/k.top4top.io\/p_3884cxjr21.png",
+          "url": "http:\/\/def.yacinelive.com\/api\/channel\/68@Name=HD"
+        },
+        {
+          "name": "beIN MOVIES 2",
+          "logo": "https:\/\/a.top4top.io\/p_3884d20n11.png",
+          "url": "http:\/\/def.yacinelive.com\/api\/channel\/69"
+        },
+        {
+          "name": "beIN MOVIES 3",
+          "logo": "https:\/\/e.top4top.io\/p_3884u1lgu1.jpg",
+          "url": "http:\/\/def.yacinelive.com\/api\/channel\/70"
+        },
+        {
+          "name": "beIN MOVIES 4",
+          "logo": "https:\/\/a.top4top.io\/p_3884etxyh1.png",
+          "url": "http:\/\/def.yacinelive.com\/api\/channel\/71"
+        },
+        {
+          "name": "beIN SERIES 1",
+          "logo": "https:\/\/e.top4top.io\/p_3885n5n4l1.png",
+          "url": "http:\/\/def.yacinelive.com\/api\/channel\/66"
+        },
+        {
+          "name": "beIN SERIES 2",
+          "logo": "https:\/\/e.top4top.io\/p_3885po00j1.png",
+          "url": "http:\/\/def.yacinelive.com\/api\/channel\/67"
+        },
+        {
+          "name": "beIN DRAMA 1",
+          "logo": "https:\/\/a.top4top.io\/p_3885pqfpt1.png",
+          "url": "http:\/\/def.yacinelive.com\/api\/channel\/64"
         }
       ]
     }
