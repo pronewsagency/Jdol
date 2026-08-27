@@ -1,40 +1,53 @@
 <?php
+// إعدادات الكاش
+$cache_file = 'm3u8_cache.txt';
+$cache_time = 7; // مدة التخزين بالثواني (يجب أن تكون أقل من 10 لتتناسب مع مدة البث)
 
-// 1. رابط البث (تأكد من تحديث الـ Token إذا توقف)
-$url = "https://livetv.aflam4you.net/playerae.php?vid=68&aflam_s=1&aflam_k=9075452424972593";
-
-// 2. إعدادات البروكسي (ضع بياناتك هنا)
-$proxy = '1.2.3.4:8080'; // عنوان الـ IP والمنفذ
-// $proxyAuth = 'user:password'; // إذا كان البروكسي يحتاج كلمة مرور، فك التعليق عن هذا السطر
-
-// 3. هوية متصفح جوجل كروم (User-Agent)
-$userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36";
-
-$ch = curl_init();
-
-// إعدادات الطلب
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true); // تتبع أي تحويلات تلقائية
-
-// إعداد البروكسي
-curl_setopt($ch, CURLOPT_PROXY, $proxy);
-// curl_setopt($ch, CURLOPT_PROXYUSERPWD, $proxyAuth); // فك التعليق إذا لزم الأمر
-
-// خدعة المتصفح والمصدر
-curl_setopt($ch, CURLOPT_USERAGENT, $userAgent);
-curl_setopt($ch, CURLOPT_REFERER, "https://livetv.aflam4you.net/"); // إجباري لكي لا يرفض السيرفر الطلب
-
-// تنفيذ الطلب
-$response = curl_exec($ch);
-
-// فحص الأخطاء
-if(curl_errno($ch)){
-    echo 'خطأ في الاتصال: ' . curl_error($ch);
+// التحقق مما إذا كان ملف الكاش موجوداً وحديثاً (عمره أقل من 7 ثوانٍ)
+if (file_exists($cache_file) && (time() - filemtime($cache_file)) < $cache_time) {
+    // إذا كان الكاش حديثاً، جلب البيانات منه مباشرة
+    $response = file_get_contents($cache_file);
 } else {
-    // عرض النتيجة (هنا سيظهر لك كود الصفحة كما يراها كروم)
-    echo $response;
+    // إذا لم يكن هناك كاش أو كان قديماً، نقوم بجلب البيانات من المصدر
+    $source_url = "https://bui2.buildapiplatform.cfd/s2multi/mkssolyutlxx/index.html";
+    
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $source_url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); 
+    curl_setopt($ch, CURLOPT_TIMEOUT, 5); // حد أقصى للاتصال 5 ثوانٍ حتى لا يعلق السيرفر
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36",
+        "Referer: https://bui2.buildapiplatform.cfd/"
+    ]);
+
+    $raw_response = curl_exec($ch);
+    $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+
+    // التحقق من نجاح جلب البيانات
+    if ($raw_response && $http_code == 200) {
+        // ترتيب البيانات
+        $response = str_replace(" #EXT", "\n#EXT", $raw_response);
+        $new_base_url = "https://bui2.buildapiplatform.cfd/s2multi/mkssolyutlxx/";
+        $response = preg_replace('/,\s*[a-zA-Z0-9]+_([0-9]+\-[0-9]+\.js)/', ",\n" . $new_base_url . "$1", $response);
+        
+        // حفظ النسخة الجديدة في ملف الكاش
+        file_put_contents($cache_file, trim($response));
+    } else {
+        // في حال فشل جلب البيانات من المصدر لسبب ما، نحاول عرض آخر كاش متاح
+        if (file_exists($cache_file)) {
+            $response = file_get_contents($cache_file);
+        } else {
+            die("خطأ: تعذر جلب البيانات ولم يتم العثور على نسخة محفوظة.");
+        }
+    }
 }
 
-curl_close($ch);
+// إرسال الترويسات الصحيحة للتطبيق
+header("Content-Type: application/vnd.apple.mpegurl");
+header("Access-Control-Allow-Origin: *"); 
+header("Cache-Control: no-cache, must-revalidate"); // منع التطبيق من كيشة الرابط داخلياً
+
+echo trim($response);
 ?>
