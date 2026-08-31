@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مشغل قنوات الكأس</title>
+    <!-- استدعاء مكتبة hls.js -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #121212;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+        }
+        select {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            background-color: #333;
+            color: white;
+            border: 1px solid #555;
+        }
+        video {
+            width: 90%;
+            max-width: 800px;
+            border: 2px solid #444;
+            border-radius: 10px;
+            background: #000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <h2>مشغل قنوات الكأس الرياضية</h2>
+
+    <select id="channelSelect">
+        <option value="">اختر القناة...</option>
+    </select>
+
+    <br>
+    <video id="videoPlayer" controls autoplay></video>
+
+    <script>
+        const apiUrl = 'https://shoofapi.alkass.net/Shoof/liveV3.php';
+        const video = document.getElementById('videoPlayer');
+        const select = document.getElementById('channelSelect');
+        let hls;
+
+        // دالة تشغيل الفيديو
+        function playStream(streamUrl) {
+            if (!streamUrl) return;
+
+            if (Hls.isSupported()) {
+                if (hls) {
+                    hls.destroy(); 
+                }
+                hls = new Hls();
+                hls.loadSource(streamUrl);
+                hls.attachMedia(video);
+                hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                    video.play();
+                });
+            } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                video.src = streamUrl;
+                video.addEventListener('loadedmetadata', function() {
+                    video.play();
+                });
+            }
+        }
+
+        // عند اختيار المستخدم للقناة يدوياً
+        select.addEventListener('change', function() {
+            playStream(this.value);
+        });
+
+        // جلب البيانات من الـ API
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                // تعبئة القائمة المنسدلة
+                data.forEach(channel => {
+                    if (channel.body && channel.body.trim() !== "") {
+                        const option = document.createElement('option');
+                        option.value = channel.body;
+                        option.textContent = `(${channel.id}) - ${channel.title}`;
+                        select.appendChild(option);
+                    }
+                });
+
+                // ==========================================
+                // الجزء الجديد الخاص بتشغيل القناة من الرابط
+                // ==========================================
+                
+                // قراءة الـ id من الرابط
+                const urlParams = new URLSearchParams(window.location.search);
+                const requestedId = urlParams.get('id');
+
+                // إذا كان هناك id في الرابط
+                if (requestedId) {
+                    // البحث عن القناة المطابقة للـ id
+                    const targetChannel = data.find(c => c.id == requestedId);
+                    
+                    if (targetChannel && targetChannel.body) {
+                        // تغيير قيمة القائمة المنسدلة لتطابق القناة المطلوبة
+                        select.value = targetChannel.body;
+                        // تشغيل القناة مباشرة
+                        playStream(targetChannel.body);
+                    } else {
+                        alert("القناة المطلوبة غير متاحة أو مشفرة.");
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('خطأ في جلب البيانات:', error);
+            });
+    </script>
+</body>
+</html>
