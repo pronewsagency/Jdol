@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C PLUS | منصة البث المباشر</title>
+    
+    <!-- خطوط جوجل -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap" rel="stylesheet">
+    
+    <!-- مكتبة الأيقونات FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- مكتبة Plyr للتصميم الأنيق للمشغل -->
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+    
+    <style>
+        /* المتغيرات والهوية البصرية */
+        :root {
+            --c-cyan: #00FFD1;
+            --c-blue: #0077FF;
+            --c-purple: #7B2CBF;
+            --gradient-main: linear-gradient(135deg, var(--c-cyan), var(--c-blue), var(--c-purple));
+            --bg-base: #030409; 
+            --glass-bg: rgba(20, 22, 35, 0.5);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-main: #ffffff;
+            --text-muted: #8b92a5;
+            
+            /* تخصيص ألوان مشغل Plyr لتناسب الموقع */
+            --plyr-color-main: #0077FF;
+            --plyr-video-background: #000;
+        }
+
+        /* الإعدادات الأساسية */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+        body { background-color: var(--bg-base); color: var(--text-main); line-height: 1.7; overflow-x: hidden; }
+        
+        /* شريط التمرير المخصص */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-base); }
+        ::-webkit-scrollbar-thumb { background: var(--c-blue); border-radius: 4px; }
+
+        /* القائمة العلوية */
+        header {
+            background: rgba(3, 4, 9, 0.8);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 15px 5%; display: flex; justify-content: center;
+            align-items: center; position: sticky; top: 0; z-index: 1000;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .logo { font-size: 30px; font-weight: 900; letter-spacing: 1px; display: flex; align-items: center; gap: 10px;}
+        .logo span { background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        /* الحاوية الرئيسية */
+        .main-container {
+            max-width: 1100px; margin: 0 auto; padding: 30px 20px;
+            display: flex; flex-direction: column; gap: 25px;
+        }
+
+        /* 1. قسم المشغل */
+        .player-section { width: 100%; display: flex; flex-direction: column; gap: 15px; }
+        .channel-title { font-size: 24px; font-weight: 800; display: flex; align-items: center; gap: 10px; }
+        .live-dot { width: 12px; height: 12px; background: #ff2a2a; border-radius: 50%; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255, 42, 42, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(255, 42, 42, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 42, 42, 0); } }
+
+        .video-wrapper {
+            width: 100%; aspect-ratio: 16 / 9; border-radius: 20px; overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8); border: 1px solid var(--glass-border);
+            background: #000; position: relative; transition: opacity 0.3s ease;
+        }
+        
+        .plyr { width: 100%; height: 100%; border-radius: 20px; }
+
+        /* إعلان البانر */
+        .ad-banner-container {
+            width: 100%; text-align: center; margin-top: 10px; background: rgba(255, 255, 255, 0.02);
+            border-radius: 15px; border: 1px dashed var(--glass-border); padding: 10px;
+            min-height: 70px; display: flex; justify-content: center; align-items: center; overflow: hidden;
+        }
+
+        /* 2. قسم الأزرار */
+        .action-buttons { display: flex; gap: 15px; align-items: center; justify-content: space-between; }
+        .btn-action { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 12px 20px; border-radius: 12px; font-weight: 800; font-size: 15px; text-decoration: none; transition: all 0.3s ease; cursor: pointer; border: none; }
+        .btn-live { background: var(--gradient-main); color: #fff; box-shadow: 0 8px 20px rgba(0, 119, 255, 0.3); }
+        .btn-download { background: var(--glass-bg); color: var(--text-main); border: 1px solid var(--glass-border); }
+        .btn-download:hover { background: rgba(255, 255, 255, 0.1); border-color: var(--c-cyan); transform: translateY(-2px); }
+
+        /* 3. قسم القنوات (تم تحديث الـ CSS للصور) */
+        .channels-section { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 20px; padding: 25px; backdrop-filter: blur(10px); }
+        .section-title { font-size: 18px; font-weight: 800; color: var(--c-cyan); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--glass-border); padding-bottom: 10px; }
+        .channels-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 15px; }
+        .channel-card { background: rgba(0,0,0,0.4); border: 1px solid var(--glass-border); padding: 12px 16px; border-radius: 14px; cursor: pointer; display: flex; align-items: center; gap: 12px; transition: all 0.3s ease; }
+        
+        /* تنسيق الحاوية الخاصة بصورة الشعار */
+        .channel-icon { 
+            width: 50px; height: 35px; border-radius: 6px; background: rgba(255,255,255,0.03); 
+            display: flex; justify-content: center; align-items: center; padding: 4px; transition: 0.3s; 
+        }
+        .channel-icon img { 
+            width: 100%; height: 100%; object-fit: contain; opacity: 0.6; transition: 0.3s; 
+        }
+        
+        .channel-card h4 { font-size: 15px; font-weight: 700; color: var(--text-muted); transition: 0.3s; }
+        .channel-card:hover, .channel-card.active { background: rgba(255, 255, 255, 0.08); border-color: var(--c-blue); transform: translateY(-3px); }
+        .channel-card.active .channel-icon { background: rgba(255,255,255,0.1); box-shadow: inset 0 0 10px rgba(0, 119, 255, 0.2); }
+        
+        /* إضاءة الشعار عند التحديد أو التمرير */
+        .channel-card:hover .channel-icon img, .channel-card.active .channel-icon img { opacity: 1; filter: drop-shadow(0px 0px 3px rgba(255, 255, 255, 0.5)); }
+        .channel-card.active h4 { color: var(--text-main); }
+        
+        footer { text-align: center; padding: 30px; border-top: 1px solid var(--glass-border); margin-top: 40px; }
+
+        @media (max-width: 768px) {
+            .main-container { padding: 15px 10px; gap: 20px; }
+            .channels-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+            .action-buttons { flex-direction: row; gap: 10px; }
+            .btn-action { font-size: 13px; padding: 10px 5px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- الشريط العلوي -->
+    <header>
+        <div class="logo">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="url(#grad1)"/>
+                <path d="M2 17L12 22L22 17" stroke="url(#grad1)" stroke-width="2" stroke-linecap="round"/>
+                <path d="M2 12L12 17L22 12" stroke="url(#grad1)" stroke-width="2" stroke-linecap="round"/>
+                <defs>
+                    <linearGradient id="grad1" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#00FFD1" />
+                        <stop offset="0.5" stop-color="#0077FF" />
+                        <stop offset="1" stop-color="#7B2CBF" />
+                    </linearGradient>
+                </defs>
+            </svg>
+            PLUS <span>C</span>
+        </div>
+    </header>
+
+    <main class="main-container">
+        
+        <!-- 1. المشغل في الأعلى -->
+        <section class="player-section">
+            <h1 class="channel-title">
+                <div class="live-dot"></div>
+                <span id="current-channel-text">جاري التحميل...</span>
+            </h1>
+            
+            <div class="video-wrapper" id="video-container">
+                <video id="my-video" controls crossorigin playsinline poster="https://images.unsplash.com/photo-1522778119026-d647f0596c20?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
+                </video>
+            </div>
+
+            <!-- إعلان بانر Adsterra (هذا الإعلان آمن وممتاز) -->
+            <div class="ad-banner-container">
+                <script>
+                  atOptions = {
+                    'key' : '4c36e881cfe896ed1e3d7ae247fec6a1',
+                    'format' : 'iframe',
+                    'height' : 50,
+                    'width' : 320,
+                    'params' : {}
+                  };
+                </script>
+                <script src="https://www.highrevenueformat.com/4c36e881cfe896ed1e3d7ae247fec6a1/invoke.js"></script>
+            </div>
+        </section>
+
+        <!-- 2. خيار البث المباشر وبجانبه زر تحميل التطبيق -->
+        <section class="action-buttons">
+            <div class="btn-action btn-live">
+                <i class="fa-solid fa-satellite-dish"></i>
+                البث المباشر
+            </div>
+            <a href="https://pronewsagency.github.io/Jdol/store.html" target="_blank" class="btn-action btn-download">
+                <i class="fa-solid fa-download"></i>
+                تحميل التطبيق
+            </a>
+        </section>
+
+        <!-- 3. قائمة القنوات -->
+        <section class="channels-section">
+            <div class="section-title">
+                <i class="fa-solid fa-trophy"></i>
+                قنوات beIN SPORTS
+            </div>
+            
+            <div class="channels-grid">
+                <div class="channel-card" onclick="switchChannel('https://website.fancy-water-8bf9.workers.dev/api/channel/1424', 'beIN SPORTS 1 HD', this)">
+                    <div class="channel-icon">
+                        <img src="https://assets.bein.com/mena/sites/4/2015/06/beIN_SPORTS1_DIGITAL_Mono.png" alt="beIN SPORTS 1">
+                    </div>
+                    <h4>beIN SPORTS 1 HD</h4>
+                </div>
+                
+                <div class="channel-card" onclick="switchChannel('https://website.fancy-water-8bf9.workers.dev/api/channel/1425', 'beIN SPORTS 2 HD', this)">
+                    <div class="channel-icon">
+                        <img src="https://assets.bein.com/mena/sites/4/2021/02/beIN_SPORTS2_DIGITAL_Mono.png" alt="beIN SPORTS 2">
+                    </div>
+                    <h4>beIN SPORTS 2 HD</h4>
+                </div>
+                
+                <div class="channel-card" onclick="switchChannel('https://website.fancy-water-8bf9.workers.dev/api/channel/1426', 'beIN SPORTS 3 HD', this)">
+                    <div class="channel-icon">
+                        <img src="https://assets.bein.com/mena/sites/4/2015/06/beIN_SPORTS3_DIGITAL_Mono.png" alt="beIN SPORTS 3">
+                    </div>
+                    <h4>beIN SPORTS 3 HD</h4>
+                </div>
+                
+                <div class="channel-card" onclick="switchChannel('https://website.fancy-water-8bf9.workers.dev/api/channel/1427', 'beIN SPORTS 4 HD', this)">
+                    <div class="channel-icon">
+                        <img src="https://assets.bein.com/mena/sites/4/2015/06/beIN_SPORTS4_DIGITAL_Mono.png" alt="beIN SPORTS 4">
+                    </div>
+                    <h4>beIN SPORTS 4 HD</h4>
+                </div>
+                
+                <div class="channel-card" onclick="switchChannel('https://website.fancy-water-8bf9.workers.dev/api/channel/1428', 'beIN SPORTS 5 HD', this)">
+                    <div class="channel-icon">
+                        <img src="https://assets.bein.com/mena/sites/4/2015/06/beIN_SPORTS5_DIGITAL_Mono.png" alt="beIN SPORTS 5">
+                    </div>
+                    <h4>beIN SPORTS 5 HD</h4>
+                </div>
+                
+                <div class="channel-card" onclick="switchChannel('https://website.fancy-water-8bf9.workers.dev/api/channel/1429', 'beIN SPORTS 6 HD', this)">
+                    <div class="channel-icon">
+                        <img src="https://assets.bein.com/mena/sites/4/2021/02/beIN_SPORTS6_DIGITAL_Mono.png" alt="beIN SPORTS 6">
+                    </div>
+                    <h4>beIN SPORTS 6 HD</h4>
+                </div>
+                
+                <div class="channel-card" onclick="switchChannel('https://website.fancy-water-8bf9.workers.dev/api/channel/1430', 'beIN SPORTS 7 HD', this)">
+                    <div class="channel-icon">
+                        <img src="https://assets.bein.com/mena/sites/4/2015/06/beIN_SPORTS7_DIGITAL_Mono.png" alt="beIN SPORTS 7">
+                    </div>
+                    <h4>beIN SPORTS 7 HD</h4>
+                </div>
+                
+                <div class="channel-card" onclick="switchChannel('https://website.fancy-water-8bf9.workers.dev/api/channel/1431', 'beIN SPORTS 8 HD', this)">
+                    <div class="channel-icon">
+                        <img src="https://assets.bein.com/mena/sites/4/2023/09/logos-_beINSPORTS8.png" alt="beIN SPORTS 8">
+                    </div>
+                    <h4>beIN SPORTS 8 HD</h4>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="logo" style="justify-content: center; font-size: 22px;">PLUS <span>C</span></div>
+        <p style="color: var(--text-muted); margin-top: 10px; font-size: 14px;">جميع الحقوق محفوظة &copy; 2026</p>
+    </footer>
+    
+    <!-- مكتبات المشغل HLS.js و Plyr -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
+    <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+
+    <script>
+        // --- إدارة مشغل الفيديو (Plyr + Hls.js) ---
+        const video = document.getElementById('my-video');
+        
+        const player = new Plyr(video, {
+            controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen'],
+            keyboard: { focused: true, global: true },
+            tooltips: { controls: true, seek: true }
+        });
+
+        let hls; 
+
+        window.onload = () => {
+            const firstChannel = document.querySelector('.channel-card');
+            if(firstChannel) firstChannel.click();
+        };
+
+        async function switchChannel(apiUrl, title, element) {
+            const wrapper = document.getElementById('video-container');
+            const titleElement = document.getElementById('current-channel-text');
+            
+            wrapper.style.opacity = '0.5';
+            
+            document.querySelectorAll('.channel-card').forEach(c => c.classList.remove('active'));
+            if(element) element.classList.add('active');
+            
+            titleElement.innerText = title + ' (جاري التحميل...)';
+
+            try {
+                const response = await fetch(apiUrl);
+                const jsonData = await response.json();
+                
+                if (jsonData && jsonData.data && jsonData.data.length > 0 && jsonData.data[0].url) {
+                    const originalStreamUrl = jsonData.data[0].url;
+                    const workerDomain = "https://website.fancy-water-8bf9.workers.dev/";
+                    const proxiedStreamUrl = workerDomain + "?stream=" + encodeURIComponent(originalStreamUrl);
+
+                    titleElement.innerText = title;
+                    
+                    if (hls) {
+                        hls.destroy();
+                    }
+
+                    if (Hls.isSupported()) {
+                        hls = new Hls({
+                            maxMaxBufferLength: 30 
+                        });
+                        hls.loadSource(proxiedStreamUrl);
+                        hls.attachMedia(video);
+                        hls.on(Hls.Events.MANIFEST_PARSED, function () {
+                            player.play();
+                        });
+                    } 
+                    else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                        video.src = proxiedStreamUrl;
+                        video.addEventListener('loadedmetadata', function () {
+                            player.play();
+                        });
+                    }
+                } else {
+                    titleElement.innerText = title + ' (البث غير متوفر حالياً)';
+                }
+            } catch (error) {
+                console.error("خطأ أثناء جلب القناة:", error);
+                titleElement.innerText = title + ' (فشل الاتصال)';
+            } finally {
+                wrapper.style.opacity = '1';
+            }
+        }
+    </script>
+</body>
+</html>
