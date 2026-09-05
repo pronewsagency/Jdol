@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C PLUS | جاري تجهيز البث</title>
+    
+    <!-- خطوط جوجل -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap" rel="stylesheet">
+    
+    <!-- مكتبة الأيقونات FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* المتغيرات والهوية البصرية مطابقة لموقعك */
+        :root {
+            --c-cyan: #00FFD1;
+            --c-blue: #0077FF;
+            --c-purple: #7B2CBF;
+            --gradient-main: linear-gradient(135deg, var(--c-cyan), var(--c-blue), var(--c-purple));
+            --bg-base: #030409; 
+            --glass-bg: rgba(20, 22, 35, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-main: #ffffff;
+            --text-muted: #8b92a5;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+        body { 
+            background-color: var(--bg-base); 
+            color: var(--text-main); 
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            /* خلفية جمالية خفيفة */
+            background-image: radial-gradient(circle at 50% 50%, rgba(0, 119, 255, 0.1) 0%, transparent 50%);
+        }
+
+        /* القائمة العلوية */
+        header {
+            background: rgba(3, 4, 9, 0.8);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 15px 5%; display: flex; justify-content: center;
+            align-items: center; border-bottom: 1px solid var(--glass-border);
+        }
+        .logo { font-size: 30px; font-weight: 900; letter-spacing: 1px; display: flex; align-items: center; gap: 10px;}
+        .logo span { background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        /* حاوية الانتظار في المنتصف */
+        .waiting-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .waiting-box {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.05);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .waiting-box h2 {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: var(--c-cyan);
+        }
+
+        .waiting-box p {
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-bottom: 30px;
+        }
+
+        /* تصميم العداد الدائري */
+        .timer-wrapper {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px dashed var(--c-blue);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 30px auto;
+            font-size: 35px;
+            font-weight: 900;
+            color: var(--text-main);
+            animation: rotateBorder 5s linear infinite;
+            position: relative;
+        }
+        
+        .timer-wrapper span {
+            /* إيقاف دوران النص داخل الدائرة */
+            animation: reverseRotate 5s linear infinite;
+        }
+
+        @keyframes rotateBorder { 100% { transform: rotate(360deg); } }
+        @keyframes reverseRotate { 100% { transform: rotate(-360deg); } }
+
+        /* تصميم الزر */
+        .btn-go {
+            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 800;
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        /* حالة الزر معطل (وقت الانتظار) */
+        .btn-disabled {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            cursor: not-allowed;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* حالة الزر مفعل (جاهز للنقر) */
+        .btn-active {
+            background: var(--gradient-main);
+            color: #fff;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0, 119, 255, 0.4);
+            animation: pulseBtn 2s infinite;
+        }
+
+        .btn-active:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 119, 255, 0.6);
+        }
+
+        @keyframes pulseBtn {
+            0% { box-shadow: 0 0 0 0 rgba(0, 119, 255, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 119, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 119, 255, 0); }
+        }
+
+        /* إعلان بانر إضافي اختياري (لزيادة الأرباح أثناء الانتظار) */
+        .waiting-ad-banner {
+            margin-top: 25px;
+            width: 100%;
+            min-height: 50px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px dashed var(--glass-border);
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="url(#grad1)"/>
+                <path d="M2 17L12 22L22 17" stroke="url(#grad1)" stroke-width="2" stroke-linecap="round"/>
+                <path d="M2 12L12 17L22 12" stroke="url(#grad1)" stroke-width="2" stroke-linecap="round"/>
+                <defs>
+                    <linearGradient id="grad1" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#00FFD1" />
+                        <stop offset="0.5" stop-color="#0077FF" />
+                        <stop offset="1" stop-color="#7B2CBF" />
+                    </linearGradient>
+                </defs>
+            </svg>
+            PLUS <span>C</span>
+        </div>
+    </header>
+
+    <main class="waiting-container">
+        <div class="waiting-box">
+            <h2><i class="fa-solid fa-satellite-dish"></i> جاري تجهيز البث...</h2>
+            <p>يرجى الانتظار بضع ثوانٍ لتخطي الإعلان والانتقال للمباراة بجودة عالية</p>
+
+            <!-- العداد -->
+            <div class="timer-wrapper" id="timer-wrapper">
+                <span id="countdown">5</span>
+            </div>
+
+            <!-- الزر -->
+            <button id="go-btn" class="btn-go btn-disabled" disabled>
+                <i class="fa-solid fa-spinner fa-spin"></i> الرجاء الانتظار...
+            </button>
+
+            <!-- مكان لإعلان بانر 320x50 أثناء الانتظار (اختياري) -->
+            <div class="waiting-ad-banner">
+                 <script>
+                  atOptions = {
+                    'key' : '4c36e881cfe896ed1e3d7ae247fec6a1',
+                    'format' : 'iframe',
+                    'height' : 50,
+                    'width' : 320,
+                    'params' : {}
+                  };
+                </script>
+                <script src="https://www.highrevenueformat.com/4c36e881cfe896ed1e3d7ae247fec6a1/invoke.js"></script>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. ضع رابط صفحة البث المباشر (المشغل) هنا
+            // إذا كانت الصفحة في نفس المجلد واسمها stream.html، اكتب الاسم هكذا:
+            const streamPageUrl = "stream.html"; 
+
+            // 2. رابط الإعلان المباشر الخاص بك (Direct Link)
+            const adDirectLink = "https://www.profitableratecpmnetwork.com/a3zqw94b?key=b70a1228d77984827166a3fe5efddc9f";
+
+            let timeLeft = 5; // عدد ثواني الانتظار
+            
+            const countdownEl = document.getElementById('countdown');
+            const timerWrapper = document.getElementById('timer-wrapper');
+            const goBtn = document.getElementById('go-btn');
+
+            // وظيفة العداد
+            const timer = setInterval(() => {
+                timeLeft--;
+                if(timeLeft > 0) {
+                    countdownEl.innerText = timeLeft;
+                } else {
+                    // عند انتهاء الوقت
+                    clearInterval(timer);
+                    
+                    // إخفاء العداد
+                    timerWrapper.style.display = 'none';
+                    
+                    // تفعيل الزر وتغيير شكله
+                    goBtn.innerHTML = 'الانتقال إلى البث المباشر <i class="fa-solid fa-play"></i>';
+                    goBtn.classList.remove('btn-disabled');
+                    goBtn.classList.add('btn-active');
+                    goBtn.disabled = false;
+                }
+            }, 1000);
+
+            // وظيفة النقر على الزر (السر هنا)
+            goBtn.addEventListener('click', () => {
+                // فتح رابط الإعلان في نافذة جديدة (لصالح المعلن)
+                window.open(adDirectLink, '_blank');
+                
+                // توجيه الزائر في النافذة الحالية إلى صفحة البث المباشر
+                window.location.href = streamPageUrl;
+            });
+        });
+    </script>
+</body>
+</html>
