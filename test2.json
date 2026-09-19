@@ -1,47 +1,92 @@
 {
   "sections": [
     {
-      "title": "beIN SPORTS",
+      "title": "beIN SPORTS S1",
       "items": [
         {
           "name": "beIN SPORTS 1",
           "logo": "https:\/\/i.ibb.co\/SXnfSrDC\/Bein1.jpg",
-          "url": "https:\/\/cold-breeze-9b95.learnwithgedo.workers.dev\/data\/stream\/4.m3u8@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/150.0.0.0 Safari\/537.36@Ref=https:\/\/studio.x.com\/@Name=HD&&p:https:\/\/www.manar2.shop\/x1\/59.json?token=34c2032873719277ad982f805868f5cd4a3ce67b1479c6060d7f6253870f92bb&expires=1787856241&exp=33554432@Name=2K&&https:\/\/live-tv-116849026166.europe-west1.run.app\/api\/special-stream\/live\/4742074\/master.m3u8@Name=متعدد&&https:\/\/man1ted.com\/get.php?ch=beee1@Name=SD&&https:\/\/wideiptv.top\/player\/beINAR@Ref=https:\/\/popcdn.day\/@Name=SD3&&https:\/\/hamis.romponalis.st\/premiumtv\/daddy4.php?id=91@Ref=https:\/\/dlhd.pk\/@Name=HD2&&p:https:\/\/still-dust-c9ae.manon-lol2000.workers.dev\/assets\/res2\/java2\/1316.css?x=\/hls\/@UA=TDMuaEG@Name=HD3&&https:\/\/embedfootball.site\/ppv\/?id=Bj9DMAVrHQ4dIVtGFDRbSwM2WTIBdEJPFyMZTiQbPR0eI0d_HzUPGEk@Ref=https:\/\/embedsport.live\/@Name=HD4"
+          "url": "http:\/\/def.ycnapi.com\/api\/channel\/4"
         },
         {
           "name": "beIN SPORTS 2",
           "logo": "https:\/\/c.top4top.io\/p_3472yez4k3.png",
-          "url": "https:\/\/cold-breeze-9b95.learnwithgedo.workers.dev\/data\/stream\/5.m3u8@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/150.0.0.0 Safari\/537.36@Ref=https:\/\/studio.x.com\/@Name=HD&&p:https:\/\/www.manar2.shop\/x1\/60.json?token=34c2032873719277ad982f805868f5cd4a3ce67b1479c6060d7f6253870f92bb&expires=1787856241&exp=33554432@Name=2K&&https:\/\/3.3loka.site\/aloka1214\/aloka1214\/11@UA=MTX Player@Name=FHD&&https:\/\/man1ted.com\/get.php?ch=beee2@Name=SD&&https:\/\/match-stream.learnwithgedo.workers.dev\/?channel=bein1&.m3u8@Name=SD2&&https:\/\/wideiptv.top\/player\/beINAR2@Ref=https:\/\/popcdn.day\/@Name=SD3&&https:\/\/hamis.romponalis.st\/premiumtv\/daddy4.php?id=92@Ref=https:\/\/dlhd.pk\/@Name=HD2"
+          "url": "http:\/\/def.ycnapi.com\/api\/channel\/5"
         },
         {
           "name": "beIN SPORTS 3",
           "logo": "https:\/\/i.ibb.co\/q3KPXXL8\/IMG-20250610-124131-856.png",
-          "url": "https:\/\/cold-breeze-9b95.learnwithgedo.workers.dev\/data\/stream\/6.m3u8@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/150.0.0.0 Safari\/537.36@Ref=https:\/\/studio.x.com\/@Name=HD&&p:https:\/\/www.manar2.shop\/x1\/61.json?token=34c2032873719277ad982f805868f5cd4a3ce67b1479c6060d7f6253870f92bb&expires=1787856241&exp=33554432@Name=2K&&https:\/\/3.3loka.site\/aloka1214\/aloka1214\/12@UA=MTX Player@Name=FHD&&https:\/\/man1ted.com\/get.php?ch=beee3@Name=SD&&https:\/\/match-stream.learnwithgedo.workers.dev\/?channel=bein2&.m3u8@Name=SD2&&https:\/\/wideiptv.top\/player\/beINAR3@Ref=https:\/\/popcdn.day\/@Name=SD3&&https:\/\/hamis.romponalis.st\/premiumtv\/daddy4.php?id=93@Ref=https:\/\/dlhd.pk\/@Name=HD2"
+          "url": "http:\/\/def.ycnapi.com\/api\/channel\/6"
         },
         {
           "name": "beIN SPORTS 4",
           "logo": "https:\/\/a.top4top.io\/p_3472njzde1.png",
-          "url": "https:\/\/cold-breeze-9b95.learnwithgedo.workers.dev\/data\/stream\/7.m3u8@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/150.0.0.0 Safari\/537.36@Ref=https:\/\/studio.x.com\/@Name=HD&&p:https:\/\/www.manar2.shop\/x1\/62.json?token=34c2032873719277ad982f805868f5cd4a3ce67b1479c6060d7f6253870f92bb&expires=1787856241&exp=33554432@Name=2K&&https:\/\/3.3loka.site\/aloka1214\/aloka1214\/13@UA=MTX Player@Name=FHD&&https:\/\/hamis.romponalis.st\/premiumtv\/daddy4.php?id=94@Ref=https:\/\/dlhd.pk\/@Name=HD2&&https:\/\/man1ted.com\/get.php?ch=beee4@Name=SD&&https:\/\/wideiptv.top\/player\/beINAR4@Ref=https:\/\/popcdn.day\/@Name=SD2"
+          "url": "http:\/\/def.ycnapi.com\/api\/channel\/7"
         },
         {
           "name": "beIN SPORTS 5",
           "logo": "https:\/\/i.ibb.co\/TqNwc6JB\/IMG-20250610-124142-353.png",
-          "url": "https:\/\/cold-breeze-9b95.learnwithgedo.workers.dev\/data\/stream\/8.m3u8@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/150.0.0.0 Safari\/537.36@Ref=https:\/\/studio.x.com\/@Name=HD&&p:https:\/\/www.manar2.shop\/x1\/63.json?token=34c2032873719277ad982f805868f5cd4a3ce67b1479c6060d7f6253870f92bb&expires=1787856241&exp=33554432@Name=2K&&https:\/\/3.3loka.site\/aloka1214\/aloka1214\/14@UA=MTX Player@Name=FHD&&https:\/\/man1ted.com\/get.php?ch=beee5@Name=SD&&https:\/\/wideiptv.top\/player\/beINAR5@Ref=https:\/\/popcdn.day\/@Name=SD2&&https:\/\/hamis.romponalis.st\/premiumtv\/daddy4.php?id=95@Ref=https:\/\/dlhd.pk\/@Name=HD2"
+          "url": "http:\/\/def.ycnapi.com\/api\/channel\/8"
         },
         {
           "name": "beIN SPORTS 6",
           "logo": "https:\/\/g.top4top.io\/p_34728biwp7.png",
-          "url": "https:\/\/cold-breeze-9b95.learnwithgedo.workers.dev\/data\/stream\/9.m3u8@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/150.0.0.0 Safari\/537.36@Ref=https:\/\/studio.x.com\/@Name=HD&&https:\/\/3.3loka.site\/aloka1214\/aloka1214\/15@UA=MTX Player@Name=FHD&&https:\/\/man1ted.com\/get.php?ch=beee6@Name=SD&&https:\/\/wideiptv.top\/player\/beINAR6@Ref=https:\/\/popcdn.day\/@Name=SD2&&https:\/\/hamis.romponalis.st\/premiumtv\/daddy4.php?id=96@Ref=https:\/\/dlhd.pk\/@Name=HD2"
+          "url": "http:\/\/def.ycnapi.com\/api\/channel\/9"
         },
         {
           "name": "beIN SPORTS 7",
           "logo": "https:\/\/i.ibb.co\/WNL7gRL5\/IMG-20250610-124148-440.png",
-          "url": "https:\/\/cold-breeze-9b95.learnwithgedo.workers.dev\/data\/stream\/10.m3u8@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/150.0.0.0 Safari\/537.36@Ref=https:\/\/studio.x.com\/@Name=HD&&https:\/\/hamis.romponalis.st\/premiumtv\/daddy4.php?id=97@Ref=https:\/\/dlhd.pk\/@Name=HD&&https:\/\/wideiptv.top\/player\/beINAR7@Ref=https:\/\/popcdn.day\/@Name=SD&&https:\/\/man1ted.com\/get.php?ch=beee7@Name=SD2&&https:\/\/3.3loka.site\/aloka1214\/aloka1214\/16@UA=MTX Player@Name=FHD"
+          "url": "http:\/\/def.ycnapi.com\/api\/channel\/10"
         },
         {
           "name": "beIN SPORTS 8",
           "logo": "https:\/\/e.top4top.io\/p_3472fncu45.png",
-          "url": "https:\/\/cold-breeze-9b95.learnwithgedo.workers.dev\/data\/stream\/11.m3u8@UA=Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/150.0.0.0 Safari\/537.36@Ref=https:\/\/studio.x.com\/@Name=HD&&https:\/\/hamis.romponalis.st\/premiumtv\/daddy4.php?id=98@Ref=https:\/\/dlhd.pk\/@Name=HD&&https:\/\/wideiptv.top\/player\/beINAR8@Ref=https:\/\/popcdn.day\/@Name=SD&&https:\/\/man1ted.com\/get.php?ch=beee8@Name=SD2&&https:\/\/3.3loka.site\/aloka1214\/aloka1214\/17@UA=MTX Player@Name=FHD"
+          "url": "http:\/\/def.ycnapi.com\/api\/channel\/11"
+        }
+      ]
+    },
+    {
+      "title": "beIN SPORTS S2",
+      "items": [
+        {
+          "name": "beIN SPORTS 1",
+          "logo": "https:\/\/i.ibb.co\/SXnfSrDC\/Bein1.jpg",
+          "url": "p:https:\/\/www.manar2.shop\/x1\/59.json?token=34c2032873719277ad982f805868f5cd4a3ce67b1479c6060d7f6253870f92bb&expires=1787856241&exp=33554432@Name=2K&&https:\/\/live-tv-116849026166.europe-west1.run.app\/api\/special-stream\/live\/4742074\/master.m3u8@Name=متعدد&&https:\/\/man1ted.com\/get.php?ch=beee1@Name=SD&&https:\/\/wideiptv.top\/player\/beINAR@Ref=https:\/\/popcdn.day\/@Name=SD3&&https:\/\/hamis.romponalis.st\/premiumtv\/daddy4.php?id=91@Ref=https:\/\/dlhd.pk\/@Name=HD2&&p:https:\/\/still-dust-c9ae.manon-lol2000.workers.dev\/assets\/res2\/java2\/1316.css?x=\/hls\/@UA=TDMuaEG@Name=HD3&&https:\/\/embedfootball.site\/ppv\/?id=Bj9DMAVrHQ4dIVtGFDRbSwM2WTIBdEJPFyMZTiQbPR0eI0d_HzUPGEk@Ref=https:\/\/embedsport.live\/@Name=HD4"
+        },
+        {
+          "name": "beIN SPORTS 2",
+          "logo": "https:\/\/c.top4top.io\/p_3472yez4k3.png",
+          "url": "p:https:\/\/www.manar2.shop\/x1\/60.json?token=34c2032873719277ad982f805868f5cd4a3ce67b1479c6060d7f6253870f92bb&expires=1787856241&exp=33554432@Name=2K&&https:\/\/3.3loka.site\/aloka1214\/aloka1214\/11@UA=MTX Player@Name=FHD&&https:\/\/man1ted.com\/get.php?ch=beee2@Name=SD&&https:\/\/match-stream.learnwithgedo.workers.dev\/?channel=bein1&.m3u8@Name=SD2&&https:\/\/wideiptv.top\/player\/beINAR2@Ref=https:\/\/popcdn.day\/@Name=SD3&&https:\/\/hamis.romponalis.st\/premiumtv\/daddy4.php?id=92@Ref=https:\/\/dlhd.pk\/@Name=HD2"
+        },
+        {
+          "name": "beIN SPORTS 3",
+          "logo": "https:\/\/i.ibb.co\/q3KPXXL8\/IMG-20250610-124131-856.png",
+          "url": "p:https:\/\/www.manar2.shop\/x1\/61.json?token=34c2032873719277ad982f805868f5cd4a3ce67b1479c6060d7f6253870f92bb&expires=1787856241&exp=33554432@Name=2K&&https:\/\/3.3loka.site\/aloka1214\/aloka1214\/12@UA=MTX Player@Name=FHD&&https:\/\/man1ted.com\/get.php?ch=beee3@Name=SD&&https:\/\/match-stream.learnwithgedo.workers.dev\/?channel=bein2&.m3u8@Name=SD2&&https:\/\/wideiptv.top\/player\/beINAR3@Ref=https:\/\/popcdn.day\/@Name=SD3&&https:\/\/hamis.romponalis.st\/premiumtv\/daddy4.php?id=93@Ref=https:\/\/dlhd.pk\/@Name=HD2"
+        },
+        {
+          "name": "beIN SPORTS 4",
+          "logo": "https:\/\/a.top4top.io\/p_3472njzde1.png",
+          "url": "p:https:\/\/www.manar2.shop\/x1\/62.json?token=34c2032873719277ad982f805868f5cd4a3ce67b1479c6060d7f6253870f92bb&expires=1787856241&exp=33554432@Name=2K&&https:\/\/3.3loka.site\/aloka1214\/aloka1214\/13@UA=MTX Player@Name=FHD&&https:\/\/hamis.romponalis.st\/premiumtv\/daddy4.php?id=94@Ref=https:\/\/dlhd.pk\/@Name=HD2&&https:\/\/man1ted.com\/get.php?ch=beee4@Name=SD&&https:\/\/wideiptv.top\/player\/beINAR4@Ref=https:\/\/popcdn.day\/@Name=SD2"
+        },
+        {
+          "name": "beIN SPORTS 5",
+          "logo": "https:\/\/i.ibb.co\/TqNwc6JB\/IMG-20250610-124142-353.png",
+          "url": "p:https:\/\/www.manar2.shop\/x1\/63.json?token=34c2032873719277ad982f805868f5cd4a3ce67b1479c6060d7f6253870f92bb&expires=1787856241&exp=33554432@Name=2K&&https:\/\/3.3loka.site\/aloka1214\/aloka1214\/14@UA=MTX Player@Name=FHD&&https:\/\/man1ted.com\/get.php?ch=beee5@Name=SD&&https:\/\/wideiptv.top\/player\/beINAR5@Ref=https:\/\/popcdn.day\/@Name=SD2&&https:\/\/hamis.romponalis.st\/premiumtv\/daddy4.php?id=95@Ref=https:\/\/dlhd.pk\/@Name=HD2"
+        },
+        {
+          "name": "beIN SPORTS 6",
+          "logo": "https:\/\/g.top4top.io\/p_34728biwp7.png",
+          "url": "p:https:\/\/www.manar2.shop\/x1\/64.json?token=34c2032873719277ad982f805868f5cd4a3ce67b1479c6060d7f6253870f92bb&expires=1787856241&exp=33554432@Name=2K&&https:\/\/man1ted.com\/get.php?ch=beee6@Name=SD&&https:\/\/wideiptv.top\/player\/beINAR6@Ref=https:\/\/popcdn.day\/@Name=SD2&&https:\/\/hamis.romponalis.st\/premiumtv\/daddy4.php?id=96@Ref=https:\/\/dlhd.pk\/@Name=HD2&&https:\/\/3.3loka.site\/aloka1214\/aloka1214\/15@UA=MTX Player@Name=FHD"
+        },
+        {
+          "name": "beIN SPORTS 7",
+          "logo": "https:\/\/i.ibb.co\/WNL7gRL5\/IMG-20250610-124148-440.png",
+          "url": "p:https:\/\/www.manar2.shop\/x1\/65.json?token=34c2032873719277ad982f805868f5cd4a3ce67b1479c6060d7f6253870f92bb&expires=1787856241&exp=33554432@Name=2K&&https:\/\/man1ted.com\/get.php?ch=beee7@Name=SD2&&https:\/\/hamis.romponalis.st\/premiumtv\/daddy4.php?id=97@Ref=https:\/\/dlhd.pk\/@Name=HD&&https:\/\/wideiptv.top\/player\/beINAR7@Ref=https:\/\/popcdn.day\/@Name=SD&&https:\/\/3.3loka.site\/aloka1214\/aloka1214\/16@UA=MTX Player@Name=FHD"
+        },
+        {
+          "name": "beIN SPORTS 8",
+          "logo": "https:\/\/e.top4top.io\/p_3472fncu45.png",
+          "url": "p:https:\/\/www.manar2.shop\/x1\/66.json?token=34c2032873719277ad982f805868f5cd4a3ce67b1479c6060d7f6253870f92bb&expires=1787856241&exp=33554432@Name=2K&&https:\/\/man1ted.com\/get.php?ch=beee8@Name=SD2&&https:\/\/hamis.romponalis.st\/premiumtv\/daddy4.php?id=98@Ref=https:\/\/dlhd.pk\/@Name=HD&&https:\/\/wideiptv.top\/player\/beINAR8@Ref=https:\/\/popcdn.day\/@Name=SD&&https:\/\/3.3loka.site\/aloka1214\/aloka1214\/17@UA=MTX Player@Name=FHD"
         }
       ]
     },
@@ -91,22 +136,22 @@
         {
           "name": "ALWAN 1",
           "logo": "https:\/\/k.top4top.io\/p_38843whca1.png",
-          "url": "https:\/\/match-stream.learnwithgedo.workers.dev\/dramacardinalv2.php?id=alwan1&.m3u8@Name=SD&&http:\/\/fackyou-cdn5.cfd\/ALWAN-1\/index.m3u8@Name=HD&&https:\/\/3.3loka.site\/aloka1313\/aloka1313\/125@UA=MTX Player@Name=FHD&&https:\/\/cup.kora-live-live.com\/albaplayer\/sports-1\/?serv=2@Name=SD"
+          "url": "https:\/\/blcco.linkip.org\/live\/3461_.m3u8@UA=Dalvik\/2.1.0 (Linux;Android9;Build\/PI)@Name=HD&&https:\/\/3.3loka.site\/aloka1010\/aloka1010\/125@UA=MTX Player@Name=FHD&&https:\/\/cup.kora-live-live.com\/albaplayer\/sports-1\/?serv=2@Name=SD"
         },
         {
           "name": "ALWAN 2",
           "logo": "https:\/\/c.top4top.io\/p_3884x9r0j2.png",
-          "url": "https:\/\/match-stream.learnwithgedo.workers.dev\/dramacardinalv2.php?id=alwan2&.m3u8@Name=SD&&http:\/\/fackyou-cdn5.cfd\/ALWAN-2\/index.m3u8@Name=HD&&https:\/\/3.3loka.site\/aloka1313\/aloka1313\/126@UA=MTX Player@Name=FHD&&https:\/\/cup.kora-live-live.com\/albaplayer\/sports-2\/?serv=2@Name=SD"
+          "url": "https:\/\/blcco.linkip.org\/live\/3460_.m3u8@UA=Dalvik\/2.1.0 (Linux;Android9;Build\/PI)@Name=SD&&https:\/\/3.3loka.site\/aloka1313\/aloka1313\/126@UA=MTX Player@Name=FHD&&https:\/\/cup.kora-live-live.com\/albaplayer\/sports-2\/?serv=2@Name=SD"
         },
         {
           "name": "ALWAN 3",
           "logo": "https:\/\/a.top4top.io\/p_3884qsnn42.png",
-          "url": "https:\/\/match-stream.learnwithgedo.workers.dev\/dramacardinalv2.php?id=alwan3&.m3u8@Name=SD&&http:\/\/fackyou-cdn5.cfd\/ALWAN-3\/index.m3u8@Name=HD&&https:\/\/3.3loka.site\/aloka1313\/aloka1313\/127@UA=MTX Player@Name=FHD&&https:\/\/cup.kora-live-live.com\/albaplayer\/sports-3\/?serv=2@Name=SD"
+          "url": "https:\/\/blcco.linkip.org\/live\/3459_.m3u8@UA=Dalvik\/2.1.0 (Linux;Android9;Build\/PI)@Name=SD&&https:\/\/3.3loka.site\/aloka1313\/aloka1313\/127@UA=MTX Player@Name=FHD&&https:\/\/cup.kora-live-live.com\/albaplayer\/sports-3\/?serv=2@Name=SD"
         },
         {
           "name": "ALWAN 4",
           "logo": "https:\/\/i.top4top.io\/p_38845pti51.png",
-          "url": "https:\/\/match-stream.learnwithgedo.workers.dev\/dramacardinalv2.php?id=alwan4&.m3u8@Name=SD&&http:\/\/fackyou-cdn5.cfd\/ALWAN-4\/index.m3u8@Name=HD&&https:\/\/3.3loka.site\/aloka1313\/aloka1313\/128@UA=MTX Player@Name=FHD&&https:\/\/cup.kora-live-live.com\/albaplayer\/sports-4\/?serv=2@Name=SD"
+          "url": "https:\/\/blcco.linkip.org\/live\/3458_.m3u8@UA=Dalvik\/2.1.0 (Linux;Android9;Build\/PI)@Name=SD&&http:\/\/fackyou-cdn5.cfd\/ALWAN-4\/index.m3u8@Name=HD&&https:\/\/3.3loka.site\/aloka1313\/aloka1313\/128@UA=MTX Player@Name=FHD&&https:\/\/cup.kora-live-live.com\/albaplayer\/sports-4\/?serv=2@Name=SD"
         }
       ]
     },
@@ -341,7 +386,7 @@
         {
           "name": "MBC 2",
           "logo": "https:\/\/i.ibb.co\/QvFRSr2C\/Mbc2.png",
-          "url": "https:\/\/shd-gcp-live.edgenextcdn.net\/live\/bitmovin-mbc-2\/51db9d7fa48a27d051f1eecb68069151\/index.mpd#DRM=e3ce77324a3d4fa2a913b26cc1976052:17774f82a3b9e33ea7a149596acbb20f@Name=متعدد"
+          "url": "https:\/\/neacdnpop3-edge02.aws.playco.com\/live\/eds\/MBC_2HD\/DASH\/MBC_2HD.mpd#DRM=535b41e50f71d5dcdd7b61685500980f:864e981865940ef26cde333a1a8be344@Name=متعدد"
         },
         {
           "name": "MBC 3",
@@ -361,7 +406,7 @@
         {
           "name": "MBC ACTION",
           "logo": "https:\/\/i.ibb.co\/Wwd0M16\/Mbc-action.jpg",
-          "url": "https:\/\/shd-gcp-live.edgenextcdn.net\/live\/bitmovin-mbc-action\/8ea6ca1108d03e03da5e61372354f5c8\/index.mpd#DRM=e3ce77324a3d4fa2a913b26cc1976052:17774f82a3b9e33ea7a149596acbb20f@Name=متعدد"
+          "url": "https:\/\/shd-gcp-live.edgenextcdn.net\/live\/bitmovin-mbc-action\/8ea6ca1108d03e03da5e61372354f5c8\/index.mpd#DRM=73d6c44e70d24e09a1c4735bb6e2f696:22f2237a1722bf4d4623346a3ea08b7c@Name=متعدد"
         },
         {
           "name": "MBC IRAQ",
@@ -391,7 +436,7 @@
         {
           "name": "MBC MAX",
           "logo": "https:\/\/i.top4top.io\/p_3472rlmt67.png",
-          "url": "https:\/\/shd-gcp-live.edgenextcdn.net\/live\/bitmovin-mbc-max\/b628d2bbaee0431a17859963edf2975f\/index.mpd#DRM=e3ce77324a3d4fa2a913b26cc1976052:17774f82a3b9e33ea7a149596acbb20f@Name=متعدد"
+          "url": "https:\/\/ev-fuj-dxb-cdn-edge2.aws.playco.com\/live\/eds\/MBC_Max_HD\/DASH\/MBC_Max_HD.mpd#DRM=d995e35f26a3f5ad83f783272d33d956:5e065664006dfd499957b7a4324c8a4f@Name=متعدد"
         }
       ]
     },
