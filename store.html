@@ -72,19 +72,13 @@
         .screenshot-card { flex: 0 0 auto; width: 220px; background: rgba(255, 255, 255, 0.05); border-radius: 15px; padding: 10px; scroll-snap-align: start; }
         .screenshot-card img { width: 100%; height: auto; border-radius: 10px; pointer-events: none; }
 
-        /* Notification Alert (تم تعديل الهوامش لتناسب المكان الجديد) */
-        .notification-alert { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(0, 240, 255, 0.3); border-radius: 15px; padding: 25px; max-width: 600px; margin: 30px auto 40px; }
-        .notification-alert h3 { color: #00f0ff; margin-bottom: 15px; }
-        .notification-alert img { width: 100%; max-width: 250px; border-radius: 15px; margin-top: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); pointer-events: none; }
-
         /* Download Section */
         #download-section { padding: 50px 0; text-align: center; background: rgba(0, 0, 0, 0.3); border-top: 1px solid rgba(255, 255, 255, 0.05); }
-        .screenshot-item-wrapper { margin-top: 20px; }
-        .screenshot-item { flex: 0 0 auto; width: 200px; text-align: center; scroll-snap-align: start; }
-        .screenshot-item img { width: 100%; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); pointer-events: none; }
         
-        .download-options { display: flex; justify-content: center; margin-top: 10px; }
-        .download-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #fff; }
+        /* تعديل المسافات بين أزرار التحميل */
+        .download-options { display: flex; justify-content: center; gap: 40px; margin-top: 20px; flex-wrap: wrap; }
+        .download-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #fff; transition: transform 0.3s; }
+        .download-item:hover { transform: scale(1.05); }
         .icon-container { width: 90px; height: 90px; background: rgba(255, 255, 255, 0.1); border-radius: 20px; display: flex; justify-content: center; align-items: center; margin-bottom: 10px; }
         .icon-container img { width: 65px; height: 65px; border-radius: 15px; }
         .downloader-code { margin-top: 30px; padding: 20px; background: rgba(255, 255, 255, 0.05); border-radius: 10px; display: inline-block; border: 1px dashed #00f0ff; }
@@ -146,32 +140,22 @@
     <!-- قسم التحميل -->
     <section id="download-section">
         <div class="container">
-            <h2>قد تظهر هذه الرسالة لأن التطبيق يدعم الأجهزة القديمة ، لا تقلق تعامل معها وفق هذه الخطوات</h2>
             
-            <div class="screenshot-item-wrapper horizontal-scroll">
-                <div class="screenshot-item">
-                    <h4>الخطوة الأولى</h4>
-                    <img src="https://i.ibb.co/MDxxrWRK/Picsart-26-08-22-02-25-25-499.jpg" alt="الخطوة 1">
-                </div>
-                <div class="screenshot-item">
-                    <h4>الخطوة الثانية</h4>
-                    <img src="https://i.ibb.co/HDwJVkMH/Picsart-26-08-22-02-28-48-121.jpg" alt="الخطوة 2">
-                </div>
-            </div>
-
-            <!-- تم نقل رسالة الإشعارات هنا قبل زر التحميل مباشرة -->
-            <div class="notification-alert">
-                <h3>تنبيه هام</h3>
-                <p>يرجى تفعيل زر الإشعارات داخل التطبيق للحصول على آخر التحديثات الخاصة بالمباريات وتحديثات التطبيق فور صدورها.</p>
-                <img src="https://c.top4top.io/p_3885oqs2b1.jpg" alt="تفعيل الإشعارات">
-            </div>
-
             <div class="download-options">
-                <a href="https://www.mediafire.com/file/ucy2vzn5b2djxns/C_PLUS.apk/file" class="download-item">
+                <!-- تحميل التطبيق الأساسي -->
+                <a href="https://www.mediafire.com/file/amse6fq3q33ev8v/CPLUS_v2.apk/file" class="download-item">
                     <div class="icon-container">
                         <img src="https://i.top4top.io/p_38856nuf61.png" alt="أيقونة C PLUS">
                     </div>
                     <span>تحميل التطبيق</span>
+                </a>
+                
+                <!-- تحميل المشغل المضاف حديثاً -->
+                <a href="https://www.mediafire.com/file/kvs0lncfzn8nli5/C_PLUS_PLAYER.apk/file" class="download-item">
+                    <div class="icon-container">
+                        <img src="https://i.ibb.co/7t6gBp4j/file-00000000c5908210915c98a1635a9171.png" alt="أيقونة المشغل">
+                    </div>
+                    <span>تحميل المشغل</span>
                 </a>
             </div>
             
