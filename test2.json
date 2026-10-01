@@ -4,6 +4,11 @@
       "title": "beIN SPORTS",
       "items": [
         {
+          "name": "وقت المباريات",
+          "logo": "https:\/\/i.ibb.co\/k2ZGZWgr\/file-0000000008d48210ae240adef12d209f.png",
+          "url": "https:\/\/match-proxy.learnwithgedo.workers.dev\/?id=1@Name=متعدد&&https:\/\/match-proxy.learnwithgedo.workers.dev\/?id=2@Name=متعدد&&https:\/\/match-proxy.learnwithgedo.workers.dev\/?id=3@Name=متعدد&&https:\/\/match-proxy.learnwithgedo.workers.dev\/?id=4@Name=متعدد"
+        },
+        {
           "name": "beIN SPORTS 1",
           "logo": "https:\/\/i.ibb.co\/SXnfSrDC\/Bein1.jpg",
           "url": "https:\/\/live-tv-116849026166.europe-west1.run.app\/api\/special-stream\/live\/4742074\/master.m3u8@Name=وقت المباريات&&http:\/\/def11.ycnapi.com\/api\/categories@@beIN SPORTS (720p)@@beIN SPORTS 1@Name=HD&&p:http:\/\/assets.pushyourcss.world:8080\/assets\/res2\/java2\/1319.css?x=\/hls\/@UA=OSCARTV2021@Name=FHD&&https:\/\/wideiptv.top\/player\/beINAR@Ref=https:\/\/popcdn.day\/@Name=SD&&https:\/\/man1ted.com\/get.php?ch=beee1@Name=SD2&&https:\/\/bloc.xmax1tv.com\/live\/2.m3u8@Name=HD2&&e:https:\/\/lastvelvet.net\/e\/yxtmusy4xj8tj\/@Ref=https:\/\/channel.aflam4you.net\/@Name=SD3&&https:\/\/www.ipslow.com\/tv\/o_2.php?id=bein1&.ts@UA=Dalvik\/2.1.0 (Linux;Android9;Build\/PI)@Name=HD3&&e:https:\/\/assetrage.net\/e\/86xmv29g1aw01@Ref=https:\/\/dlive.sx\/@Name=HD4&&https:\/\/cp11.adabmedia.com\/hls2\/bein1.m3u8@Name=HD6"
