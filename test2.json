@@ -554,6 +554,16 @@
           "url": "https:\/\/ktvlive.online\/stream\/hls\/ch1.m3u8@Name=KARBALA&&https:\/\/sps2.starzplayarabia.com\/out\/v1\/15e7d1ffb99746dda03f71dbbbc3c08b\/index.mpd###qzmR9qdym6HqS826DBrmwA:7oYe3NmQkxU6djqUsUwsWg@Ref=https:\/\/play.starzon.com\/@Name=متعدد"
         }
       ]
+    },
+    {
+      "title": "ARAB TV",
+      "items": [
+        {
+          "name": "العراق",
+          "logo": "https:\/\/i.ibb.co\/MyVV9XXd\/file-00000000b3e882108254a457751fee4f.png",
+          "url": "https:\/\/www.alsumaria.tv\/Live\/video@Name=السومرية&&https:\/\/alrasheedmedia.com\/live.html@Name=الرشيد&&https:\/\/indexforce.com\/tvhighres\/mystream\/playlist.m3u8@Ref=https:\/\/www.alsharqiya.com\/@Name=الشرقية&&https:\/\/indexforce.com\/newshighres\/mystream\/playlist.m3u8@Ref=https:\/\/www.alsharqiya.com\/@Name=الشرقية نيوز&&https:\/\/imn-live.esite-lab.com\/hls\/iraqia-general.m3u8@Name=العراقية&&https:\/\/ghaasiflu.online\/Dijlah\/index.m3u8@Name=دجلة&&https:\/\/live.alawla.tv\/hls\/stream.m3u8@Name=الأولى"
+        }
+      ]
     }
   ]
 }
